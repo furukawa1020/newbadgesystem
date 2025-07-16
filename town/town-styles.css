@@ -1,0 +1,221 @@
+/* Town-specific styles */
+.town-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.town-hero .town-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.stamp-status-display {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.stamp-status-display.obtained {
+    background: rgba(46, 204, 113, 0.8);
+    border-color: #2ecc71;
+    animation: pulse 2s infinite;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.story-section:hover {
+    transform: translateY(-5px);
+}
+
+.story-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.story-section p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #34495e;
+}
+
+.explore-points {
+    list-style: none;
+    padding: 0;
+}
+
+.explore-points li {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.explore-points li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.story-text {
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 5px solid #e17055;
+    font-style: italic;
+}
+
+.story-text p {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
+}
+
+.back-btn:hover {
+    box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.next-btn:hover {
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Responsive design for town pages */
+@media (max-width: 768px) {
+    .town-hero {
+        padding: 1.5rem;
+    }
+    
+    .town-hero .town-icon {
+        font-size: 4rem;
+    }
+    
+    .story-section {
+        padding: 1.5rem;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .town-hero {
+        padding: 1rem;
+    }
+    
+    .town-hero .town-icon {
+        font-size: 3rem;
+    }
+    
+    .story-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stamp-status-display {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Special effects for completed towns */
+.town-completed .town-hero {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    position: relative;
+    overflow: hidden;
+}
+
+.town-completed .town-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}

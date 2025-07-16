@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松任 - はくさんバッジクエスト</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="town-styles.css">
+</head>
+<body>
+    <header>
+        <h1>松任（まっとう）</h1>
+        <p>白山市の中心地</p>
+    </header>
+
+    <main>
+        <div class="town-hero">
+            <div class="town-icon">🏛️</div>
+            <div class="stamp-status-display" id="stampStatus">
+                <span id="stampIcon">📍</span>
+                <span id="stampText">スタンプ確認中...</span>
+            </div>
+        </div>
+
+        <div class="story-content">
+            <section class="story-section">
+                <h2>🏛️ 白山市の中心</h2>
+                <p>
+                    松任は白山市の中心地として、行政・経済・文化の拠点となっています。
+                    現在の白山市役所があり、多くの人々が行き交う活気ある町です。
+                </p>
+                <p>
+                    交通の要衝としても重要な役割を果たし、
+                    周辺の町々を結ぶハブとして機能しています。
+                </p>
+            </section>
+
+            <section class="story-section">
+                <h2>🌸 文化と教育</h2>
+                <p>
+                    松任には多くの学校や文化施設があり、
+                    地域の教育・文化の発展に大きく貢献しています。
+                    松任文化会館では様々な催し物が開催され、
+                    市民の文化活動の拠点となっています。
+                </p>
+                <p>
+                    また、松任駅周辺は商業施設が集まり、
+                    買い物や食事を楽しむことができます。
+                </p>
+            </section>
+
+            <section class="story-section">
+                <h2>🎯 探索ポイント</h2>
+                <ul class="explore-points">
+                    <li>🏛️ 白山市役所 - 市の中心機関</li>
+                    <li>🎭 松任文化会館 - 文化の発信地</li>
+                    <li>🚆 松任駅 - 交通の要衝</li>
+                    <li>🌳 松任総合運動公園 - 市民の憩いの場</li>
+                </ul>
+            </section>
+
+            <section class="story-section">
+                <h2>📚 物語の続き</h2>
+                <div class="story-text">
+                    <p>
+                        松任の名前は、この地に立派な松の木があり、
+                        その下で多くの人々が語り合ったことから来ているとされます。
+                    </p>
+                    <p>
+                        その松の木は「任せる」という意味も込められ、
+                        人々が互いに支え合い、信頼し合う町として発展してきました。
+                        今でも松任は、白山市全体を支える重要な役割を担っています。
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn back-btn" onclick="goBack()">🏠 トップに戻る</button>
+            <button class="nav-btn next-btn" onclick="suggestNextTown()">🗺️ 次の町を探す</button>
+        </div>
+    </main>    <footer>
+        <p>&copy; 2025 白山市NFCスタンプラリー「はくさんバッジクエスト」</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="town-script.js"></script>
+</body>
+</html>

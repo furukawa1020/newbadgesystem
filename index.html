@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>はくさんバッジクエスト - 白山市NFCスタンプラリー</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>    <header>
+        <h1>はくさんバッジクエスト</h1>
+        <p>白山市旧8市町村を巡るNFCスタンプラリー</p>
+    </header>
+
+    <main>
+        <div class="stamp-counter">
+            <h2>スタンプ獲得状況</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="stampCount">0/8 スタンプ獲得</p>
+        </div>
+
+        <div class="town-grid">
+            <div class="town-card" data-town="tsurugi">
+                <div class="town-icon">🏔️</div>
+                <h3>鶴来</h3>
+                <div class="stamp-status" id="stamp-tsurugi">未取得</div>
+                <button class="visit-btn" onclick="visitTown('tsurugi')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="mikawa">
+                <div class="town-icon">🌊</div>
+                <h3>美川</h3>
+                <div class="stamp-status" id="stamp-mikawa">未取得</div>
+                <button class="visit-btn" onclick="visitTown('mikawa')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="mattou">
+                <div class="town-icon">🏛️</div>
+                <h3>松任</h3>
+                <div class="stamp-status" id="stamp-mattou">未取得</div>
+                <button class="visit-btn" onclick="visitTown('mattou')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="kawachi">
+                <div class="town-icon">🏞️</div>
+                <h3>河内</h3>
+                <div class="stamp-status" id="stamp-kawachi">未取得</div>
+                <button class="visit-btn" onclick="visitTown('kawachi')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="shiramine">
+                <div class="town-icon">⛰️</div>
+                <h3>白峰</h3>
+                <div class="stamp-status" id="stamp-shiramine">未取得</div>
+                <button class="visit-btn" onclick="visitTown('shiramine')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="yoshinodani">
+                <div class="town-icon">🌸</div>
+                <h3>吉野谷</h3>
+                <div class="stamp-status" id="stamp-yoshinodani">未取得</div>
+                <button class="visit-btn" onclick="visitTown('yoshinodani')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="torigoe">
+                <div class="town-icon">🦅</div>
+                <h3>鳥越</h3>
+                <div class="stamp-status" id="stamp-torigoe">未取得</div>
+                <button class="visit-btn" onclick="visitTown('torigoe')">物語を読む</button>
+            </div>
+
+            <div class="town-card" data-town="ichirino">
+                <div class="town-icon">🎿</div>
+                <h3>一里野</h3>
+                <div class="stamp-status" id="stamp-ichirino">未取得</div>
+                <button class="visit-btn" onclick="visitTown('ichirino')">物語を読む</button>
+            </div>
+        </div>        <div class="complete-section" id="completeSection" style="display: none;">
+            <div class="complete-card">
+                <h2>🎉 コンプリートおめでとう！ 🎉</h2>
+                <p>全8市町村のスタンプをコンプリートしました！</p>
+                <button class="complete-btn" onclick="showSpecialContent()">特別コンテンツを見る</button>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>白山市マップ</h2>
+            <div class="map-container">
+                <div class="map-town" data-town="tsurugi" style="top: 20%; left: 30%;">
+                    <div class="map-pin">📍</div>
+                    <span>鶴来</span>
+                </div>
+                <div class="map-town" data-town="mikawa" style="top: 70%; left: 10%;">
+                    <div class="map-pin">📍</div>
+                    <span>美川</span>
+                </div>
+                <div class="map-town" data-town="mattou" style="top: 50%; left: 20%;">
+                    <div class="map-pin">📍</div>
+                    <span>松任</span>
+                </div>
+                <div class="map-town" data-town="kawachi" style="top: 30%; left: 50%;">
+                    <div class="map-pin">📍</div>
+                    <span>河内</span>
+                </div>
+                <div class="map-town" data-town="shiramine" style="top: 10%; left: 70%;">
+                    <div class="map-pin">📍</div>
+                    <span>白峰</span>
+                </div>
+                <div class="map-town" data-town="yoshinodani" style="top: 20%; left: 60%;">
+                    <div class="map-pin">📍</div>
+                    <span>吉野谷</span>
+                </div>
+                <div class="map-town" data-town="torigoe" style="top: 40%; left: 70%;">
+                    <div class="map-pin">📍</div>
+                    <span>鳥越</span>
+                </div>
+                <div class="map-town" data-town="ichirino" style="top: 15%; left: 80%;">
+                    <div class="map-pin">📍</div>
+                    <span>一里野</span>
+                </div>
+            </div>
+        </div>
+    </main>    <footer>
+        <p>&copy; 2025 白山市NFCスタンプラリー「はくさんバッジクエスト」</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

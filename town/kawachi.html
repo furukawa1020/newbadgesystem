@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河内 - はくさんバッジクエスト</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="town-styles.css">
+</head>
+<body>
+    <header>
+        <h1>河内（かわち）</h1>
+        <p>清流と自然の里</p>
+    </header>
+
+    <main>
+        <div class="town-hero">
+            <div class="town-icon">🏞️</div>
+            <div class="stamp-status-display" id="stampStatus">
+                <span id="stampIcon">📍</span>
+                <span id="stampText">スタンプ確認中...</span>
+            </div>
+        </div>
+
+        <div class="story-content">
+            <section class="story-section">
+                <h2>🏞️ 清流手取川の恵み</h2>
+                <p>
+                    河内は手取川の清流に恵まれた自然豊かな町です。
+                    美しい渓谷や森林に囲まれ、四季折々の自然の美しさを
+                    楽しむことができます。
+                </p>
+                <p>
+                    特に、手取川の上流部では美しい渓流や滝を見ることができ、
+                    自然愛好家にとって貴重な場所となっています。
+                </p>
+            </section>
+
+            <section class="story-section">
+                <h2>🌿 山の恵みと温泉</h2>
+                <p>
+                    河内は山の恵みが豊富で、山菜や川魚などの
+                    新鮮な食材が味わえます。
+                    また、温泉も湧き出ており、疲れを癒すことができます。
+                </p>
+                <p>
+                    河内の人々は自然と共生し、
+                    伝統的な山里の暮らしを大切にしています。
+                </p>
+            </section>
+
+            <section class="story-section">
+                <h2>🎯 探索ポイント</h2>
+                <ul class="explore-points">
+                    <li>🏞️ 手取川渓谷 - 美しい自然の景観</li>
+                    <li>♨️ 河内温泉 - 疲れを癒す温泉</li>
+                    <li>🌿 山菜料理 - 山の恵み</li>
+                    <li>🏔️ ハイキングコース - 自然散策</li>
+                </ul>
+            </section>
+
+            <section class="story-section">
+                <h2>📚 物語の続き</h2>
+                <div class="story-text">
+                    <p>
+                        昔、河内の深い森には山の神様が住んでいました。
+                        その神様は清らかな水を人々に与え、
+                        豊かな自然を守ってくれていました。
+                    </p>
+                    <p>
+                        河内の名前は「川の内」から来ており、
+                        川に抱かれた安らかな場所という意味があります。
+                        今でも河内は、自然の恵みを大切にする心を
+                        受け継いでいます。
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn back-btn" onclick="goBack()">🏠 トップに戻る</button>
+            <button class="nav-btn next-btn" onclick="suggestNextTown()">🗺️ 次の町を探す</button>
+        </div>
+    </main>    <footer>
+        <p>&copy; 2025 白山市NFCスタンプラリー「はくさんバッジクエスト」</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="town-script.js"></script>
+</body>
+</html>
