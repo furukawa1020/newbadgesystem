@@ -359,7 +359,9 @@ footer {
 .game-map {
     position: relative;
     width: 100%;
-    height: 600px;
+    max-width: 800px;
+    height: 450px;
+    margin: 0 auto;
     background: 
         /* 白山 - 雪をかぶった山（東側最高峰） */
         radial-gradient(ellipse 100px 150px at 85% 20%, #FFFFFF 0%, #F8F8FF 15%, #E6E6FA 35%, #D3D3D3 55%, transparent 70%),
@@ -767,6 +769,27 @@ footer {
         font-size: 2rem;
     }
     
+    /* マップのタブレット対応 */
+    .game-map {
+        height: 400px;
+    }
+    
+    .gym-pin {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+    
+    .gym-label {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+    
+    .terrain-label {
+        font-size: 13px;
+        padding: 3px 6px;
+    }
+    
     .town-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -796,6 +819,28 @@ footer {
     
     header h1 {
         font-size: 1.8rem;
+    }
+    
+    /* マップのモバイル対応 */
+    .game-map {
+        height: 300px;
+        max-width: 100%;
+    }
+    
+    .gym-pin {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .gym-label {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+    
+    .terrain-label {
+        font-size: 11px;
+        padding: 2px 4px;
     }
     
     .stamp-counter {
