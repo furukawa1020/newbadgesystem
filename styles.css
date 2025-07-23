@@ -355,32 +355,29 @@ footer {
     width: 100%;
     height: 600px;
     background: 
-        /* 白山（東側高地） */
-        radial-gradient(ellipse 120px 80px at 78% 20%, #FFFFFF 0%, #E6E6FA 30%, #D3D3D3 60%, transparent 70%),
+        /* 白山（東側の雪山） */
+        radial-gradient(circle at 80% 20%, #FFFFFF 0%, #F0F8FF 15%, transparent 25%),
         
-        /* 山間部（中央エリア） */
-        linear-gradient(135deg, transparent 40%, #8FBC8F 45%, #6B8E23 55%, #556B2F 65%, transparent 70%),
+        /* 山間部（緑の山々） */
+        radial-gradient(ellipse 200px 100px at 70% 40%, #228B22 0%, #32CD32 30%, transparent 50%),
+        radial-gradient(ellipse 150px 80px at 60% 50%, #2E8B57 0%, #3CB371 25%, transparent 40%),
         
-        /* 手取川（蛇行して日本海へ） */
-        linear-gradient(45deg, transparent 20%, #4682B4 25%, #5F9EA0 30%, #4682B4 35%, transparent 40%),
-        linear-gradient(90deg, transparent 30%, #4682B4 35%, #87CEEB 40%, #4682B4 45%, transparent 50%),
+        /* 手取川（青い線） */
+        linear-gradient(45deg, transparent 30%, #4682B4 35%, #87CEEB 40%, transparent 45%),
         
         /* 日本海（西側） */
-        linear-gradient(90deg, #191970 0%, #4169E1 8%, #6495ED 15%, transparent 20%),
+        linear-gradient(90deg, #191970 0%, #4169E1 10%, #6495ED 20%, transparent 25%),
         
-        /* 平野部（南側） */
-        linear-gradient(0deg, #9ACD32 70%, #7CFC00 80%, transparent 90%),
+        /* 平野部（南側の田園） */
+        linear-gradient(0deg, #9ACD32 75%, #ADFF2F 85%, transparent 95%),
         
-        /* 基本的な空のグラデーション */
-        linear-gradient(180deg, #87CEEB 0%, #B0E0E6 40%, #F0F8FF 100%);
+        /* 基本的な空の背景 */
+        linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #F0F8FF 100%);
     
     border-radius: 15px;
-    border: 4px solid #2c3e50;
-    box-shadow: 
-        0 8px 25px rgba(0,0,0,0.3),
-        inset 0 0 15px rgba(0,0,0,0.1);
+    border: 3px solid #2c3e50;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     overflow: hidden;
-    animation: mapBreathing 4s ease-in-out infinite;
 }
 
 /* 地形ラベル */
@@ -392,18 +389,6 @@ footer {
     z-index: 5;
     opacity: 0.9;
     font-style: italic;
-}
-
-/* 立体感を演出するアニメーション */
-@keyframes mapBreathing {
-    0%, 100% { 
-        transform: scale(1);
-        filter: brightness(1) contrast(1);
-    }
-    50% { 
-        transform: scale(1.005);
-        filter: brightness(1.05) contrast(1.1);
-    }
 }
 
 /* ピクセル風アニメーション */
@@ -443,68 +428,36 @@ footer {
 }
 
 .gym-pin {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 50%, #7f8c8d 100%);
+    background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 50%, #95a5a6 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid #34495e;
+    border: 3px solid #2c3e50;
     box-shadow: 
-        0 6px 12px rgba(0,0,0,0.3),
-        inset 0 2px 4px rgba(255,255,255,0.4),
-        inset 0 -2px 4px rgba(0,0,0,0.2),
-        0 0 0 2px rgba(52,73,94,0.1);
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 2px 4px rgba(255,255,255,0.5);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
-    image-rendering: auto;
-    transform: perspective(100px) rotateX(15deg);
-}
-
-.gym-pin::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    border: 2px solid rgba(52, 152, 219, 0.6);
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.3s ease;
-    animation: gymPulse 2s ease-in-out infinite;
 }
 
 .gym-pin:hover {
-    transform: perspective(100px) rotateX(15deg) translateY(-3px) scale(1.1);
+    transform: translateY(-2px) scale(1.05);
     box-shadow: 
-        0 10px 20px rgba(0,0,0,0.4),
-        inset 0 2px 4px rgba(255,255,255,0.6),
-        inset 0 -2px 4px rgba(0,0,0,0.3),
-        0 0 20px rgba(52,152,219,0.5);
-}
-
-.gym-pin:hover::before {
-    opacity: 1;
+        0 6px 12px rgba(0,0,0,0.4),
+        inset 0 2px 4px rgba(255,255,255,0.6);
 }
 
 .gym-pin.completed {
     background: linear-gradient(135deg, #f1c40f 0%, #f39c12 50%, #e67e22 100%);
     border-color: #d35400;
     box-shadow: 
-        0 8px 16px rgba(0,0,0,0.4),
+        0 6px 12px rgba(0,0,0,0.4),
         inset 0 3px 6px rgba(255,255,255,0.5),
-        inset 0 -3px 6px rgba(0,0,0,0.2),
-        0 0 25px rgba(243, 156, 18, 0.7),
-        0 0 40px rgba(243, 156, 18, 0.4);
-    animation: gymShine 2s ease-in-out infinite;
-}
-
-.gym-pin.completed::before {
-    border-color: rgba(241, 196, 15, 0.8);
-    opacity: 1;
+        0 0 15px rgba(243, 156, 18, 0.5);
 }
 
 .gym-badge {
@@ -554,52 +507,7 @@ footer {
         inset 0 -1px 2px rgba(0,0,0,0.1);
 }
 
-/* 新しいアニメーション */
-@keyframes gymPulse {
-    0%, 100% { 
-        transform: scale(1);
-        opacity: 0.3;
-    }
-    50% { 
-        transform: scale(1.1);
-        opacity: 0.7;
-    }
-}
-
-@keyframes gymShine {
-    0%, 100% { 
-        box-shadow: 
-            0 8px 16px rgba(0,0,0,0.4),
-            inset 0 3px 6px rgba(255,255,255,0.5),
-            inset 0 -3px 6px rgba(0,0,0,0.2),
-            0 0 25px rgba(243, 156, 18, 0.7),
-            0 0 40px rgba(243, 156, 18, 0.4);
-    }
-    50% { 
-        box-shadow: 
-            0 10px 20px rgba(0,0,0,0.5),
-            inset 0 4px 8px rgba(255,255,255,0.7),
-            inset 0 -4px 8px rgba(0,0,0,0.3),
-            0 0 35px rgba(243, 156, 18, 0.9),
-            0 0 60px rgba(243, 156, 18, 0.6);
-    }
-}
-
-@keyframes badgeGlow {
-    0% { 
-        text-shadow: 
-            1px 1px 0 rgba(0,0,0,0.6),
-            0 0 8px rgba(255,255,255,0.8),
-            0 0 12px rgba(241,196,15,0.6);
-    }
-    100% { 
-        text-shadow: 
-            1px 1px 0 rgba(0,0,0,0.6),
-            0 0 12px rgba(255,255,255,1),
-            0 0 20px rgba(241,196,15,0.9),
-            0 0 30px rgba(241,196,15,0.6);
-    }
-}
+/* バッジ要素 */
 
 /* ピクセルアート風のタイプ別ジム色 */
 .tsurugi-gym.completed { 
