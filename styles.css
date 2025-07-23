@@ -355,124 +355,101 @@ footer {
     margin-top: 2rem;
 }
 
-/* Game Map Styles - 16bit JRPG風白山市ドット絵マップ */
+/* Game Map Styles - 石川県白山市 16bit JRPG完全再現マップ */
 .game-map {
     position: relative;
     width: 100%;
     max-width: 1024px;
-    height: 512px;
+    height: 1024px;
     margin: 0 auto;
     background: 
-        /* ドット絵タイル基本パターン - 32x32相当 */
-        repeating-linear-gradient(
-            0deg,
-            #6BA644 0px,
-            #6BA644 16px,
-            #7BC159 16px,
-            #7BC159 32px
+        /* 日本海（左側30%） - 濃い青の海 */
+        linear-gradient(90deg, 
+            #1E3A8A 0%, 
+            #1E3A8A 25%, 
+            #1D4ED8 25%, 
+            #1D4ED8 30%, 
+            transparent 30%
         ),
-        repeating-linear-gradient(
-            90deg,
+        
+        /* 白山山体（右上） - 雪山 */
+        radial-gradient(ellipse 200px 300px at 85% 15%, 
+            #FFFFFF 0%, 
+            #F5F5F5 20%, 
+            #E8E8E8 40%, 
+            #D0D0D0 60%, 
+            #A8A8A8 80%, 
+            transparent 100%
+        ),
+        
+        /* 山間部（中央～右） - 濃い緑の等高線 */
+        repeating-linear-gradient(45deg,
+            transparent 50%,
+            transparent 52%,
+            #2D5016 52%,
+            #2D5016 54%,
+            #3D6026 54%,
+            #3D6026 56%,
+            transparent 56%,
+            transparent 100%
+        ),
+        radial-gradient(ellipse 300px 400px at 75% 40%, 
+            #1D4006 0%, 
+            #2D5016 30%, 
+            #3D6026 60%, 
+            transparent 80%
+        ),
+        
+        /* 手取川 - 太い水色の蛇行川（白山から日本海へ） */
+        /* 川の上流部 */
+        linear-gradient(225deg, 
+            transparent 70%, 
+            #4A9EFF 72%, 
+            #6BB6FF 75%, 
+            #4A9EFF 78%, 
+            transparent 80%
+        ),
+        /* 川の中流部 */
+        linear-gradient(200deg, 
+            transparent 50%, 
+            #3A8EEF 52%, 
+            #5AA6FF 55%, 
+            #3A8EEF 58%, 
+            transparent 60%
+        ),
+        /* 川の下流部 */
+        linear-gradient(180deg, 
+            transparent 40%, 
+            #2A7EDF 42%, 
+            #4A9EFF 45%, 
+            #2A7EDF 48%, 
+            transparent 50%
+        ),
+        /* 川の河口部 */
+        linear-gradient(160deg, 
+            transparent 25%, 
+            #1A6ECF 27%, 
+            #3A8EEF 30%, 
+            #1A6ECF 33%, 
+            transparent 35%
+        ),
+        
+        /* 加賀平野 - 薄い緑の草地タイル */
+        repeating-linear-gradient(0deg,
+            #7BC159 0px,
+            #7BC159 32px,
+            #8BD169 32px,
+            #8BD169 64px
+        ),
+        repeating-linear-gradient(90deg,
             transparent 0px,
-            transparent 16px,
-            rgba(123, 193, 89, 0.3) 16px,
-            rgba(123, 193, 89, 0.3) 32px
+            transparent 32px,
+            rgba(139, 209, 105, 0.3) 32px,
+            rgba(139, 209, 105, 0.3) 64px
         ),
         
-        /* 白山 - 16bitRPG風雪山タイル */
-        radial-gradient(ellipse 120px 160px at 85% 15%, #F5F5F5 0%, #E8E8E8 25%, #D0D0D0 50%, #B8B8B8 75%, transparent 90%),
-        radial-gradient(ellipse 100px 140px at 87% 18%, #FFFFFF 0%, #F0F0F0 30%, transparent 60%),
-        radial-gradient(ellipse 80px 120px at 83% 12%, #FAFAFA 0%, #E5E5E5 35%, transparent 70%),
-        
-        /* 山地 - ドラクエ風等高線表現 */
-        repeating-radial-gradient(
-            ellipse 150px 100px at 75% 25%,
-            #4A5D23 0px,
-            #4A5D23 8px,
-            #5A6D33 8px,
-            #5A6D33 16px,
-            #6A7D43 16px,
-            #6A7D43 24px,
-            transparent 32px
-        ),
-        repeating-radial-gradient(
-            ellipse 130px 80px at 70% 35%,
-            #3A4D13 0px,
-            #3A4D13 6px,
-            #4A5D23 6px,
-            #4A5D23 12px,
-            transparent 18px
-        ),
-        repeating-radial-gradient(
-            ellipse 110px 70px at 80% 40%,
-            #5A6D33 0px,
-            #5A6D33 8px,
-            #6A7D43 8px,
-            #6A7D43 16px,
-            transparent 24px
-        ),
-        
-        /* 手取川 - 16bit風太い蛇行川 */
-        linear-gradient(120deg, transparent 35%, #4A9EFF 38%, #6BB6FF 42%, #4A9EFF 46%, transparent 49%),
-        linear-gradient(100deg, transparent 45%, #3A8EEF 48%, #5AA6FF 52%, #3A8EEF 56%, transparent 59%),
-        linear-gradient(80deg, transparent 55%, #2A7EDF 58%, #4A9EFF 62%, #2A7EDF 66%, transparent 69%),
-        linear-gradient(60deg, transparent 65%, #1A6ECF 68%, #3A8EEF 72%, #1A6ECF 76%, transparent 79%),
-        
-        /* 日本海 - ドット絵風海岸タイル */
-        repeating-linear-gradient(
-            90deg,
-            #1E3A8A 0px,
-            #1E3A8A 16px,
-            #1D4ED8 16px,
-            #1D4ED8 32px,
-            #2563EB 32px,
-            #2563EB 48px,
-            transparent 64px
-        ),
-        
-        /* 森林地帯 - FC/SFC風ドット森 */
-        repeating-radial-gradient(
-            circle 60px at 60% 30%,
-            #2D5016 0px,
-            #2D5016 4px,
-            #3D6026 4px,
-            #3D6026 8px,
-            #4D7036 8px,
-            #4D7036 12px,
-            transparent 16px
-        ),
-        repeating-radial-gradient(
-            circle 50px at 65% 40%,
-            #1D4006 0px,
-            #1D4006 4px,
-            #2D5016 4px,
-            #2D5016 8px,
-            transparent 12px
-        ),
-        repeating-radial-gradient(
-            circle 40px at 55% 50%,
-            #3D6026 0px,
-            #3D6026 4px,
-            #4D7036 4px,
-            #4D7036 8px,
-            transparent 12px
-        ),
-        
-        /* 加賀平野 - ドット絵田園タイル */
-        repeating-linear-gradient(
-            45deg,
-            #7BC159 70%,
-            #8BD169 72%,
-            #9BE179 74%,
-            #ABF189 76%,
-            transparent 78%
-        ),
-        
-        /* 扇状地 - 明るい平野ドット */
-        radial-gradient(ellipse 200px 120px at 30% 70%, #B5E6A3 0%, #A5D693 40%, transparent 70%),
-        
-        /* 16bitドット基調 */
-        #6BA644;
+        /* 基本の草地背景 */
+        #7BC159;
     
     border: 4px solid #2D4A1A;
     box-shadow: 
@@ -505,8 +482,8 @@ footer {
     box-shadow: 1px 1px 0 rgba(0,0,0,0.7);
 }
 
-/* 16bit風水の流れアニメーション */
-@keyframes retro16bitWater {
+/* 16bit風水の流れアニメーション - 手取川専用 */
+@keyframes tetoRiverFlow {
     0% { 
         background-position: 
             0px 0px,
@@ -516,43 +493,22 @@ footer {
     }
     50% { 
         background-position: 
-            8px 4px,
-            -8px 4px,
-            12px -2px,
-            -12px 6px;
-    }
-    100% { 
-        background-position: 
             16px 8px,
-            -16px 8px,
-            24px -4px,
-            -24px 12px;
-    }
-}
-
-.game-map {
-    animation: retro16bitWater 6s linear infinite;
-}
-
-@keyframes waterFlow {
-    0% { 
-        background-position: 
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px;
+            -12px 6px,
+            20px -4px,
+            -16px 10px;
     }
     100% { 
         background-position: 
-            20px 10px,
-            -15px 8px,
-            25px -5px,
-            -20px 12px;
+            32px 16px,
+            -24px 12px,
+            40px -8px,
+            -32px 20px;
     }
 }
 
 .game-map {
-    animation: waterFlow 4s linear infinite;
+    animation: tetoRiverFlow 8s linear infinite;
 }
 
 @keyframes pixelMove {
@@ -905,7 +861,7 @@ footer {
     
     /* マップのタブレット対応 */
     .game-map {
-        height: 384px;
+        height: 768px;
         max-width: 768px;
     }
     
@@ -958,7 +914,7 @@ footer {
     
     /* マップのモバイル対応 */
     .game-map {
-        height: 256px;
+        height: 480px;
         max-width: 100%;
     }
     
