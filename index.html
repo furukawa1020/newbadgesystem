@@ -2,7 +2,13 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+             <div class="town-card" data-town="torigoe">
+                <div class="badge-icon">？</div>
+                <h3>鳥越ジム</h3>
+                <div class="badge-name">キャッスルバッジ</div>
+                <div class="stamp-status" id="stamp-torigoe">未取得</div>
+                <button class="visit-btn" onclick="visitTown('torigoe')">挑戦する</button>
+            </div>a name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ハクサンリーグ・旧市町村ジムバッジ - 白山市NFCジムバッジラリー</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="incentive-system.css">
@@ -96,11 +102,12 @@
         <div class="map-section">
             <h2>ハクサンリーグマップ</h2>
             <div class="game-map">
-                <!-- 地形ラベル -->
-                <div class="terrain-label" style="top: 15%; left: 78%; color: #fff; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">白山</div>
-                <div class="terrain-label" style="top: 70%; left: 5%; color: #191970; font-weight: bold; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">日本海</div>
-                <div class="terrain-label" style="top: 75%; left: 35%; color: #4682B4; font-weight: bold; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">手取川</div>
-                <div class="terrain-label" style="top: 85%; left: 25%; color: #228B22; font-weight: bold; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">加賀平野</div>
+                <!-- 地形ラベル - RPG風統一デザイン -->
+                <div class="terrain-label" style="top: 15%; left: 78%;">⛰️ 白山</div>
+                <div class="terrain-label" style="top: 70%; left: 5%;">🌊 日本海</div>
+                <div class="terrain-label" style="top: 75%; left: 35%;">🏞️ 手取川</div>
+                <div class="terrain-label" style="top: 85%; left: 25%;">🌾 加賀平野</div>
+                <div class="terrain-label" style="top: 35%; left: 55%;">🌲 山間部</div>
                 
                 <!-- 白山市実地形に基づくジムロケーション -->
                 

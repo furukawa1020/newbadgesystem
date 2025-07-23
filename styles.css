@@ -294,6 +294,12 @@ main {
     color: #2c3e50;
     margin-bottom: 2rem;
     font-size: 1.8rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 
+        2px 2px 0 rgba(52, 152, 219, 0.3),
+        4px 4px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
 }
 
 .map-container {
@@ -355,40 +361,89 @@ footer {
     width: 100%;
     height: 600px;
     background: 
-        /* 白山（東側の雪山） */
-        radial-gradient(circle at 80% 20%, #FFFFFF 0%, #F0F8FF 15%, transparent 25%),
+        /* 白山 - 立体的な雪山（東側最高峰） */
+        radial-gradient(ellipse 80px 120px at 85% 15%, #FFFFFF 0%, #F8F8FF 20%, #E6E6FA 40%, #D3D3D3 60%, transparent 70%),
+        radial-gradient(ellipse 60px 90px at 83% 18%, #FFFAFA 0%, #F5F5F5 25%, transparent 35%),
+        radial-gradient(ellipse 40px 60px at 87% 12%, #FFFFFF 0%, #F0F0F0 30%, transparent 40%),
         
-        /* 山間部（緑の山々） */
-        radial-gradient(ellipse 200px 100px at 70% 40%, #228B22 0%, #32CD32 30%, transparent 50%),
-        radial-gradient(ellipse 150px 80px at 60% 50%, #2E8B57 0%, #3CB371 25%, transparent 40%),
+        /* 山系の連なり - 段階的な山々 */
+        radial-gradient(ellipse 120px 80px at 75% 25%, #8FBC8F 0%, #6B8E23 40%, #556B2F 70%, transparent 80%),
+        radial-gradient(ellipse 100px 60px at 70% 35%, #9ACD32 0%, #7CFC00 35%, #6B8E23 65%, transparent 75%),
+        radial-gradient(ellipse 80px 50px at 65% 45%, #228B22 0%, #32CD32 40%, transparent 60%),
         
-        /* 手取川（青い線） */
-        linear-gradient(45deg, transparent 30%, #4682B4 35%, #87CEEB 40%, transparent 45%),
+        /* 手取川 - 蛇行する川（白山から日本海へ） */
+        linear-gradient(135deg, transparent 70%, #4682B4 72%, #87CEEB 74%, #4682B4 76%, transparent 78%),
+        linear-gradient(110deg, transparent 65%, #5F9EA0 67%, #4682B4 69%, transparent 71%),
+        linear-gradient(90deg, transparent 55%, #4682B4 57%, #87CEEB 59%, #4682B4 61%, transparent 63%),
+        linear-gradient(70deg, transparent 45%, #5F9EA0 47%, #4682B4 49%, transparent 51%),
+        linear-gradient(45deg, transparent 35%, #4682B4 37%, #87CEEB 39%, transparent 41%),
         
-        /* 日本海（西側） */
-        linear-gradient(90deg, #191970 0%, #4169E1 10%, #6495ED 20%, transparent 25%),
+        /* 日本海（西側の海） */
+        linear-gradient(90deg, #191970 0%, #4169E1 8%, #6495ED 15%, #87CEEB 22%, transparent 30%),
         
-        /* 平野部（南側の田園） */
-        linear-gradient(0deg, #9ACD32 75%, #ADFF2F 85%, transparent 95%),
+        /* 森林地帯 - 山間部の深い森 */
+        radial-gradient(circle 60px at 55% 30%, #006400 0%, #228B22 50%, transparent 70%),
+        radial-gradient(circle 50px at 60% 40%, #2E8B57 0%, #3CB371 45%, transparent 65%),
+        radial-gradient(circle 45px at 50% 45%, #228B22 0%, #32CD32 40%, transparent 60%),
+        radial-gradient(circle 40px at 65% 35%, #006400 0%, #228B22 35%, transparent 55%),
+        
+        /* 加賀平野 - 田園地帯（南西部） */
+        repeating-linear-gradient(
+            0deg,
+            transparent 75%,
+            #9ACD32 76%,
+            #ADFF2F 78%,
+            #7CFC00 80%,
+            transparent 82%
+        ),
+        
+        /* ドット絵風のピクセルパターン */
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 6px,
+            rgba(255,255,255,0.1) 6px,
+            rgba(255,255,255,0.1) 8px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 6px,
+            rgba(0,0,0,0.05) 6px,
+            rgba(0,0,0,0.05) 8px
+        ),
         
         /* 基本的な空の背景 */
-        linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #F0F8FF 100%);
+        linear-gradient(180deg, #87CEEB 0%, #E0F6FF 40%, #F0F8FF 100%);
     
     border-radius: 15px;
     border: 3px solid #2c3e50;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.2),
+        inset 0 0 20px rgba(0,0,0,0.1);
     overflow: hidden;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
 
-/* 地形ラベル */
+/* 地形ラベル - RPG風 */
 .terrain-label {
     position: absolute;
-    font-size: 0.9rem;
-    font-family: 'Arial', sans-serif;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
     pointer-events: none;
     z-index: 5;
     opacity: 0.9;
-    font-style: italic;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-style: normal;
+    image-rendering: pixelated;
 }
 
 /* ピクセル風アニメーション */
@@ -430,18 +485,23 @@ footer {
 .gym-pin {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 50%, #95a5a6 100%);
+    border-radius: 8px;
+    background: 
+        linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 50%, #95a5a6 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     border: 3px solid #2c3e50;
     box-shadow: 
         0 4px 8px rgba(0,0,0,0.3),
-        inset 0 2px 4px rgba(255,255,255,0.5);
+        inset 0 2px 4px rgba(255,255,255,0.5),
+        inset 0 -2px 4px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
 }
 
 .gym-pin:hover {
@@ -452,62 +512,97 @@ footer {
 }
 
 .gym-pin.completed {
-    background: linear-gradient(135deg, #f1c40f 0%, #f39c12 50%, #e67e22 100%);
-    border-color: #d35400;
+    background: 
+        linear-gradient(135deg, #f1c40f 0%, #f39c12 30%, #e67e22 70%, #d35400 100%);
+    border-color: #c0392b;
     box-shadow: 
         0 6px 12px rgba(0,0,0,0.4),
-        inset 0 3px 6px rgba(255,255,255,0.5),
-        0 0 15px rgba(243, 156, 18, 0.5);
+        inset 0 3px 6px rgba(255,255,255,0.4),
+        inset 0 -2px 4px rgba(0,0,0,0.2),
+        0 0 15px rgba(243, 156, 18, 0.6);
+    animation: gymGlow 2s ease-in-out infinite alternate;
 }
 
 .gym-badge {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     filter: grayscale(100%) contrast(150%) brightness(0.7);
     transition: all 0.3s ease;
     text-shadow: 
-        1px 1px 0 rgba(0,0,0,0.8),
-        0 0 4px rgba(0,0,0,0.5);
-    transform: perspective(50px) rotateX(-15deg);
+        1px 1px 0 rgba(0,0,0,0.8);
+    font-family: 'Courier New', monospace;
+    image-rendering: pixelated;
 }
 
 .gym-pin.completed .gym-badge {
     filter: none;
     text-shadow: 
         1px 1px 0 rgba(0,0,0,0.6),
-        0 0 8px rgba(255,255,255,0.8),
-        0 0 12px rgba(241,196,15,0.6);
+        0 0 6px rgba(255,255,255,0.8),
+        0 0 10px rgba(241,196,15,0.6);
     animation: badgeGlow 1.5s ease-in-out infinite alternate;
 }
 
 .gym-label {
     margin-top: 0.8rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
     color: #2c3e50;
-    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(236,240,241,0.95) 100%);
-    padding: 4px 8px;
+    background: 
+        linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(236,240,241,0.95) 100%);
+    padding: 3px 6px;
     border: 2px solid #34495e;
-    border-radius: 12px;
+    border-radius: 6px;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
     box-shadow: 
-        0 4px 8px rgba(0,0,0,0.2),
-        inset 0 1px 2px rgba(255,255,255,0.8),
-        inset 0 -1px 2px rgba(0,0,0,0.1);
+        0 3px 6px rgba(0,0,0,0.3),
+        inset 0 1px 2px rgba(255,255,255,0.8);
     white-space: nowrap;
-    font-family: 'Arial', sans-serif;
-    transform: perspective(50px) rotateX(15deg);
+    font-family: 'Courier New', monospace;
     transition: all 0.3s ease;
+    image-rendering: pixelated;
 }
 
 .gym-location:hover .gym-label {
-    transform: perspective(50px) rotateX(15deg) translateY(-2px);
+    transform: translateY(-2px);
     box-shadow: 
-        0 6px 12px rgba(0,0,0,0.3),
-        inset 0 1px 2px rgba(255,255,255,0.9),
-        inset 0 -1px 2px rgba(0,0,0,0.1);
+        0 5px 10px rgba(0,0,0,0.4),
+        inset 0 1px 2px rgba(255,255,255,0.9);
 }
 
 /* バッジ要素 */
+
+/* RPG風ジムグローアニメーション */
+@keyframes gymGlow {
+    0% { 
+        box-shadow: 
+            0 6px 12px rgba(0,0,0,0.4),
+            inset 0 3px 6px rgba(255,255,255,0.4),
+            inset 0 -2px 4px rgba(0,0,0,0.2),
+            0 0 15px rgba(243, 156, 18, 0.6);
+    }
+    100% { 
+        box-shadow: 
+            0 8px 16px rgba(0,0,0,0.5),
+            inset 0 4px 8px rgba(255,255,255,0.6),
+            inset 0 -3px 6px rgba(0,0,0,0.3),
+            0 0 25px rgba(243, 156, 18, 0.9);
+    }
+}
+
+@keyframes badgeGlow {
+    0% { 
+        text-shadow: 
+            1px 1px 0 rgba(0,0,0,0.6),
+            0 0 6px rgba(255,255,255,0.8),
+            0 0 10px rgba(241,196,15,0.6);
+    }
+    100% { 
+        text-shadow: 
+            1px 1px 0 rgba(0,0,0,0.6),
+            0 0 10px rgba(255,255,255,1),
+            0 0 15px rgba(241,196,15,0.9);
+    }
+}
 
 /* ピクセルアート風のタイプ別ジム色 */
 .tsurugi-gym.completed { 
