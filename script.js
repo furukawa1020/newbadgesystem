@@ -68,7 +68,7 @@ function addStamp(townCode) {
         
         // Get town and badge information
         const townData = towns[townCode];
-        const badgeName = townData ? townData.name : townCode;
+        const badgeName = badges[townCode] || townData || townCode;
         
         // Fire incentive system event
         if (window.incentiveSystem) {
@@ -179,10 +179,10 @@ function updateStampDisplay() {
                     rarityIndicator.remove();
                 }
                 
-                // Reset badge to generic coin
+                // Reset badge to unknown/locked state
                 const badgeElement = gymPin.querySelector('.gym-badge');
                 if (badgeElement) {
-                    badgeElement.textContent = '🪙';
+                    badgeElement.textContent = '？';
                     badgeElement.classList.remove('premium-badge');
                 }
             }
@@ -583,12 +583,6 @@ function updateIncentiveContent() {
     const statsContainer = document.querySelector('.stats-container');
     if (statsContainer) {
         statsContainer.innerHTML = window.incentiveSystem.createStatsSection();
-    }
-    
-    // Update completion rewards
-    const rewardsContainer = document.querySelector('.rewards-container');
-    if (rewardsContainer) {
-        rewardsContainer.innerHTML = window.incentiveSystem.createCompletionRewards();
     }
     
     // Update secret content visibility

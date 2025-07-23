@@ -27,12 +27,9 @@ class IncentiveSystem {
         this.secretContent = {
             'first_badge': '隠された温泉マップ解放',
             'half_complete': '白山伝説ストーリー解放',
-            'all_badges': '伝説のフォトスポット解放',
-            'speed_run': 'チャンピオン限定グッズクーポン',
-            'social_share': '限定デジタル壁紙ダウンロード'
+            'all_badges': '伝説のフォトスポット解放'
         };
         
-        this.limitedEvents = [];
         this.init();
     }
 
@@ -41,7 +38,6 @@ class IncentiveSystem {
         this.loadAchievements();
         this.startLiveCounter();
         this.setupEventListeners();
-        this.checkLimitedEvents();
         this.createPermanentUI();
     }
 
@@ -116,16 +112,6 @@ class IncentiveSystem {
         if (badges.length === 8 && !this.unlockedContent.includes('photo_spots')) {
             this.unlockSecretContent('photo_spots', '📸 伝説のフォトスポット', 
                 'インスタ映え確実！地元カメラマンが厳選した絶景スポットを大公開！');
-        }
-        
-        // Speed completion (under 2 hours)
-        const startTime = localStorage.getItem('quest_start_time');
-        if (badges.length === 8 && startTime) {
-            const completionTime = (Date.now() - parseInt(startTime)) / (1000 * 60 * 60);
-            if (completionTime < 2 && !this.unlockedContent.includes('speed_bonus')) {
-                this.unlockSecretContent('speed_bonus', '⚡ スピードチャンピオン', 
-                    '超高速クリア達成！限定グッズ20%割引クーポンをプレゼント！');
-            }
         }
     }
 
@@ -274,12 +260,6 @@ class IncentiveSystem {
         if (this.stats.socialShares >= 5) {
             this.unlockAchievement('social_butterfly', 'SNSマスター', '5回以上シェアしました', '🦋');
         }
-
-        // Unlock social sharing reward
-        if (!this.unlockedContent.includes('social_wallpaper')) {
-            this.unlockSecretContent('social_wallpaper', '🎨 限定デジタル壁紙', 
-                'SNSシェア特典！白山の美しい風景壁紙をダウンロード可能に！');
-        }
     }
 
     // ===========================================
@@ -292,15 +272,11 @@ class IncentiveSystem {
     }
 
     updateLiveStats() {
-        // Simulate real-time visitor data (in production, this would come from a server)
-        const baseVisitors = 1247;
-        const randomIncrement = Math.floor(Math.random() * 5);
-        this.stats.totalVisitors = baseVisitors + randomIncrement;
-        
-        // Update completion rate based on current user progress
+        // Real user data only - no fake numbers
         const badges = this.getBadges();
         this.stats.badgesCollected = badges.length;
         this.stats.completionRate = Math.round((badges.length / 8) * 100);
+        this.stats.totalVisitors = 0; // Will be updated with real data when available
         
         this.updateLiveCounterDisplay();
     }
@@ -310,11 +286,12 @@ class IncentiveSystem {
         if (!counter) return;
         
         counter.innerHTML = `
-            <div class="counter-title">🔥 リアルタイム統計</div>
-            <div class="counter-number">${this.stats.totalVisitors.toLocaleString()}</div>
-            <div style="font-size: 0.7rem; opacity: 0.7;">総参加者数</div>
+            <div class="counter-title">� 開発統計</div>
+            <div class="counter-number">${this.stats.totalVisitors}</div>
+            <div style="font-size: 0.7rem; opacity: 0.7;">現在のテストユーザー数</div>
             <hr style="margin: 0.5rem 0; border-color: rgba(255,255,255,0.3);">
             <div style="font-size: 0.8rem;">あなたの進捗: ${this.stats.completionRate}%</div>
+            <div style="font-size: 0.6rem; opacity: 0.5; margin-top: 0.3rem;">※実運用時は実データに更新</div>
         `;
     }
 
@@ -404,68 +381,6 @@ class IncentiveSystem {
     }
 
     // ===========================================
-    // COMPLETION REWARDS SYSTEM
-    // ===========================================
-    
-    createCompletionRewards() {
-        const badges = this.getBadges();
-        const rewards = [];
-        
-        // Milestone rewards
-        if (badges.length >= 2 && badges.length < 4) {
-            rewards.push({
-                title: '🌟 初心者コンプリート',
-                description: '2個のバッジ獲得で限定ステッカーGET！',
-                action: 'claim_sticker',
-                actionText: 'ステッカー請求'
-            });
-        }
-        
-        if (badges.length >= 4 && badges.length < 8) {
-            rewards.push({
-                title: '🎖️ 中級者コンプリート', 
-                description: '4個のバッジ獲得でオリジナルタオルGET！',
-                action: 'claim_towel',
-                actionText: 'タオル請求'
-            });
-        }
-        
-        if (badges.length === 8) {
-            rewards.push({
-                title: '👑 チャンピオンコンプリート',
-                description: '全バッジ獲得で限定Tシャツ＋特製ピンバッジセットGET！',
-                action: 'claim_champion',
-                actionText: 'チャンピオン特典請求'
-            });
-        }
-        
-        return rewards.map(reward => `
-            <div class="completion-reward">
-                <div class="reward-icon">🎁</div>
-                <div class="reward-title">${reward.title}</div>
-                <div class="reward-description">${reward.description}</div>
-                <button class="claim-reward-btn" onclick="incentiveSystem.claimReward('${reward.action}')">
-                    ${reward.actionText}
-                </button>
-            </div>
-        `).join('');
-    }
-
-    claimReward(rewardType) {
-        // In a real implementation, this would integrate with an e-commerce system
-        const rewardMessages = {
-            'claim_sticker': 'ステッカーの請求フォームを送信しました！3-5日でお手元に届きます。',
-            'claim_towel': 'オリジナルタオルの請求フォームを送信しました！1週間以内にお届けします。',
-            'claim_champion': 'チャンピオン特典の請求を受け付けました！特別なパッケージでお送りします。'
-        };
-        
-        alert(rewardMessages[rewardType] || '報酬の請求を受け付けました！');
-        
-        // Track reward claims
-        this.unlockAchievement(`reward_${rewardType}`, '報酬ゲット！', '限定グッズを請求しました', '🎁');
-    }
-
-    // ===========================================
     // UI CREATION AND MANAGEMENT
     // ===========================================
     
@@ -497,12 +412,6 @@ class IncentiveSystem {
         const statsContainer = document.querySelector('.stats-container');
         if (statsContainer) {
             statsContainer.innerHTML = this.createStatsSection();
-        }
-        
-        // Update rewards
-        const rewardsContainer = document.querySelector('.rewards-container');
-        if (rewardsContainer) {
-            rewardsContainer.innerHTML = this.createCompletionRewards();
         }
         
         // Update secret content
