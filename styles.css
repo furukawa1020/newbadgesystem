@@ -355,7 +355,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Game Map Styles - 石川県白山市 16bit JRPG完全再現マップ */
+/* Game Map Styles - 石川県白山市詳細地形 16bit JRPG完全版 */
 .game-map {
     position: relative;
     width: 100%;
@@ -363,98 +363,214 @@ footer {
     height: 1024px;
     margin: 0 auto;
     background: 
-        /* 日本海（左側30%） - 濃い青の海 */
+        /* === 日本海エリア（左側0-28%） === */
+        /* 深海部分 */
         linear-gradient(90deg, 
-            #1E3A8A 0%, 
-            #1E3A8A 25%, 
-            #1D4ED8 25%, 
-            #1D4ED8 30%, 
-            transparent 30%
+            #0F1F5C 0%, 
+            #0F1F5C 8%, 
+            #1E3A8A 8%, 
+            #1E3A8A 16%,
+            #1D4ED8 16%,
+            #1D4ED8 24%,
+            #2563EB 24%,
+            #2563EB 28%,
+            transparent 28%
         ),
-        
-        /* 白山山体（右上） - 雪山 */
-        radial-gradient(ellipse 200px 300px at 85% 15%, 
-            #FFFFFF 0%, 
-            #F5F5F5 20%, 
-            #E8E8E8 40%, 
-            #D0D0D0 60%, 
-            #A8A8A8 80%, 
-            transparent 100%
-        ),
-        
-        /* 山間部（中央～右） - 濃い緑の等高線 */
+        /* 海岸線の波パターン */
         repeating-linear-gradient(45deg,
-            transparent 50%,
-            transparent 52%,
-            #2D5016 52%,
-            #2D5016 54%,
-            #3D6026 54%,
-            #3D6026 56%,
-            transparent 56%,
-            transparent 100%
-        ),
-        radial-gradient(ellipse 300px 400px at 75% 40%, 
-            #1D4006 0%, 
-            #2D5016 30%, 
-            #3D6026 60%, 
-            transparent 80%
+            transparent 26%,
+            transparent 26.5%,
+            #3B82F6 26.5%,
+            #3B82F6 27%,
+            #60A5FA 27%,
+            #60A5FA 27.5%,
+            transparent 27.5%,
+            transparent 29%
         ),
         
-        /* 手取川 - 太い水色の蛇行川（白山から日本海へ） */
-        /* 川の上流部 */
-        linear-gradient(225deg, 
-            transparent 70%, 
-            #4A9EFF 72%, 
-            #6BB6FF 75%, 
-            #4A9EFF 78%, 
-            transparent 80%
-        ),
-        /* 川の中流部 */
-        linear-gradient(200deg, 
-            transparent 50%, 
-            #3A8EEF 52%, 
-            #5AA6FF 55%, 
-            #3A8EEF 58%, 
+        /* === 白山山体（右上75-100%, 上0-35%） === */
+        /* 山頂雪域（標高2000m以上） */
+        radial-gradient(ellipse 180px 250px at 88% 12%, 
+            #FFFFFF 0%, 
+            #FAFAFA 15%, 
+            #F5F5F5 30%, 
+            #F0F0F0 45%, 
             transparent 60%
         ),
-        /* 川の下流部 */
-        linear-gradient(180deg, 
-            transparent 40%, 
-            #2A7EDF 42%, 
-            #4A9EFF 45%, 
-            #2A7EDF 48%, 
-            transparent 50%
+        /* 高山帯（標高1500-2000m） */
+        radial-gradient(ellipse 220px 300px at 85% 18%, 
+            #E8E8E8 0%, 
+            #D8D8D8 20%, 
+            #C8C8C8 40%, 
+            #B8B8B8 60%, 
+            transparent 80%
         ),
-        /* 川の河口部 */
-        linear-gradient(160deg, 
-            transparent 25%, 
-            #1A6ECF 27%, 
-            #3A8EEF 30%, 
-            #1A6ECF 33%, 
-            transparent 35%
+        /* 亜高山帯（標高1000-1500m） */
+        radial-gradient(ellipse 260px 350px at 82% 25%, 
+            #A8A8A8 0%, 
+            #989898 25%, 
+            #888888 50%, 
+            transparent 75%
         ),
         
-        /* 加賀平野 - 薄い緑の草地タイル */
+        /* === 山間部森林地帯（右側50-85%） === */
+        /* 深い針葉樹林（標高800-1200m） */
+        repeating-radial-gradient(
+            ellipse 120px 80px at 70% 35%,
+            #1A3D0A 0px,
+            #1A3D0A 6px,
+            #2D5016 6px,
+            #2D5016 12px,
+            #1A3D0A 12px,
+            #1A3D0A 18px,
+            transparent 24px
+        ),
+        repeating-radial-gradient(
+            ellipse 140px 100px at 75% 45%,
+            #2D5016 0px,
+            #2D5016 8px,
+            #3D6026 8px,
+            #3D6026 16px,
+            #2D5016 16px,
+            #2D5016 24px,
+            transparent 32px
+        ),
+        /* 混交林帯（標高400-800m） */
+        repeating-radial-gradient(
+            ellipse 160px 120px at 65% 55%,
+            #3D6026 0px,
+            #3D6026 8px,
+            #4D7036 8px,
+            #4D7036 16px,
+            #5D8046 16px,
+            #5D8046 24px,
+            transparent 32px
+        ),
+        
+        /* === 手取川水系詳細 === */
+        /* 上流部（白山山麓） */
+        linear-gradient(210deg, 
+            transparent 72%, 
+            #5AA6FF 73%, 
+            #6BB6FF 74.5%, 
+            #7CC6FF 75%, 
+            #6BB6FF 75.5%, 
+            #5AA6FF 76%, 
+            transparent 77%
+        ),
+        /* 中流部（山間渓谷） */
+        linear-gradient(200deg, 
+            transparent 58%, 
+            #4A96EF 59%, 
+            #5AA6FF 60.5%, 
+            #6BB6FF 61%, 
+            #5AA6FF 61.5%, 
+            #4A96EF 62%, 
+            transparent 63%
+        ),
+        /* 下流部（扇状地通過） */
+        linear-gradient(185deg, 
+            transparent 44%, 
+            #3A86DF 45%, 
+            #4A96EF 46.5%, 
+            #5AA6FF 47%, 
+            #4A96EF 47.5%, 
+            #3A86DF 48%, 
+            transparent 49%
+        ),
+        /* 河口部（平野部） */
+        linear-gradient(170deg, 
+            transparent 28%, 
+            #2A76CF 29%, 
+            #3A86DF 30.5%, 
+            #4A96EF 31%, 
+            #3A86DF 31.5%, 
+            #2A76CF 32%, 
+            transparent 33%
+        ),
+        
+        /* === 支流水系 === */
+        /* 大汝川 */
+        linear-gradient(195deg, 
+            transparent 65%, 
+            #4A96EF 66%, 
+            #5AA6FF 66.5%, 
+            transparent 67%
+        ),
+        /* 犀川支流 */
+        linear-gradient(160deg, 
+            transparent 40%, 
+            #3A86DF 41%, 
+            #4A96EF 41.5%, 
+            transparent 42%
+        ),
+        
+        /* === 手取川扇状地（中央35-60%） === */
+        /* 扇頂部（礫質） */
+        radial-gradient(ellipse 80px 60px at 45% 55%, 
+            #B5D6A3 0%, 
+            #A5C693 30%, 
+            #95B683 60%, 
+            transparent 80%
+        ),
+        /* 扇央部（砂質） */
+        radial-gradient(ellipse 120px 90px at 40% 65%, 
+            #C5E6B3 0%, 
+            #B5D6A3 25%, 
+            #A5C693 50%, 
+            transparent 75%
+        ),
+        /* 扇端部（粘土質） */
+        radial-gradient(ellipse 150px 110px at 35% 75%, 
+            #D5F6C3 0%, 
+            #C5E6B3 20%, 
+            #B5D6A3 40%, 
+            transparent 60%
+        ),
+        
+        /* === 加賀平野詳細（左側28-55%） === */
+        /* 水田地帯（標高0-50m） */
         repeating-linear-gradient(0deg,
-            #7BC159 0px,
-            #7BC159 32px,
-            #8BD169 32px,
+            #8BD169 0px,
+            #8BD169 16px,
+            #9BE179 16px,
+            #9BE179 32px,
+            #ABF189 32px,
+            #ABF189 48px,
+            #8BD169 48px,
             #8BD169 64px
         ),
         repeating-linear-gradient(90deg,
             transparent 0px,
+            transparent 16px,
+            rgba(171, 241, 137, 0.2) 16px,
+            rgba(171, 241, 137, 0.2) 32px,
             transparent 32px,
-            rgba(139, 209, 105, 0.3) 32px,
-            rgba(139, 209, 105, 0.3) 64px
+            transparent 48px,
+            rgba(155, 225, 121, 0.2) 48px,
+            rgba(155, 225, 121, 0.2) 64px
         ),
         
-        /* 基本の草地背景 */
+        /* 丘陵地帯（標高50-200m） */
+        repeating-linear-gradient(30deg,
+            transparent 45%,
+            transparent 46%,
+            #7BC159 46%,
+            #7BC159 47%,
+            #8BD169 47%,
+            #8BD169 48%,
+            transparent 48%,
+            transparent 55%
+        ),
+        
+        /* === 基本草地背景 === */
         #7BC159;
     
     border: 4px solid #2D4A1A;
     box-shadow: 
         0 0 0 2px #3D5A2A,
-        0 8px 20px rgba(0,0,0,0.4);
+        0 12px 32px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.1);
     overflow: hidden;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -462,53 +578,92 @@ footer {
     image-rendering: optimize-contrast;
 }
 
-/* 地形ラベル - 16bit JRPG風 */
+/* 地形ラベル - 16bit JRPG詳細版 */
 .terrain-label {
     position: absolute;
-    font-size: 10px;
+    font-size: 9px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
     pointer-events: none;
     z-index: 5;
-    opacity: 0.85;
-    padding: 3px 6px;
+    opacity: 0.9;
+    padding: 2px 5px;
     border-radius: 0;
-    background: #2D4A1A;
-    border: 1px solid #4D6A3A;
+    background: #1A2B0A;
+    border: 1px solid #2A3B1A;
     color: #FFFFFF;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.9);
+    text-shadow: 
+        1px 1px 0 rgba(0,0,0,0.9),
+        0 0 2px rgba(0,0,0,0.8);
     font-style: normal;
     image-rendering: pixelated;
-    box-shadow: 1px 1px 0 rgba(0,0,0,0.7);
+    box-shadow: 
+        1px 1px 0 rgba(0,0,0,0.8),
+        inset 1px 1px 0 rgba(255,255,255,0.1);
+    letter-spacing: 0.5px;
 }
 
-/* 16bit風水の流れアニメーション - 手取川専用 */
-@keyframes tetoRiverFlow {
+/* 16bit風詳細水流アニメーション - 手取川水系 */
+@keyframes detailedTetoRiverSystem {
     0% { 
         background-position: 
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px;
+            0px 0px,    /* 上流部 */
+            0px 0px,    /* 中流部 */
+            0px 0px,    /* 下流部 */
+            0px 0px,    /* 河口部 */
+            0px 0px,    /* 大汝川 */
+            0px 0px,    /* 犀川支流 */
+            0px 0px,    /* 海の波 */
+            0px 0px;    /* 基本パターン */
+    }
+    25% { 
+        background-position: 
+            8px 4px,    /* 上流部 */
+            6px 3px,    /* 中流部 */
+            4px 2px,    /* 下流部 */
+            2px 1px,    /* 河口部 */
+            5px 2px,    /* 大汝川 */
+            3px 1px,    /* 犀川支流 */
+            -4px 2px,   /* 海の波 */
+            0px 0px;    /* 基本パターン */
     }
     50% { 
         background-position: 
-            16px 8px,
-            -12px 6px,
-            20px -4px,
-            -16px 10px;
+            16px 8px,   /* 上流部 */
+            12px 6px,   /* 中流部 */
+            8px 4px,    /* 下流部 */
+            4px 2px,    /* 河口部 */
+            10px 4px,   /* 大汝川 */
+            6px 2px,    /* 犀川支流 */
+            -8px 4px,   /* 海の波 */
+            0px 0px;    /* 基本パターン */
+    }
+    75% { 
+        background-position: 
+            24px 12px,  /* 上流部 */
+            18px 9px,   /* 中流部 */
+            12px 6px,   /* 下流部 */
+            6px 3px,    /* 河口部 */
+            15px 6px,   /* 大汝川 */
+            9px 3px,    /* 犀川支流 */
+            -12px 6px,  /* 海の波 */
+            0px 0px;    /* 基本パターン */
     }
     100% { 
         background-position: 
-            32px 16px,
-            -24px 12px,
-            40px -8px,
-            -32px 20px;
+            32px 16px,  /* 上流部 */
+            24px 12px,  /* 中流部 */
+            16px 8px,   /* 下流部 */
+            8px 4px,    /* 河口部 */
+            20px 8px,   /* 大汝川 */
+            12px 4px,   /* 犀川支流 */
+            -16px 8px,  /* 海の波 */
+            0px 0px;    /* 基本パターン */
     }
 }
 
 .game-map {
-    animation: tetoRiverFlow 8s linear infinite;
+    animation: detailedTetoRiverSystem 12s linear infinite;
 }
 
 @keyframes pixelMove {
@@ -551,12 +706,16 @@ footer {
     height: 48px;
     border-radius: 0;
     background: 
-        /* 16bit風グレーグラデーション（未取得状態） */
+        /* 16bit風詳細グレーグラデーション（未取得状態） */
         linear-gradient(135deg, 
-            #C0C0C0 0%, 
-            #A0A0A0 25%, 
-            #808080 50%, 
-            #606060 75%, 
+            #D0D0D0 0%, 
+            #C0C0C0 12%, 
+            #B0B0B0 25%, 
+            #A0A0A0 37%, 
+            #909090 50%, 
+            #808080 62%, 
+            #707070 75%, 
+            #606060 87%, 
             #505050 100%
         );
     display: flex;
@@ -565,9 +724,11 @@ footer {
     border: 2px solid #404040;
     box-shadow: 
         0 0 0 1px #606060,
+        1px 1px 0 #808080,
         2px 2px 0 #303030,
-        0 4px 8px rgba(0,0,0,0.5);
-    transition: all 0.2s ease;
+        3px 3px 0 #202020,
+        0 4px 12px rgba(0,0,0,0.6);
+    transition: all 0.15s ease;
     cursor: pointer;
     position: relative;
     image-rendering: pixelated;
@@ -578,30 +739,54 @@ footer {
 .gym-pin:hover {
     transform: translate(-1px, -1px);
     box-shadow: 
-        0 0 0 1px #606060,
+        0 0 0 1px #707070,
+        1px 1px 0 #909090,
         3px 3px 0 #303030,
-        0 6px 12px rgba(0,0,0,0.6);
+        4px 4px 0 #202020,
+        0 6px 16px rgba(0,0,0,0.7);
     background: 
         linear-gradient(135deg, 
-            #D0D0D0 0%, 
-            #B0B0B0 25%, 
-            #909090 50%, 
-            #707070 75%, 
+            #E0E0E0 0%, 
+            #D0D0D0 12%, 
+            #C0C0C0 25%, 
+            #B0B0B0 37%, 
+            #A0A0A0 50%, 
+            #909090 62%, 
+            #808080 75%, 
+            #707070 87%, 
             #606060 100%
         );
 }
 
 .gym-pin.completed {
     background: 
-        /* 16bit風ゴールドグラデーション（取得済み） */
-        linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF8C00 50%, #FF7F00 75%, #FF6347 100%);
-    border-color: #CC5500;
+        /* 16bit風詳細ゴールドグラデーション（取得済み） */
+        linear-gradient(135deg, 
+            #FFFF80 0%, 
+            #FFE55C 8%, 
+            #FFCC33 16%, 
+            #FFB800 24%, 
+            #FF9500 32%, 
+            #FF8C00 40%, 
+            #FF7F00 48%, 
+            #FF6B47 56%, 
+            #FF6347 64%, 
+            #E6522B 72%, 
+            #CC5500 80%, 
+            #B8450A 88%, 
+            #A03E0E 96%, 
+            #8B2500 100%
+        );
+    border-color: #8B2500;
     box-shadow: 
-        0 0 0 1px #FF8C00,
-        2px 2px 0 #CC5500,
-        0 4px 8px rgba(0,0,0,0.5),
-        0 0 12px rgba(255, 215, 0, 0.6);
-    animation: gymGlow 2s ease-in-out infinite alternate;
+        0 0 0 1px #CC5500,
+        1px 1px 0 #FF8C00,
+        2px 2px 0 #8B2500,
+        3px 3px 0 #661B00,
+        0 4px 12px rgba(0,0,0,0.6),
+        0 0 16px rgba(255, 215, 0, 0.7),
+        inset 1px 1px 0 rgba(255,255,255,0.3);
+    animation: detailedGymGlow 2.5s ease-in-out infinite alternate;
 }
 
 .gym-badge {
@@ -656,7 +841,60 @@ footer {
 
 /* バッジ要素 */
 
-/* RPG風ジムグローアニメーション */
+/* 詳細RPG風ジムグローアニメーション */
+@keyframes detailedGymGlow {
+    0% { 
+        box-shadow: 
+            0 0 0 1px #CC5500,
+            1px 1px 0 #FF8C00,
+            2px 2px 0 #8B2500,
+            3px 3px 0 #661B00,
+            0 4px 12px rgba(0,0,0,0.6),
+            0 0 16px rgba(255, 215, 0, 0.7),
+            inset 1px 1px 0 rgba(255,255,255,0.3);
+    }
+    25% { 
+        box-shadow: 
+            0 0 0 1px #E6522B,
+            1px 1px 0 #FFB800,
+            2px 2px 0 #A03E0E,
+            3px 3px 0 #661B00,
+            0 5px 15px rgba(0,0,0,0.7),
+            0 0 20px rgba(255, 215, 0, 0.8),
+            inset 1px 1px 0 rgba(255,255,255,0.4);
+    }
+    50% { 
+        box-shadow: 
+            0 0 0 1px #FF6347,
+            1px 1px 0 #FFCC33,
+            2px 2px 0 #B8450A,
+            3px 3px 0 #661B00,
+            0 6px 18px rgba(0,0,0,0.8),
+            0 0 24px rgba(255, 215, 0, 0.9),
+            inset 1px 1px 0 rgba(255,255,255,0.5);
+    }
+    75% { 
+        box-shadow: 
+            0 0 0 1px #FF7F00,
+            1px 1px 0 #FFE55C,
+            2px 2px 0 #CC5500,
+            3px 3px 0 #661B00,
+            0 7px 21px rgba(0,0,0,0.9),
+            0 0 28px rgba(255, 215, 0, 1.0),
+            inset 1px 1px 0 rgba(255,255,255,0.6);
+    }
+    100% { 
+        box-shadow: 
+            0 0 0 1px #FF8C00,
+            1px 1px 0 #FFFF80,
+            2px 2px 0 #E6522B,
+            3px 3px 0 #661B00,
+            0 8px 24px rgba(0,0,0,1.0),
+            0 0 32px rgba(255, 215, 0, 1.0),
+            inset 1px 1px 0 rgba(255,255,255,0.7);
+    }
+}
+
 @keyframes gymGlow {
     0% { 
         box-shadow: 
