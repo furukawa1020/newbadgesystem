@@ -354,110 +354,32 @@ footer {
     position: relative;
     width: 100%;
     height: 600px;
-    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 40%, #F0F8FF 100%);
-    border-radius: 15px;
-    overflow: hidden;
-    border: 6px solid #2c3e50;
-    box-shadow: 
-        inset 0 0 20px rgba(0,0,0,0.2),
-        0 10px 30px rgba(0,0,0,0.3),
-        0 0 0 2px #34495e;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-}
-
-.map-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        /* 白山 - 立体的な山岳 */
-        radial-gradient(ellipse at 75% 20%, #FFFFFF 0%, #E6E6FA 10%, #D3D3D3 20%, #A9A9A9 30%, transparent 35%),
-        radial-gradient(ellipse at 73% 22%, #F5F5F5 0%, #DCDCDC 8%, transparent 12%),
-        radial-gradient(ellipse at 77% 18%, #FFFAFA 0%, #F0F0F0 6%, transparent 10%),
+    background: 
+        /* 白山（東側高地） */
+        radial-gradient(ellipse 120px 80px at 78% 20%, #FFFFFF 0%, #E6E6FA 30%, #D3D3D3 60%, transparent 70%),
         
-        /* 山脈の連なり - 立体感 */
-        linear-gradient(135deg, transparent 0%, transparent 15%, #8FBC8F 15%, #6B8E23 25%, #556B2F 35%, transparent 40%),
-        linear-gradient(225deg, transparent 60%, #9ACD32 60%, #7CFC00 65%, #6B8E23 70%, transparent 75%),
+        /* 山間部（中央エリア） */
+        linear-gradient(135deg, transparent 40%, #8FBC8F 45%, #6B8E23 55%, #556B2F 65%, transparent 70%),
         
-        /* 手取川 - 蛇行する川 */
-        radial-gradient(ellipse 150px 30px at 25% 60%, #4682B4 0%, #5F9EA0 50%, transparent 70%),
-        radial-gradient(ellipse 120px 25px at 35% 65%, #4682B4 0%, #5F9EA0 50%, transparent 70%),
-        radial-gradient(ellipse 140px 35px at 45% 70%, #4682B4 0%, #5F9EA0 50%, transparent 70%),
-        radial-gradient(ellipse 100px 20px at 55% 75%, #4682B4 0%, #5F9EA0 50%, transparent 70%),
-        radial-gradient(ellipse 80px 15px at 65% 80%, #4682B4 0%, #5F9EA0 50%, transparent 70%),
-        
-        /* 川の流れ効果 */
-        linear-gradient(45deg, transparent 0%, rgba(173,216,230,0.3) 20%, transparent 25%, transparent 30%, rgba(173,216,230,0.3) 35%, transparent 40%),
+        /* 手取川（蛇行して日本海へ） */
+        linear-gradient(45deg, transparent 20%, #4682B4 25%, #5F9EA0 30%, #4682B4 35%, transparent 40%),
+        linear-gradient(90deg, transparent 30%, #4682B4 35%, #87CEEB 40%, #4682B4 45%, transparent 50%),
         
         /* 日本海（西側） */
-        linear-gradient(90deg, #191970 0%, #4169E1 5%, #6495ED 10%, transparent 15%),
+        linear-gradient(90deg, #191970 0%, #4169E1 8%, #6495ED 15%, transparent 20%),
         
-        /* 森林エリア - 立体的な森 */
-        radial-gradient(circle at 20% 30%, #228B22 0%, #32CD32 15%, transparent 20%),
-        radial-gradient(circle at 30% 45%, #006400 0%, #228B22 12%, transparent 18%),
-        radial-gradient(circle at 60% 35%, #2E8B57 0%, #3CB371 14%, transparent 20%),
-        radial-gradient(circle at 70% 50%, #228B22 0%, #32CD32 16%, transparent 22%),
+        /* 平野部（南側） */
+        linear-gradient(0deg, #9ACD32 70%, #7CFC00 80%, transparent 90%),
         
-        /* 平野部 - 田園地帯 */
-        repeating-linear-gradient(
-            0deg,
-            #9ACD32 0px,
-            #9ACD32 3px,
-            #7CFC00 3px,
-            #7CFC00 6px,
-            #ADFF2F 6px,
-            #ADFF2F 9px,
-            transparent 9px,
-            transparent 12px
-        ),
-        
-        /* 町の影 - 立体感 */
-        radial-gradient(ellipse at 25% 55%, rgba(0,0,0,0.1) 0%, transparent 8%),
-        radial-gradient(ellipse at 45% 65%, rgba(0,0,0,0.1) 0%, transparent 6%),
-        radial-gradient(ellipse at 65% 75%, rgba(0,0,0,0.1) 0%, transparent 7%),
-        
-        /* RPG風ドットパターン */
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 8px,
-            rgba(255,255,255,0.05) 8px,
-            rgba(255,255,255,0.05) 12px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 8px,
-            rgba(0,0,0,0.03) 8px,
-            rgba(0,0,0,0.03) 12px
-        );
-    background-size: 
-        200px 150px,  /* 白山メイン */
-        80px 60px,    /* 白山詳細1 */
-        60px 40px,    /* 白山詳細2 */
-        300px 100px,  /* 山脈1 */
-        250px 80px,   /* 山脈2 */
-        150px 30px,   /* 手取川1 */
-        120px 25px,   /* 手取川2 */
-        140px 35px,   /* 手取川3 */
-        100px 20px,   /* 手取川4 */
-        80px 15px,    /* 手取川5 */
-        100% 100px,   /* 川の流れ */
-        100% 100%,    /* 日本海 */
-        120px 120px,  /* 森林1 */
-        100px 100px,  /* 森林2 */
-        110px 110px,  /* 森林3 */
-        130px 130px,  /* 森林4 */
-        12px 100%,    /* 田園 */
-        50px 30px,    /* 影1 */
-        40px 25px,    /* 影2 */
-        45px 28px,    /* 影3 */
-        12px 12px,    /* ドット1 */
-        12px 12px;    /* ドット2 */
+        /* 基本的な空のグラデーション */
+        linear-gradient(180deg, #87CEEB 0%, #B0E0E6 40%, #F0F8FF 100%);
+    
+    border-radius: 15px;
+    border: 4px solid #2c3e50;
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.3),
+        inset 0 0 15px rgba(0,0,0,0.1);
+    overflow: hidden;
     animation: mapBreathing 4s ease-in-out infinite;
 }
 
