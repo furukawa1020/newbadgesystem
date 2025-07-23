@@ -3,126 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>はくさんバッジクエスト - 白山市NFCスタンプラリー</title>
+    <title>ハクサンリーグ・旧市町村ジムバッジ - 白山市NFCジムバッジラリー</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>    <header>
-        <h1>はくさんバッジクエスト</h1>
-        <p>白山市旧8市町村を巡るNFCスタンプラリー</p>
+        <h1>ハクサンリーグ・旧市町村ジムバッジ</h1>
+        <p>白山市の8つのジムを巡りバッジを集めよう！</p>
     </header>
 
     <main>
         <div class="stamp-counter">
-            <h2>スタンプ獲得状況</h2>
+            <h2>ジムバッジ獲得状況</h2>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p id="stampCount">0/8 スタンプ獲得</p>
+            <p id="stampCount">0/8 バッジ獲得</p>
         </div>
 
         <div class="town-grid">
             <div class="town-card" data-town="tsurugi">
-                <div class="town-icon">🏔️</div>
-                <h3>鶴来</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>鶴来ジム</h3>
+                <div class="badge-name">クレインバッジ</div>
                 <div class="stamp-status" id="stamp-tsurugi">未取得</div>
-                <button class="visit-btn" onclick="visitTown('tsurugi')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('tsurugi')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="mikawa">
-                <div class="town-icon">🌊</div>
-                <h3>美川</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>美川ジム</h3>
+                <div class="badge-name">ラッパバッジ</div>
                 <div class="stamp-status" id="stamp-mikawa">未取得</div>
-                <button class="visit-btn" onclick="visitTown('mikawa')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('mikawa')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="mattou">
-                <div class="town-icon">🏛️</div>
-                <h3>松任</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>松任ジム</h3>
+                <div class="badge-name">パインバッジ</div>
                 <div class="stamp-status" id="stamp-mattou">未取得</div>
-                <button class="visit-btn" onclick="visitTown('mattou')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('mattou')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="kawachi">
-                <div class="town-icon">🏞️</div>
-                <h3>河内</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>河内ジム</h3>
+                <div class="badge-name">ブリッジバッジ</div>
                 <div class="stamp-status" id="stamp-kawachi">未取得</div>
-                <button class="visit-btn" onclick="visitTown('kawachi')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('kawachi')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="shiramine">
-                <div class="town-icon">⛰️</div>
-                <h3>白峰</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>白峰ジム</h3>
+                <div class="badge-name">ピークバッジ</div>
                 <div class="stamp-status" id="stamp-shiramine">未取得</div>
-                <button class="visit-btn" onclick="visitTown('shiramine')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('shiramine')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="yoshinodani">
-                <div class="town-icon">🌸</div>
-                <h3>吉野谷</h3>
+                <div class="badge-icon">🪙</div>
+                <h3>吉野谷ジム</h3>
+                <div class="badge-name">フォレストバッジ</div>
                 <div class="stamp-status" id="stamp-yoshinodani">未取得</div>
-                <button class="visit-btn" onclick="visitTown('yoshinodani')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('yoshinodani')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="torigoe">
-                <div class="town-icon">🦅</div>
-                <h3>鳥越</h3>
+                <div class="badge-icon">�</div>
+                <h3>鳥越ジム</h3>
+                <div class="badge-name">キャッスルバッジ</div>
                 <div class="stamp-status" id="stamp-torigoe">未取得</div>
-                <button class="visit-btn" onclick="visitTown('torigoe')">物語を読む</button>
+                <button class="visit-btn" onclick="visitTown('torigoe')">挑戦する</button>
             </div>
 
-            <div class="town-card" data-town="ichirino">
-                <div class="town-icon">🎿</div>
-                <h3>一里野</h3>
-                <div class="stamp-status" id="stamp-ichirino">未取得</div>
-                <button class="visit-btn" onclick="visitTown('ichirino')">物語を読む</button>
+            <div class="town-card" data-town="oguchi">
+                <div class="badge-icon">🪙</div>
+                <h3>尾口ジム</h3>
+                <div class="badge-name">フォールバッジ</div>
+                <div class="stamp-status" id="stamp-oguchi">未取得</div>
+                <button class="visit-btn" onclick="visitTown('oguchi')">挑戦する</button>
             </div>
         </div>        <div class="complete-section" id="completeSection" style="display: none;">
             <div class="complete-card">
-                <h2>🎉 コンプリートおめでとう！ 🎉</h2>
-                <p>全8市町村のスタンプをコンプリートしました！</p>
-                <button class="complete-btn" onclick="showSpecialContent()">特別コンテンツを見る</button>
+                <h2>� ハクサンリーグチャンピオン！ �</h2>
+                <p>全8つのジムバッジをコンプリートしました！</p>
+                <button class="complete-btn" onclick="showSpecialContent()">殿堂入りする</button>
             </div>
         </div>
 
         <div class="map-section">
-            <h2>白山市マップ</h2>
-            <div class="map-container">
-                <div class="map-town" data-town="tsurugi" style="top: 20%; left: 30%;">
-                    <div class="map-pin">📍</div>
-                    <span>鶴来</span>
+            <h2>ハクサンリーグマップ</h2>
+            <div class="game-map">
+                <!-- 背景のドット絵風マップ -->
+                <div class="map-bg"></div>
+                
+                <!-- ジムロケーション -->
+                <div class="gym-location" data-town="tsurugi" style="top: 30%; left: 25%;">
+                    <div class="gym-pin tsurugi-gym" id="gym-tsurugi">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">鶴来ジム</span>
                 </div>
-                <div class="map-town" data-town="mikawa" style="top: 70%; left: 10%;">
-                    <div class="map-pin">📍</div>
-                    <span>美川</span>
+                
+                <div class="gym-location" data-town="mikawa" style="top: 70%; left: 15%;">
+                    <div class="gym-pin mikawa-gym" id="gym-mikawa">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">美川ジム</span>
                 </div>
-                <div class="map-town" data-town="mattou" style="top: 50%; left: 20%;">
-                    <div class="map-pin">📍</div>
-                    <span>松任</span>
+                
+                <div class="gym-location" data-town="mattou" style="top: 50%; left: 30%;">
+                    <div class="gym-pin mattou-gym" id="gym-mattou">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">松任ジム</span>
                 </div>
-                <div class="map-town" data-town="kawachi" style="top: 30%; left: 50%;">
-                    <div class="map-pin">📍</div>
-                    <span>河内</span>
+                
+                <div class="gym-location" data-town="kawachi" style="top: 35%; left: 50%;">
+                    <div class="gym-pin kawachi-gym" id="gym-kawachi">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">河内ジム</span>
                 </div>
-                <div class="map-town" data-town="shiramine" style="top: 10%; left: 70%;">
-                    <div class="map-pin">📍</div>
-                    <span>白峰</span>
+                
+                <div class="gym-location" data-town="shiramine" style="top: 15%; left: 70%;">
+                    <div class="gym-pin shiramine-gym" id="gym-shiramine">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">白峰ジム</span>
                 </div>
-                <div class="map-town" data-town="yoshinodani" style="top: 20%; left: 60%;">
-                    <div class="map-pin">📍</div>
-                    <span>吉野谷</span>
+                
+                <div class="gym-location" data-town="yoshinodani" style="top: 25%; left: 60%;">
+                    <div class="gym-pin yoshinodani-gym" id="gym-yoshinodani">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">吉野谷ジム</span>
                 </div>
-                <div class="map-town" data-town="torigoe" style="top: 40%; left: 70%;">
-                    <div class="map-pin">📍</div>
-                    <span>鳥越</span>
+                
+                <div class="gym-location" data-town="torigoe" style="top: 40%; left: 65%;">
+                    <div class="gym-pin torigoe-gym" id="gym-torigoe">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">鳥越ジム</span>
                 </div>
-                <div class="map-town" data-town="ichirino" style="top: 15%; left: 80%;">
-                    <div class="map-pin">📍</div>
-                    <span>一里野</span>
+                
+                <div class="gym-location" data-town="oguchi" style="top: 20%; left: 80%;">
+                    <div class="gym-pin oguchi-gym" id="gym-oguchi">
+                        <div class="gym-badge">🪙</div>
+                    </div>
+                    <span class="gym-label">尾口ジム</span>
                 </div>
             </div>
         </div>
     </main>    <footer>
-        <p>&copy; 2025 白山市NFCスタンプラリー「はくさんバッジクエスト」</p>
+        <p>&copy; 2025 ハクサンリーグ・旧市町村ジムバッジ</p>
     </footer>
 
     <script src="script.js"></script>

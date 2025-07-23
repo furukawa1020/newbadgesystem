@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鶴来 - はくさんバッジクエスト</title>
+    <title>鶴来ジム - ハクサンリーグ・旧市町村ジムバッジ</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="town-styles.css">
 </head>
 <body>
     <header>
-        <h1>鶴来（つるぎ）</h1>
-        <p>白山信仰の中心地</p>
+        <h1>鶴来ジム（つるぎジム）</h1>
+        <p>The Sacred Badge - フェアリー/ひこうタイプのジム</p>
     </header>
 
     <main>
-        <div class="town-hero">
-            <div class="town-icon">🏔️</div>
+        <div class="town-hero tsurugi-theme">
+            <div class="badge-icon">🪙</div>
+            <div class="badge-name-display">クレインバッジ</div>
             <div class="stamp-status-display" id="stampStatus">
-                <span id="stampIcon">📍</span>
-                <span id="stampText">スタンプ確認中...</span>
+                <span id="stampIcon">🪙</span>
+                <span id="stampText">バッジ確認中...</span>
             </div>
         </div>
 
@@ -36,16 +37,26 @@
             </section>
 
             <section class="story-section">
-                <h2>🌸 伝統と文化</h2>
+                <h2>💎 クレインバッジについて</h2>
                 <p>
-                    鶴来では毎年、白山比咩神社で行われる「おかえり祭り」が有名です。
-                    この祭りは、白山の神様を迎える大切な行事で、地域の人々が一体となって
-                    神輿を担ぎ、町を練り歩きます。
+                    <strong>クレインバッジ（The Crane Badge）</strong>は、町の名前にもある「鶴」と、
+                    霊峰白山の玄関口であり、全国白山神社の総本宮「白山比咩神社」をモチーフにしました。
                 </p>
                 <p>
-                    また、鶴来は手取川の清流に恵まれ、美しい自然環境の中で
-                    伝統的な日本の文化が息づいています。
+                    神社の神聖な雰囲気と、優雅に羽を広げる鶴の姿を重ね合わせています。
+                    縁結びの神様でもあるため、どこか神秘的で気品のあるデザインです。
                 </p>
+                <div class="badge-stats">
+                    <div class="stat-item">
+                        <strong>タイプ:</strong> フェアリー/ひこう
+                    </div>
+                    <div class="stat-item">
+                        <strong>特性:</strong> 神聖な力
+                    </div>
+                    <div class="stat-item">
+                        <strong>象徴:</strong> 白山比咩神社
+                    </div>
+                </div>
             </section>
 
             <section class="story-section">
@@ -59,7 +70,7 @@
             </section>
 
             <section class="story-section">
-                <h2>📚 物語の続き</h2>
+                <h2>📚 ジムリーダーの物語</h2>
                 <div class="story-text">
                     <p>
                         昔、この地に一羽の美しい鶴が舞い降りたという言い伝えがあります。
@@ -67,18 +78,29 @@
                     </p>
                     <p>
                         鶴来の名前は、この神聖な鶴が来た場所という意味から付けられたと言われています。
-                        今でも、この地を訪れる人々は、その神秘的な力を感じることができるでしょう。
+                        クレインバッジは、その神聖な鶴の力を宿した特別なバッジです。
+                        このバッジを手にした者は、神々の加護を受けると言われています。
                     </p>
+                </div>
+            </section>
+
+            <section class="gym-challenge">
+                <h2>🏆 ジムチャレンジ</h2>
+                <div class="challenge-description">
+                    <p>鶴来ジムのチャレンジは「神聖なる試練」です。</p>
+                    <p>純粋な心と信仰の力が試されます。</p>
                 </div>
             </section>
         </div>
 
         <div class="navigation">
-            <button class="nav-btn back-btn" onclick="goBack()">🏠 トップに戻る</button>
-            <button class="nav-btn next-btn" onclick="suggestNextTown()">🗺️ 次の町を探す</button>
+            <button class="nav-btn back-btn" onclick="goBack()">🏠 ハクサンリーグに戻る</button>
+            <button class="nav-btn next-btn" onclick="suggestNextTown()">🗺️ 次のジムを探す</button>
         </div>
-    </main>    <footer>
-        <p>&copy; 2025 白山市NFCスタンプラリー「はくさんバッジクエスト」</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ハクサンリーグ・旧市町村ジムバッジ</p>
     </footer>
 
     <script src="../script.js"></script>

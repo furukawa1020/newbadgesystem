@@ -7,6 +7,59 @@
     text-align: center;
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid #f39c12;
+}
+
+/* Type-specific themes */
+.tsurugi-theme {
+    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+}
+
+.oguchi-theme {
+    background: linear-gradient(135deg, #00cec9 0%, #00b894 100%);
+}
+
+.badge-name-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #f1c40f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.badge-stats {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.stat-item {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.gym-challenge {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+}
+
+.challenge-description {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
 }
 
 .town-hero .town-icon {

@@ -7,7 +7,19 @@ const towns = {
     shiramine: '白峰',
     yoshinodani: '吉野谷',
     torigoe: '鳥越',
-    ichirino: '一里野'
+    oguchi: '尾口'
+};
+
+// Badge data
+const badges = {
+    tsurugi: 'クレインバッジ',
+    mikawa: 'ラッパバッジ',
+    mattou: 'パインバッジ',
+    kawachi: 'ブリッジバッジ',
+    shiramine: 'ピークバッジ',
+    yoshinodani: 'フォレストバッジ',
+    torigoe: 'キャッスルバッジ',
+    oguchi: 'フォールバッジ'
 };
 
 // Initialize on page load
@@ -16,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check for stamp parameter in URL
     const urlParams = new URLSearchParams(window.location.search);
-    const stampParam = urlParams.get('stamp');
+    const stampParam = urlParams.get('badge');
     
     if (stampParam && towns[stampParam]) {
         // Add stamp to localStorage
@@ -25,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show notification (only if not already obtained)
         const stamps = getStamps();
         if (stamps.includes(stampParam)) {
-            showStampNotification(towns[stampParam]);
+            showStampNotification(towns[stampParam], badges[stampParam]);
         }
     }
 });
 
 // Get stamps from localStorage
 function getStamps() {
-    const stamps = localStorage.getItem('hakusan_stamps');
+    const stamps = localStorage.getItem('hakusan_badges');
     return stamps ? JSON.parse(stamps) : [];
 }
 
@@ -41,7 +53,7 @@ function addStamp(townCode) {
     const stamps = getStamps();
     if (!stamps.includes(townCode)) {
         stamps.push(townCode);
-        localStorage.setItem('hakusan_stamps', JSON.stringify(stamps));
+        localStorage.setItem('hakusan_badges', JSON.stringify(stamps));
         updateStampDisplay();
         return true;
     }
@@ -55,7 +67,7 @@ function updateStampDisplay() {
     const totalStamps = Object.keys(towns).length;
     
     // Update counter
-    document.getElementById('stampCount').textContent = `${stampCount}/${totalStamps} スタンプ獲得`;
+    document.getElementById('stampCount').textContent = `${stampCount}/${totalStamps} バッジ獲得`;
     
     // Update progress bar
     const progressFill = document.getElementById('progressFill');
@@ -69,7 +81,7 @@ function updateStampDisplay() {
         
         if (stamps.includes(townCode)) {
             townCard.classList.add('completed');
-            stampStatus.textContent = '✅ GET!';
+            stampStatus.textContent = '✅ 獲得済み';
             stampStatus.classList.add('obtained');
         } else {
             townCard.classList.remove('completed');
@@ -78,14 +90,14 @@ function updateStampDisplay() {
         }
     });
     
-    // Update map pins
+    // Update gym pins on map
     Object.keys(towns).forEach(townCode => {
-        const mapTown = document.querySelector(`.map-town[data-town="${townCode}"]`);
-        if (mapTown) {
+        const gymPin = document.getElementById(`gym-${townCode}`);
+        if (gymPin) {
             if (stamps.includes(townCode)) {
-                mapTown.classList.add('completed');
+                gymPin.classList.add('completed');
             } else {
-                mapTown.classList.remove('completed');
+                gymPin.classList.remove('completed');
             }
         }
     });
@@ -101,14 +113,14 @@ function updateStampDisplay() {
 }
 
 // Show stamp notification
-function showStampNotification(townName) {
+function showStampNotification(townName, badgeName) {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = 'stamp-notification';
     notification.innerHTML = `
         <div class="notification-content">
-            <h3>🎉 スタンプ獲得！</h3>
-            <p>${townName}のスタンプを獲得しました！</p>
+            <h3>� バッジ獲得！</h3>
+            <p>${townName}ジムで<br><strong>${badgeName}</strong>を獲得しました！</p>
             <button onclick="closeNotification()">OK</button>
         </div>
     `;
@@ -402,12 +414,12 @@ function closeSpecialContent() {
 
 // Share completion
 function shareCompletion() {
-    const shareText = '白山市NFCスタンプラリー「はくさんバッジクエスト」で全8市町村のスタンプを集めました！🎉';
+    const shareText = 'ハクサンリーグ・旧市町村ジムバッジで全8つのバッジを集めました！�';
     const shareUrl = window.location.href;
     
     if (navigator.share) {
         navigator.share({
-            title: 'はくさんバッジクエスト完全制覇！',
+            title: 'ハクサンリーグチャンピオン完全制覇！',
             text: shareText,
             url: shareUrl
         });
@@ -426,11 +438,11 @@ function shareCompletion() {
 
 // Reset stamps (for testing or restart)
 function resetStamps() {
-    if (confirm('本当にスタンプをリセットしますか？この操作は取り消せません。')) {
-        localStorage.removeItem('hakusan_stamps');
+    if (confirm('本当にバッジをリセットしますか？この操作は取り消せません。')) {
+        localStorage.removeItem('hakusan_badges');
         updateStampDisplay();
         closeSpecialContent();
-        alert('スタンプをリセットしました。新しい冒険を始めましょう！');
+        alert('バッジをリセットしました。新しい冒険を始めましょう！');
     }
 }
 

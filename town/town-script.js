@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentTown = getCurrentTownCode();
     updateTownStampStatus(currentTown);
     
-    // Check URL for stamp parameter and process it
+    // Check URL for badge parameter and process it
     const urlParams = new URLSearchParams(window.location.search);
-    const stampParam = urlParams.get('stamp');
+    const badgeParam = urlParams.get('badge');
     
-    if (stampParam && stampParam === currentTown) {
+    if (badgeParam && badgeParam === currentTown) {
         processStampAcquisition(currentTown);
     }
 });
@@ -28,13 +28,13 @@ function updateTownStampStatus(townCode) {
     const stampStatus = document.getElementById('stampStatus');
     
     if (stamps.includes(townCode)) {
-        stampIcon.textContent = '✅';
-        stampText.textContent = 'スタンプ獲得済み！';
+        stampIcon.textContent = '🏆';
+        stampText.textContent = 'バッジ獲得済み！';
         stampStatus.classList.add('obtained');
         document.body.classList.add('town-completed');
     } else {
-        stampIcon.textContent = '📍';
-        stampText.textContent = 'スタンプ未取得';
+        stampIcon.textContent = '🪙';
+        stampText.textContent = 'バッジ未取得';
         stampStatus.classList.remove('obtained');
         document.body.classList.remove('town-completed');
     }
@@ -69,18 +69,30 @@ function showTownStampNotification(townCode) {
         shiramine: '白峰',
         yoshinodani: '吉野谷',
         torigoe: '鳥越',
-        ichirino: '一里野'
+        oguchi: '尾口'
+    };
+    
+    const badgeNames = {
+        tsurugi: 'クレインバッジ',
+        mikawa: 'ラッパバッジ',
+        mattou: 'パインバッジ',
+        kawachi: 'ブリッジバッジ',
+        shiramine: 'ピークバッジ',
+        yoshinodani: 'フォレストバッジ',
+        torigoe: 'キャッスルバッジ',
+        oguchi: 'フォールバッジ'
     };
     
     const townName = townNames[townCode] || townCode;
+    const badgeName = badgeNames[townCode] || 'バッジ';
     
     const notification = document.createElement('div');
     notification.className = 'town-stamp-notification';
     notification.innerHTML = `
         <div class="notification-content">
-            <div class="notification-icon">🎉</div>
-            <h3>スタンプ獲得！</h3>
-            <p>${townName}のスタンプを獲得しました！</p>
+            <div class="notification-icon">�</div>
+            <h3>ジムバッジ獲得！</h3>
+            <p>${townName}ジムで<br><strong>${badgeName}</strong>を獲得しました！</p>
             <div class="progress-info">
                 <span id="notificationProgress">${getStamps().length}/8</span>
                 <div class="mini-progress-bar">
@@ -280,7 +292,7 @@ function goBack() {
 
 function suggestNextTown() {
     const stamps = getStamps();
-    const allTowns = ['tsurugi', 'mikawa', 'mattou', 'kawachi', 'shiramine', 'yoshinodani', 'torigoe', 'ichirino'];
+    const allTowns = ['tsurugi', 'mikawa', 'mattou', 'kawachi', 'shiramine', 'yoshinodani', 'torigoe', 'oguchi'];
     const currentTown = getCurrentTownCode();
     
     // Find unvisited towns
@@ -296,7 +308,7 @@ function suggestNextTown() {
             shiramine: '白峰',
             yoshinodani: '吉野谷',
             torigoe: '鳥越',
-            ichirino: '一里野'
+            oguchi: '尾口'
         };
         
         if (confirm(`次は${townNames[randomTown]}を訪れてみませんか？`)) {
