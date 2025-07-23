@@ -355,103 +355,185 @@ footer {
     margin-top: 2rem;
 }
 
-/* Game Map Styles - 白山市実地形ドット絵マップ */
+/* Game Map Styles - 16bit JRPG風白山市ドット絵マップ */
 .game-map {
     position: relative;
     width: 100%;
-    max-width: 800px;
-    height: 450px;
+    max-width: 1024px;
+    height: 512px;
     margin: 0 auto;
     background: 
-        /* 白山 - 立体的な雪山（東側） */
-        radial-gradient(ellipse 80px 120px at 85% 18%, #FFFFFF 0%, #F0F8FF 20%, #E6E6FA 40%, #D3D3D3 65%, transparent 75%),
-        radial-gradient(ellipse 60px 90px at 83% 22%, #FFFAFA 0%, #F5F5F5 25%, transparent 45%),
-        radial-gradient(ellipse 40px 60px at 87% 15%, #FFFFFF 0%, #F8F8FF 30%, transparent 50%),
-        
-        /* 白山周辺の山系 - 茶色とグレーの立体的な山 */
-        radial-gradient(ellipse 100px 80px at 75% 25%, #8D6E63 0%, #6D4C41 40%, #5D4037 70%, transparent 85%),
-        radial-gradient(ellipse 80px 60px at 80% 35%, #A1887F 0%, #8D6E63 45%, transparent 75%),
-        radial-gradient(ellipse 60px 50px at 70% 45%, #BCAAA4 0%, #A1887F 40%, transparent 70%),
-        
-        /* 手取川 - 水色のジグザグ川 */
-        linear-gradient(135deg, transparent 40%, #00BCD4 42%, #4DD0E1 44%, #00BCD4 46%, transparent 48%),
-        linear-gradient(110deg, transparent 50%, #00ACC1 52%, #26C6DA 54%, #00ACC1 56%, transparent 58%),
-        linear-gradient(90deg, transparent 60%, #0097A7 62%, #00BCD4 64%, #0097A7 66%, transparent 68%),
-        linear-gradient(70deg, transparent 70%, #00838F 72%, #00ACC1 74%, transparent 76%),
-        
-        /* 日本海 - 深い青の海（左側） */
-        linear-gradient(90deg, #0D47A1 0%, #1565C0 8%, #1976D2 15%, #2196F3 22%, #64B5F6 28%, transparent 35%),
-        
-        /* 森林地帯 - 濃い緑のドット絵風 */
-        radial-gradient(circle 70px at 60% 35%, #1B5E20 0%, #2E7D32 50%, transparent 75%),
-        radial-gradient(circle 60px at 65% 45%, #2E7D32 0%, #388E3C 45%, transparent 70%),
-        radial-gradient(circle 50px at 55% 50%, #388E3C 0%, #4CAF50 40%, transparent 65%),
-        radial-gradient(circle 45px at 70% 30%, #1B5E20 0%, #2E7D32 35%, transparent 60%),
-        
-        /* 加賀平野 - ドット絵風田園地帯 */
+        /* ドット絵タイル基本パターン - 32x32相当 */
         repeating-linear-gradient(
             0deg,
-            #7CB342 75%,
-            #8BC34A 76%,
-            #9CCC65 78%,
-            #AED581 80%,
-            transparent 82%
+            #6BA644 0px,
+            #6BA644 16px,
+            #7BC159 16px,
+            #7BC159 32px
         ),
         repeating-linear-gradient(
             90deg,
-            transparent 75%,
-            rgba(139, 195, 74, 0.3) 76%,
-            rgba(156, 204, 101, 0.3) 78%,
-            transparent 80%
+            transparent 0px,
+            transparent 16px,
+            rgba(123, 193, 89, 0.3) 16px,
+            rgba(123, 193, 89, 0.3) 32px
         ),
         
-        /* 扇状地（手取川扇状地） - 明るい緑 */
-        radial-gradient(ellipse 200px 100px at 30% 75%, #C8E6C9 0%, #A5D6A7 30%, #81C784 60%, transparent 80%),
+        /* 白山 - 16bitRPG風雪山タイル */
+        radial-gradient(ellipse 120px 160px at 85% 15%, #F5F5F5 0%, #E8E8E8 25%, #D0D0D0 50%, #B8B8B8 75%, transparent 90%),
+        radial-gradient(ellipse 100px 140px at 87% 18%, #FFFFFF 0%, #F0F0F0 30%, transparent 60%),
+        radial-gradient(ellipse 80px 120px at 83% 12%, #FAFAFA 0%, #E5E5E5 35%, transparent 70%),
         
-        /* ドット絵風基本パターン */
+        /* 山地 - ドラクエ風等高線表現 */
+        repeating-radial-gradient(
+            ellipse 150px 100px at 75% 25%,
+            #4A5D23 0px,
+            #4A5D23 8px,
+            #5A6D33 8px,
+            #5A6D33 16px,
+            #6A7D43 16px,
+            #6A7D43 24px,
+            transparent 32px
+        ),
+        repeating-radial-gradient(
+            ellipse 130px 80px at 70% 35%,
+            #3A4D13 0px,
+            #3A4D13 6px,
+            #4A5D23 6px,
+            #4A5D23 12px,
+            transparent 18px
+        ),
+        repeating-radial-gradient(
+            ellipse 110px 70px at 80% 40%,
+            #5A6D33 0px,
+            #5A6D33 8px,
+            #6A7D43 8px,
+            #6A7D43 16px,
+            transparent 24px
+        ),
+        
+        /* 手取川 - 16bit風太い蛇行川 */
+        linear-gradient(120deg, transparent 35%, #4A9EFF 38%, #6BB6FF 42%, #4A9EFF 46%, transparent 49%),
+        linear-gradient(100deg, transparent 45%, #3A8EEF 48%, #5AA6FF 52%, #3A8EEF 56%, transparent 59%),
+        linear-gradient(80deg, transparent 55%, #2A7EDF 58%, #4A9EFF 62%, #2A7EDF 66%, transparent 69%),
+        linear-gradient(60deg, transparent 65%, #1A6ECF 68%, #3A8EEF 72%, #1A6ECF 76%, transparent 79%),
+        
+        /* 日本海 - ドット絵風海岸タイル */
+        repeating-linear-gradient(
+            90deg,
+            #1E3A8A 0px,
+            #1E3A8A 16px,
+            #1D4ED8 16px,
+            #1D4ED8 32px,
+            #2563EB 32px,
+            #2563EB 48px,
+            transparent 64px
+        ),
+        
+        /* 森林地帯 - FC/SFC風ドット森 */
+        repeating-radial-gradient(
+            circle 60px at 60% 30%,
+            #2D5016 0px,
+            #2D5016 4px,
+            #3D6026 4px,
+            #3D6026 8px,
+            #4D7036 8px,
+            #4D7036 12px,
+            transparent 16px
+        ),
+        repeating-radial-gradient(
+            circle 50px at 65% 40%,
+            #1D4006 0px,
+            #1D4006 4px,
+            #2D5016 4px,
+            #2D5016 8px,
+            transparent 12px
+        ),
+        repeating-radial-gradient(
+            circle 40px at 55% 50%,
+            #3D6026 0px,
+            #3D6026 4px,
+            #4D7036 4px,
+            #4D7036 8px,
+            transparent 12px
+        ),
+        
+        /* 加賀平野 - ドット絵田園タイル */
         repeating-linear-gradient(
             45deg,
-            transparent 0px,
-            transparent 4px,
-            rgba(255,255,255,0.05) 4px,
-            rgba(255,255,255,0.05) 8px
+            #7BC159 70%,
+            #8BD169 72%,
+            #9BE179 74%,
+            #ABF189 76%,
+            transparent 78%
         ),
         
-        /* 基本の草地背景 */
-        #7CB342;
+        /* 扇状地 - 明るい平野ドット */
+        radial-gradient(ellipse 200px 120px at 30% 70%, #B5E6A3 0%, #A5D693 40%, transparent 70%),
+        
+        /* 16bitドット基調 */
+        #6BA644;
     
-    border-radius: 0;
-    border: 4px solid #2c3e50;
+    border: 4px solid #2D4A1A;
     box-shadow: 
-        0 8px 20px rgba(0,0,0,0.3),
-        inset 0 0 0 2px #34495e;
+        0 0 0 2px #3D5A2A,
+        0 8px 20px rgba(0,0,0,0.4);
     overflow: hidden;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    image-rendering: optimize-contrast;
 }
 
-/* 地形ラベル - ドット絵風で地形と一体化 */
+/* 地形ラベル - 16bit JRPG風 */
 .terrain-label {
     position: absolute;
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
     pointer-events: none;
     z-index: 5;
-    opacity: 0.9;
-    padding: 4px 7px;
+    opacity: 0.85;
+    padding: 3px 6px;
     border-radius: 0;
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.4);
+    background: #2D4A1A;
+    border: 1px solid #4D6A3A;
     color: #FFFFFF;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.9);
     font-style: normal;
     image-rendering: pixelated;
-    box-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.7);
 }
 
-/* ピクセル風アニメーション - 水の流れ効果 */
+/* 16bit風水の流れアニメーション */
+@keyframes retro16bitWater {
+    0% { 
+        background-position: 
+            0px 0px,
+            0px 0px,
+            0px 0px,
+            0px 0px;
+    }
+    50% { 
+        background-position: 
+            8px 4px,
+            -8px 4px,
+            12px -2px,
+            -12px 6px;
+    }
+    100% { 
+        background-position: 
+            16px 8px,
+            -16px 8px,
+            24px -4px,
+            -24px 12px;
+    }
+}
+
+.game-map {
+    animation: retro16bitWater 6s linear infinite;
+}
+
 @keyframes waterFlow {
     0% { 
         background-position: 
@@ -509,26 +591,26 @@ footer {
 }
 
 .gym-pin {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     border-radius: 0;
     background: 
-        /* ドット絵風のグラデーション */
+        /* 16bit風グレーグラデーション（未取得状態） */
         linear-gradient(135deg, 
-            #ECEFF1 0%, 
-            #CFD8DC 25%, 
-            #B0BEC5 50%, 
-            #90A4AE 75%, 
-            #78909C 100%
+            #C0C0C0 0%, 
+            #A0A0A0 25%, 
+            #808080 50%, 
+            #606060 75%, 
+            #505050 100%
         );
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid #263238;
+    border: 2px solid #404040;
     box-shadow: 
-        0 0 0 1px #455A64,
-        3px 3px 0 #37474F,
-        0 6px 12px rgba(0,0,0,0.4);
+        0 0 0 1px #606060,
+        2px 2px 0 #303030,
+        0 4px 8px rgba(0,0,0,0.5);
     transition: all 0.2s ease;
     cursor: pointer;
     position: relative;
@@ -540,39 +622,42 @@ footer {
 .gym-pin:hover {
     transform: translate(-1px, -1px);
     box-shadow: 
-        0 0 0 1px #455A64,
-        4px 4px 0 #37474F,
-        0 8px 16px rgba(0,0,0,0.5);
+        0 0 0 1px #606060,
+        3px 3px 0 #303030,
+        0 6px 12px rgba(0,0,0,0.6);
     background: 
         linear-gradient(135deg, 
-            #F5F5F5 0%, 
-            #E0E0E0 25%, 
-            #BDBDBD 50%, 
-            #9E9E9E 75%, 
-            #757575 100%
+            #D0D0D0 0%, 
+            #B0B0B0 25%, 
+            #909090 50%, 
+            #707070 75%, 
+            #606060 100%
         );
 }
 
 .gym-pin.completed {
     background: 
-        linear-gradient(135deg, #FFD700 0%, #FFA000 25%, #FF8F00 50%, #FF6F00 75%, #E65100 100%);
-    border-color: #BF360C;
+        /* 16bit風ゴールドグラデーション（取得済み） */
+        linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF8C00 50%, #FF7F00 75%, #FF6347 100%);
+    border-color: #CC5500;
     box-shadow: 
-        0 0 0 1px #D84315,
-        3px 3px 0 #BF360C,
-        0 6px 12px rgba(0,0,0,0.4),
-        0 0 15px rgba(255, 193, 7, 0.6);
+        0 0 0 1px #FF8C00,
+        2px 2px 0 #CC5500,
+        0 4px 8px rgba(0,0,0,0.5),
+        0 0 12px rgba(255, 215, 0, 0.6);
     animation: gymGlow 2s ease-in-out infinite alternate;
 }
 
 .gym-badge {
-    font-size: 1.2rem;
-    filter: grayscale(100%) contrast(150%) brightness(0.7);
+    font-size: 20px;
+    filter: grayscale(100%) contrast(120%) brightness(0.8);
     transition: all 0.2s ease;
     text-shadow: 
-        1px 1px 0 rgba(0,0,0,0.8);
+        1px 1px 0 rgba(0,0,0,0.8),
+        0 0 2px rgba(0,0,0,0.6);
     font-family: 'Courier New', monospace;
     image-rendering: pixelated;
+    color: #404040;
 }
 
 .gym-pin.completed .gym-badge {
@@ -586,21 +671,21 @@ footer {
 
 .gym-label {
     position: absolute;
-    bottom: -28px;
+    bottom: -24px;
     left: 50%;
     transform: translateX(-50%);
-    background: #263238;
+    background: #2D4A1A;
     color: #FFFFFF;
-    padding: 6px 10px;
+    padding: 4px 8px;
     border-radius: 0;
     font-family: 'Courier New', monospace;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     white-space: nowrap;
-    border: 2px solid #37474F;
+    border: 1px solid #3D5A2A;
     box-shadow: 
-        2px 2px 0 #1C1C1C,
-        0 4px 8px rgba(0,0,0,0.5);
+        1px 1px 0 #1D3A0A,
+        0 2px 4px rgba(0,0,0,0.6);
     pointer-events: none;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.8);
     image-rendering: pixelated;
@@ -609,8 +694,8 @@ footer {
 .gym-location:hover .gym-label {
     transform: translateX(-50%) translate(-1px, -1px);
     box-shadow: 
-        3px 3px 0 #1C1C1C,
-        0 6px 12px rgba(0,0,0,0.6);
+        2px 2px 0 #1D3A0A,
+        0 3px 6px rgba(0,0,0,0.7);
 }
 
 /* バッジ要素 */
@@ -812,7 +897,7 @@ footer {
     50% { transform: translateY(-10px); }
 }
 
-/* Responsive Design */
+/* Responsive Design - 16bit JRPG風 */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
@@ -820,23 +905,24 @@ footer {
     
     /* マップのタブレット対応 */
     .game-map {
-        height: 400px;
+        height: 384px;
+        max-width: 768px;
     }
     
     .gym-pin {
-        width: 55px;
-        height: 55px;
-        font-size: 22px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
     
     .gym-label {
-        font-size: 11px;
-        padding: 3px 6px;
+        font-size: 9px;
+        padding: 3px 5px;
     }
     
     .terrain-label {
-        font-size: 13px;
-        padding: 3px 6px;
+        font-size: 9px;
+        padding: 2px 4px;
     }
     
     .town-grid {
@@ -872,24 +958,24 @@ footer {
     
     /* マップのモバイル対応 */
     .game-map {
-        height: 300px;
+        height: 256px;
         max-width: 100%;
     }
     
     .gym-pin {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
     }
     
     .gym-label {
-        font-size: 10px;
-        padding: 2px 4px;
+        font-size: 8px;
+        padding: 2px 3px;
     }
     
     .terrain-label {
-        font-size: 11px;
-        padding: 2px 4px;
+        font-size: 8px;
+        padding: 1px 3px;
     }
     
     .stamp-counter {
