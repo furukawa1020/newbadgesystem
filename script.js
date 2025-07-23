@@ -39,7 +39,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (stamps.includes(stampParam)) {
             showStampNotification(towns[stampParam], badges[stampParam]);
         }
+        
+        // Remove badge parameter from URL
+        const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({path: newURL}, '', newURL);
     }
+    
+    // Initialize incentive content when available
+    setTimeout(() => {
+        if (window.incentiveSystem) {
+            updateIncentiveContent();
+        }
+    }, 500);
 });
 
 // Get stamps from localStorage
@@ -54,7 +65,24 @@ function addStamp(townCode) {
     if (!stamps.includes(townCode)) {
         stamps.push(townCode);
         localStorage.setItem('hakusan_badges', JSON.stringify(stamps));
-        updateStampDisplay();
+        
+        // Get town and badge information
+        const townData = towns[townCode];
+        const badgeName = townData ? townData.name : townCode;
+        
+        // Fire incentive system event
+        if (window.incentiveSystem) {
+            window.incentiveSystem.onBadgeAcquired(townCode, badgeName);
+        }
+        
+        // Dispatch custom event for other systems
+        window.dispatchEvent(new CustomEvent('badgeAcquired', {
+            detail: { gymId: townCode, badgeName: badgeName }
+        }));
+        
+        updateDisplay();
+        showStampNotification(badgeName, `${badgeName}バッジ`);
+        
         return true;
     }
     return false;
@@ -96,8 +124,67 @@ function updateStampDisplay() {
         if (gymPin) {
             if (stamps.includes(townCode)) {
                 gymPin.classList.add('completed');
+                
+                // Add rarity effects
+                const badgeRarities = {
+                    'oguchi': 'rare',
+                    'kawachi': 'uncommon',
+                    'mattou': 'common',
+                    'mikawa': 'uncommon', 
+                    'shiramine': 'legendary',
+                    'torigoe': 'rare',
+                    'tsurugi': 'uncommon',
+                    'yoshinodani': 'rare'
+                };
+                
+                const rarity = badgeRarities[townCode];
+                gymPin.classList.add(`badge-rarity`, rarity);
+                
+                // Add rarity indicator
+                if (!gymPin.querySelector('.rarity-indicator')) {
+                    const rarityIndicator = document.createElement('div');
+                    rarityIndicator.className = `rarity-indicator ${rarity}`;
+                    const rarityIcons = {
+                        'legendary': '🐉',
+                        'rare': '💎',
+                        'uncommon': '🌟', 
+                        'common': '⭐'
+                    };
+                    rarityIndicator.textContent = rarityIcons[rarity];
+                    gymPin.appendChild(rarityIndicator);
+                }
+                
+                // Update badge appearance based on specific gym
+                const badgeElement = gymPin.querySelector('.gym-badge');
+                if (badgeElement) {
+                    const gymIcons = {
+                        'oguchi': '🧚‍♀️',
+                        'kawachi': '🌊', 
+                        'mattou': '⭐',
+                        'mikawa': '🌍',
+                        'shiramine': '❄️',
+                        'torigoe': '🌿',
+                        'tsurugi': '⚔️',
+                        'yoshinodani': '💧'
+                    };
+                    badgeElement.textContent = gymIcons[townCode];
+                    badgeElement.classList.add('premium-badge');
+                }
             } else {
-                gymPin.classList.remove('completed');
+                gymPin.classList.remove('completed', 'badge-rarity', 'legendary', 'rare', 'uncommon', 'common');
+                
+                // Remove rarity indicator
+                const rarityIndicator = gymPin.querySelector('.rarity-indicator');
+                if (rarityIndicator) {
+                    rarityIndicator.remove();
+                }
+                
+                // Reset badge to generic coin
+                const badgeElement = gymPin.querySelector('.gym-badge');
+                if (badgeElement) {
+                    badgeElement.textContent = '🪙';
+                    badgeElement.classList.remove('premium-badge');
+                }
             }
         }
     });
@@ -481,3 +568,32 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+
+// Update incentive content containers
+function updateIncentiveContent() {
+    if (!window.incentiveSystem) return;
+    
+    // Update share section
+    const shareContainer = document.querySelector('.share-container');
+    if (shareContainer) {
+        shareContainer.innerHTML = window.incentiveSystem.createShareSection();
+    }
+    
+    // Update stats dashboard  
+    const statsContainer = document.querySelector('.stats-container');
+    if (statsContainer) {
+        statsContainer.innerHTML = window.incentiveSystem.createStatsSection();
+    }
+    
+    // Update completion rewards
+    const rewardsContainer = document.querySelector('.rewards-container');
+    if (rewardsContainer) {
+        rewardsContainer.innerHTML = window.incentiveSystem.createCompletionRewards();
+    }
+    
+    // Update secret content visibility
+    window.incentiveSystem.updateSecretContentDisplay();
+}
+
+// Export function for use by incentive system
+window.updateIncentiveContent = updateIncentiveContent;

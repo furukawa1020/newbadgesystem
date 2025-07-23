@@ -1,0 +1,771 @@
+/* RPG World Map Styles */
+.rpg-main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    min-height: calc(100vh - 200px);
+    padding: 1rem;
+}
+
+.game-status {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #f39c12;
+}
+
+.badge-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.counter-icon {
+    font-size: 2rem;
+}
+
+.progress-ring {
+    position: relative;
+}
+
+.progress-ring-svg {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle-bg {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 4;
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: #f39c12;
+    stroke-width: 4;
+    stroke-dasharray: 157;
+    stroke-dashoffset: 157;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Main Map Container */
+.main-map-container {
+    grid-column: 1;
+    grid-row: 2;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #3498db;
+}
+
+.map-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* RPG World Map */
+.rpg-world-map {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(180deg, #87CEEB 0%, #98FB98 30%, #F4A460 60%, #4682B4 100%);
+    border: 4px solid #2c3e50;
+    border-radius: 10px;
+    overflow: hidden;
+    image-rendering: pixelated;
+}
+
+/* 白山 - 立体的な山の表現 */
+.hakusan-mountain {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 200px;
+    height: 150px;
+    z-index: 5;
+}
+
+.mountain-peak {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 60px solid #ffffff;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    z-index: 3;
+}
+
+.mountain-mid {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 80px solid #e6e6e6;
+    z-index: 2;
+}
+
+.mountain-base {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 100px solid #c0c0c0;
+    z-index: 1;
+}
+
+.mountain-snow {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: sparkleSnow 3s infinite ease-in-out;
+}
+
+/* 手取川 - 蛇行する川 */
+.tedori-river {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.river-source {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #4682B4 0%, #6495ED 100%);
+    border-radius: 50%;
+    animation: ripple 2s infinite;
+}
+
+.river-main {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 400px;
+    height: 15px;
+    background: linear-gradient(90deg, #4682B4 0%, #6495ED 50%, #4682B4 100%);
+    border-radius: 10px;
+    transform: rotate(15deg);
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%);
+}
+
+.river-delta {
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid #4682B4;
+}
+
+.river-flow {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 400px;
+    height: 15px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    border-radius: 10px;
+    transform: rotate(15deg);
+    animation: riverFlow 3s infinite linear;
+}
+
+/* 日本海 */
+.japan-sea {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 35%;
+    height: 35%;
+    background: linear-gradient(45deg, #4682B4 0%, #6495ED 50%, #4169E1 100%);
+    z-index: 1;
+}
+
+.sea-waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 10px,
+        rgba(255,255,255,0.3) 10px,
+        rgba(255,255,255,0.3) 15px
+    );
+    animation: waveMove 4s infinite linear;
+}
+
+.sea-deep {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,139,0.5) 100%);
+}
+
+/* 森林エリア */
+.forest-area {
+    position: absolute;
+    background: radial-gradient(ellipse, #228B22 0%, #32CD32 40%, #228B22 100%);
+    border-radius: 50%;
+    animation: forestSway 6s infinite ease-in-out;
+}
+
+.north-forest {
+    top: 15%;
+    left: 60%;
+    width: 120px;
+    height: 80px;
+}
+
+.east-forest {
+    top: 40%;
+    left: 75%;
+    width: 100px;
+    height: 100px;
+}
+
+.mountain-forest {
+    top: 25%;
+    left: 65%;
+    width: 80px;
+    height: 60px;
+}
+
+/* 平野部 */
+.plains-area {
+    position: absolute;
+    background: linear-gradient(45deg, #98FB98 0%, #90EE90 50%, #98FB98 100%);
+}
+
+.central-plains {
+    top: 45%;
+    left: 25%;
+    width: 250px;
+    height: 200px;
+    border-radius: 30%;
+}
+
+.coastal-plains {
+    top: 55%;
+    left: 35%;
+    width: 200px;
+    height: 150px;
+    border-radius: 40%;
+}
+
+/* ジム建物 - 3Dアイソメトリック風 */
+.gym-location {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.gym-location:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.gym-building {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.gym-building:hover {
+    filter: brightness(1.2);
+}
+
+/* ジムの屋根 - アイソメトリック風 */
+.gym-roof {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 30px;
+    background: #8B4513;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 2;
+}
+
+.shrine-roof { background: linear-gradient(45deg, #DAA520, #FFD700); }
+.port-roof { background: linear-gradient(45deg, #4682B4, #6495ED); }
+.city-roof { background: linear-gradient(45deg, #8B4513, #CD853F); }
+.bridge-roof { background: linear-gradient(45deg, #696969, #A9A9A9); }
+.snow-roof { background: linear-gradient(45deg, #E0E0E0, #FFFFFF); }
+.forest-roof { background: linear-gradient(45deg, #228B22, #32CD32); }
+.castle-roof { background: linear-gradient(45deg, #483D8B, #6A5ACD); }
+.falls-roof { background: linear-gradient(45deg, #00CED1, #40E0D0); }
+
+/* ジムの壁 */
+.gym-walls {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 40px;
+    background: #D2B48C;
+    border: 2px solid #8B4513;
+    z-index: 1;
+}
+
+.shrine-walls { background: linear-gradient(180deg, #F5DEB3, #DEB887); }
+.port-walls { background: linear-gradient(180deg, #B0C4DE, #778899); }
+.city-walls { background: linear-gradient(180deg, #D2B48C, #BC9A6A); }
+.bridge-walls { background: linear-gradient(180deg, #C0C0C0, #A9A9A9); }
+.snow-walls { background: linear-gradient(180deg, #F0F8FF, #E6E6FA); }
+.forest-walls { background: linear-gradient(180deg, #90EE90, #228B22); }
+.castle-walls { background: linear-gradient(180deg, #9370DB, #8A2BE2); }
+.falls-walls { background: linear-gradient(180deg, #AFEEEE, #00CED1); }
+
+/* ジムのドア */
+.gym-door {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 25px;
+    background: #8B4513;
+    border: 1px solid #654321;
+    border-radius: 10px 10px 0 0;
+    z-index: 3;
+}
+
+/* ジムバッジ */
+.gym-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FFD700;
+    z-index: 4;
+    transition: all 0.3s ease;
+}
+
+.gym-glow {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    border-radius: 10px;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gym-building.completed .gym-glow {
+    opacity: 1;
+    animation: glowPulse 2s infinite ease-in-out;
+}
+
+.gym-building.completed .gym-badge {
+    animation: badgeSpin 3s infinite linear;
+    filter: drop-shadow(0 0 10px #FFD700);
+}
+
+/* ジム情報表示 */
+.gym-info {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 5px 8px;
+    border-radius: 10px;
+    border: 2px solid #2c3e50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    min-width: 80px;
+}
+
+.gym-name {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 2px;
+}
+
+.gym-type {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.gym-type.fairy { background: #EE99AC; }
+.gym-type.water { background: #6890F0; }
+.gym-type.normal { background: #A8A878; }
+.gym-type.ground { background: #E0C068; }
+.gym-type.ice { background: #98D8D8; }
+.gym-type.grass { background: #78C850; }
+.gym-type.fighting { background: #C03028; }
+
+.gym-status {
+    display: block;
+    font-size: 0.6rem;
+    color: #7f8c8d;
+    font-weight: bold;
+}
+
+/* 冒険要素 */
+.adventure-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.legendary-pokemon,
+.treasure-chest,
+.wild-pokemon {
+    position: absolute;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.legendary-pokemon:hover,
+.treasure-chest:hover,
+.wild-pokemon:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.legendary-pokemon {
+    animation: legendaryFloat 4s infinite ease-in-out;
+}
+
+.treasure-chest {
+    animation: treasureGlow 3s infinite ease-in-out;
+}
+
+.wild-pokemon {
+    animation: wildMove 8s infinite linear;
+}
+
+/* サイドバー */
+.adventure-sidebar {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trainer-info,
+.map-legend,
+.next-objective {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.trainer-info h3,
+.map-legend h3,
+.next-objective h3 {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.trainer-avatar {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.badges-collected {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.badge-slot {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #bdc3c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+.badge-slot.obtained {
+    border-color: #f39c12;
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    color: white;
+    animation: badgeGlow 2s infinite ease-in-out;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.legend-icon {
+    font-size: 1.2rem;
+    width: 25px;
+    text-align: center;
+}
+
+.objective-content {
+    font-size: 0.9rem;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+/* 完了モーダル */
+.complete-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.complete-modal {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 4px solid #d35400;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.champion-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    animation: championGlow 2s infinite ease-in-out;
+}
+
+.complete-btn {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    border: 3px solid #229954;
+}
+
+.complete-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+}
+
+/* アニメーション */
+@keyframes sparkleSnow {
+    0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes ripple {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes riverFlow {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 0; }
+}
+
+@keyframes waveMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 0; }
+}
+
+@keyframes forestSway {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.05) rotate(1deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+@keyframes badgeSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes legendaryFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes treasureGlow {
+    0%, 100% { filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
+    50% { filter: drop-shadow(2px 2px 10px rgba(255,215,0,0.8)); }
+}
+
+@keyframes wildMove {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(20px); }
+    50% { transform: translateX(0px); }
+    75% { transform: translateX(-20px); }
+    100% { transform: translateX(0px); }
+}
+
+@keyframes badgeGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(243, 156, 18, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(243, 156, 18, 1); }
+}
+
+@keyframes championGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1200px) {
+    .rpg-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+    
+    .adventure-sidebar {
+        grid-column: 1;
+        grid-row: 3;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    
+    .trainer-info,
+    .map-legend,
+    .next-objective {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rpg-world-map {
+        height: 400px;
+    }
+    
+    .game-status {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .gym-building {
+        width: 40px;
+        height: 60px;
+    }
+    
+    .gym-roof {
+        width: 40px;
+        height: 20px;
+    }
+    
+    .gym-walls {
+        width: 35px;
+        height: 30px;
+        top: 15px;
+    }
+    
+    .gym-badge {
+        font-size: 1rem;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .adventure-sidebar {
+        flex-direction: column;
+    }
+}

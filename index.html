@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ハクサンリーグ・旧市町村ジムバッジ - 白山市NFCジムバッジラリー</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="incentive-system.css">
 </head>
 <body>    <header>
         <h1>ハクサンリーグ・旧市町村ジムバッジ</h1>
@@ -156,10 +157,47 @@
                 </div>
             </div>
         </div>
-    </main>    <footer>
+    </main>
+    
+    <!-- Incentive Content Containers -->
+    <section class="incentive-content">
+        <div class="container">
+            <!-- Share Section -->
+            <div class="share-container"></div>
+            
+            <!-- Statistics Dashboard -->
+            <div class="stats-container"></div>
+            
+            <!-- Completion Rewards -->
+            <div class="rewards-container"></div>
+            
+            <!-- Secret Content Area -->
+            <div class="secret-content" data-content-id="hot_springs">
+                <h3>🌸 隠された温泉マップ</h3>
+                <p class="locked-content">このコンテンツは1個目のバッジ獲得で解放されます。白山の秘湯スポットガイドをゲット！</p>
+                <div class="unlock-requirement">🔒 解放条件: 初回バッジ獲得</div>
+            </div>
+            
+            <div class="secret-content" data-content-id="legend_story">
+                <h3>📜 白山伝説ストーリー</h3>
+                <p class="locked-content">白山に眠る古代の伝説が明かされます。この土地の神秘的な歴史を発見！</p>
+                <div class="unlock-requirement">🔒 解放条件: 4個のバッジ獲得</div>
+            </div>
+            
+            <div class="secret-content" data-content-id="photo_spots">
+                <h3>📸 伝説のフォトスポット</h3>
+                <p class="locked-content">インスタ映え確実！地元カメラマンが厳選した絶景スポットを大公開！</p>
+                <div class="unlock-requirement">🔒 解放条件: 全バッジ獲得</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
         <p>&copy; 2025 ハクサンリーグ・旧市町村ジムバッジ</p>
     </footer>
 
     <script src="script.js"></script>
+    <script src="incentive-system.js"></script>
+    <script src="marketing-effects.js"></script>
 </body>
 </html>
