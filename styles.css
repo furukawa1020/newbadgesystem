@@ -355,7 +355,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Game Map Styles - ポケモン風ドット絵マップ */
+/* Game Map Styles - 白山市実地形ドット絵マップ */
 .game-map {
     position: relative;
     width: 100%;
@@ -363,80 +363,58 @@ footer {
     height: 450px;
     margin: 0 auto;
     background: 
-        /* ドット絵風の基本パターン - 草地 */
+        /* 白山 - 立体的な雪山（東側） */
+        radial-gradient(ellipse 80px 120px at 85% 18%, #FFFFFF 0%, #F0F8FF 20%, #E6E6FA 40%, #D3D3D3 65%, transparent 75%),
+        radial-gradient(ellipse 60px 90px at 83% 22%, #FFFAFA 0%, #F5F5F5 25%, transparent 45%),
+        radial-gradient(ellipse 40px 60px at 87% 15%, #FFFFFF 0%, #F8F8FF 30%, transparent 50%),
+        
+        /* 白山周辺の山系 - 茶色とグレーの立体的な山 */
+        radial-gradient(ellipse 100px 80px at 75% 25%, #8D6E63 0%, #6D4C41 40%, #5D4037 70%, transparent 85%),
+        radial-gradient(ellipse 80px 60px at 80% 35%, #A1887F 0%, #8D6E63 45%, transparent 75%),
+        radial-gradient(ellipse 60px 50px at 70% 45%, #BCAAA4 0%, #A1887F 40%, transparent 70%),
+        
+        /* 手取川 - 水色のジグザグ川 */
+        linear-gradient(135deg, transparent 40%, #00BCD4 42%, #4DD0E1 44%, #00BCD4 46%, transparent 48%),
+        linear-gradient(110deg, transparent 50%, #00ACC1 52%, #26C6DA 54%, #00ACC1 56%, transparent 58%),
+        linear-gradient(90deg, transparent 60%, #0097A7 62%, #00BCD4 64%, #0097A7 66%, transparent 68%),
+        linear-gradient(70deg, transparent 70%, #00838F 72%, #00ACC1 74%, transparent 76%),
+        
+        /* 日本海 - 深い青の海（左側） */
+        linear-gradient(90deg, #0D47A1 0%, #1565C0 8%, #1976D2 15%, #2196F3 22%, #64B5F6 28%, transparent 35%),
+        
+        /* 森林地帯 - 濃い緑のドット絵風 */
+        radial-gradient(circle 70px at 60% 35%, #1B5E20 0%, #2E7D32 50%, transparent 75%),
+        radial-gradient(circle 60px at 65% 45%, #2E7D32 0%, #388E3C 45%, transparent 70%),
+        radial-gradient(circle 50px at 55% 50%, #388E3C 0%, #4CAF50 40%, transparent 65%),
+        radial-gradient(circle 45px at 70% 30%, #1B5E20 0%, #2E7D32 35%, transparent 60%),
+        
+        /* 加賀平野 - ドット絵風田園地帯 */
         repeating-linear-gradient(
             0deg,
-            #7CB342 0px,
-            #7CB342 8px,
-            #8BC34A 8px,
-            #8BC34A 16px
+            #7CB342 75%,
+            #8BC34A 76%,
+            #9CCC65 78%,
+            #AED581 80%,
+            transparent 82%
         ),
         repeating-linear-gradient(
             90deg,
+            transparent 75%,
+            rgba(139, 195, 74, 0.3) 76%,
+            rgba(156, 204, 101, 0.3) 78%,
+            transparent 80%
+        ),
+        
+        /* 扇状地（手取川扇状地） - 明るい緑 */
+        radial-gradient(ellipse 200px 100px at 30% 75%, #C8E6C9 0%, #A5D6A7 30%, #81C784 60%, transparent 80%),
+        
+        /* ドット絵風基本パターン */
+        repeating-linear-gradient(
+            45deg,
             transparent 0px,
-            transparent 8px,
-            rgba(139, 195, 74, 0.3) 8px,
-            rgba(139, 195, 74, 0.3) 16px
-        ),
-        
-        /* 海岸線（左下） */
-        linear-gradient(135deg, 
-            #1976D2 0%, 
-            #1976D2 15%, 
-            #2196F3 15%, 
-            #2196F3 30%, 
-            transparent 30%
-        ),
-        
-        /* 手取川 - ドット絵風の川 */
-        linear-gradient(45deg, 
-            transparent 38%, 
-            #1976D2 40%, 
-            #2196F3 42%, 
-            #1976D2 44%, 
-            transparent 46%
-        ),
-        linear-gradient(70deg, 
-            transparent 48%, 
-            #1976D2 50%, 
-            #2196F3 52%, 
-            transparent 54%
-        ),
-        linear-gradient(90deg, 
-            transparent 58%, 
-            #1976D2 60%, 
-            #2196F3 62%, 
-            transparent 64%
-        ),
-        
-        /* 山地（茶色のドット絵風） */
-        radial-gradient(ellipse 120px 80px at 75% 25%, 
-            #8D6E63 0%, 
-            #795548 30%, 
-            #6D4C41 60%, 
-            transparent 80%
-        ),
-        radial-gradient(ellipse 100px 60px at 80% 35%, 
-            #A1887F 0%, 
-            #8D6E63 40%, 
-            transparent 70%
-        ),
-        radial-gradient(ellipse 80px 50px at 85% 20%, 
-            #BCAAA4 0%, 
-            #A1887F 35%, 
-            transparent 65%
-        ),
-        
-        /* 森林エリア（濃い緑） */
-        radial-gradient(ellipse 90px 70px at 60% 40%, 
-            #2E7D32 0%, 
-            #388E3C 40%, 
-            transparent 70%
-        ),
-        radial-gradient(ellipse 70px 50px at 65% 30%, 
-            #1B5E20 0%, 
-            #2E7D32 50%, 
-            transparent 80%
+            transparent 4px,
+            rgba(255,255,255,0.05) 4px,
+            rgba(255,255,255,0.05) 8px
         ),
         
         /* 基本の草地背景 */
@@ -453,30 +431,48 @@ footer {
     image-rendering: crisp-edges;
 }
 
-/* 地形ラベル - ポケモン風ドット絵スタイル */
+/* 地形ラベル - ドット絵風で地形と一体化 */
 .terrain-label {
     position: absolute;
-    font-size: 13px;
+    font-size: 11px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
     pointer-events: none;
     z-index: 5;
-    opacity: 1;
-    padding: 6px 10px;
+    opacity: 0.9;
+    padding: 4px 7px;
     border-radius: 0;
-    background: #263238;
-    border: 2px solid #37474F;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.4);
     color: #FFFFFF;
-    text-shadow: 
-        1px 1px 0 rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.9);
     font-style: normal;
     image-rendering: pixelated;
-    box-shadow: 
-        2px 2px 0 #1C1C1C,
-        0 4px 8px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.6);
 }
 
-/* ピクセル風アニメーション */
+/* ピクセル風アニメーション - 水の流れ効果 */
+@keyframes waterFlow {
+    0% { 
+        background-position: 
+            0px 0px,
+            0px 0px,
+            0px 0px,
+            0px 0px;
+    }
+    100% { 
+        background-position: 
+            20px 10px,
+            -15px 8px,
+            25px -5px,
+            -20px 12px;
+    }
+}
+
+.game-map {
+    animation: waterFlow 4s linear infinite;
+}
+
 @keyframes pixelMove {
     0% { 
         background-position: 
