@@ -591,3 +591,169 @@ function updateIncentiveContent() {
 
 // Export function for use by incentive system
 window.updateIncentiveContent = updateIncentiveContent;
+
+// Map zoom and pan functionality
+let currentZoom = 1;
+let isDragging = false;
+let lastX = 0;
+let lastY = 0;
+let mapX = 0;
+let mapY = 0;
+
+// Initialize map controls
+document.addEventListener('DOMContentLoaded', function() {
+    const gameMap = document.getElementById('gameMap');
+    if (gameMap) {
+        // Mouse wheel zoom
+        gameMap.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const rect = gameMap.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            if (e.deltaY < 0) {
+                zoomAtPoint(x, y, 1.2);
+            } else {
+                zoomAtPoint(x, y, 0.8);
+            }
+        });
+        
+        // Mouse drag to pan
+        gameMap.addEventListener('mousedown', function(e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                lastX = e.clientX;
+                lastY = e.clientY;
+                gameMap.classList.add('dragging');
+            }
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                const deltaX = e.clientX - lastX;
+                const deltaY = e.clientY - lastY;
+                mapX += deltaX;
+                mapY += deltaY;
+                
+                // Constrain pan within reasonable bounds
+                const maxPan = 200 * currentZoom;
+                mapX = Math.max(-maxPan, Math.min(maxPan, mapX));
+                mapY = Math.max(-maxPan, Math.min(maxPan, mapY));
+                
+                updateMapTransform();
+                lastX = e.clientX;
+                lastY = e.clientY;
+            }
+        });
+        
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            gameMap.classList.remove('dragging');
+        });
+        
+        // Touch support for mobile
+        gameMap.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 1 && currentZoom > 1) {
+                isDragging = true;
+                lastX = e.touches[0].clientX;
+                lastY = e.touches[0].clientY;
+                gameMap.classList.add('dragging');
+            }
+        });
+        
+        gameMap.addEventListener('touchmove', function(e) {
+            if (isDragging && e.touches.length === 1) {
+                e.preventDefault();
+                const deltaX = e.touches[0].clientX - lastX;
+                const deltaY = e.touches[0].clientY - lastY;
+                mapX += deltaX;
+                mapY += deltaY;
+                
+                const maxPan = 200 * currentZoom;
+                mapX = Math.max(-maxPan, Math.min(maxPan, mapX));
+                mapY = Math.max(-maxPan, Math.min(maxPan, mapY));
+                
+                updateMapTransform();
+                lastX = e.touches[0].clientX;
+                lastY = e.touches[0].clientY;
+            }
+        });
+        
+        gameMap.addEventListener('touchend', function() {
+            isDragging = false;
+            gameMap.classList.remove('dragging');
+        });
+    }
+});
+
+function zoomIn() {
+    if (currentZoom < 3) {
+        currentZoom = Math.min(3, currentZoom * 1.25);
+        updateMapTransform();
+        updateZoomDisplay();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > 0.5) {
+        currentZoom = Math.max(0.5, currentZoom / 1.25);
+        updateMapTransform();
+        updateZoomDisplay();
+        
+        // Reset pan when zooming out to fit
+        if (currentZoom <= 1) {
+            mapX = 0;
+            mapY = 0;
+        }
+    }
+}
+
+function resetZoom() {
+    currentZoom = 1;
+    mapX = 0;
+    mapY = 0;
+    updateMapTransform();
+    updateZoomDisplay();
+}
+
+function zoomAtPoint(x, y, factor) {
+    const gameMap = document.getElementById('gameMap');
+    const rect = gameMap.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate offset from center
+    const offsetX = x - centerX;
+    const offsetY = y - centerY;
+    
+    const newZoom = Math.max(0.5, Math.min(3, currentZoom * factor));
+    const zoomChange = newZoom / currentZoom;
+    
+    // Adjust pan to zoom towards the cursor position
+    mapX -= offsetX * (zoomChange - 1);
+    mapY -= offsetY * (zoomChange - 1);
+    
+    currentZoom = newZoom;
+    
+    // Constrain pan
+    const maxPan = 200 * currentZoom;
+    mapX = Math.max(-maxPan, Math.min(maxPan, mapX));
+    mapY = Math.max(-maxPan, Math.min(maxPan, mapY));
+    
+    updateMapTransform();
+    updateZoomDisplay();
+}
+
+function updateMapTransform() {
+    const gameMap = document.getElementById('gameMap');
+    if (gameMap) {
+        gameMap.style.transform = `scale(${currentZoom}) translate(${mapX/currentZoom}px, ${mapY/currentZoom}px)`;
+    }
+}
+
+function updateZoomDisplay() {
+    const zoomLevel = document.getElementById('zoomLevel');
+    if (zoomLevel) {
+        zoomLevel.textContent = Math.round(currentZoom * 100) + '%';
+    }
+}

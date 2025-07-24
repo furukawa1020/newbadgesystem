@@ -23,7 +23,15 @@
 
         <div class="map-section">
             <h2>ハクサンリーグ マップ</h2>
-            <div class="game-map">
+            <div class="map-wrapper">
+                <div class="game-map" id="gameMap">
+                    <!-- マップコントロール -->
+                    <div class="map-controls">
+                        <button class="zoom-btn" onclick="zoomIn()" title="拡大">+</button>
+                        <div class="zoom-level" id="zoomLevel">100%</div>
+                        <button class="zoom-btn" onclick="zoomOut()" title="縮小">-</button>
+                        <button class="zoom-btn" onclick="resetZoom()" title="リセット">⌂</button>
+                    </div>
                 <!-- 中央の十字マーク -->
                 <div class="center-cross" style="position: absolute; top: 65%; left: 55%; font-size: 24px; color: #228B22;">+</div>
                 
@@ -32,24 +40,24 @@
                 
                 <!-- ジムロケーション - 画像通りの配置 -->
                 
-                <!-- 美川ジム - 完全に陸地の緑色部分に配置 -->
-                <div class="gym-location" data-town="mikawa" style="top: 68%; left: 44%;">
+                <!-- 美川ジム - 南西部、手取川河口付近の陸地 -->
+                <div class="gym-location" data-town="mikawa" style="top: 70%; left: 42%;">
                     <div class="gym-pin mikawa-gym" id="gym-mikawa" onclick="visitTown('mikawa')">
                         <div class="gym-badge">美</div>
                     </div>
                     <span class="gym-label">美川ジム</span>
                 </div>
                 
-                <!-- 松任ジム - 完全に陸地の中央平野部に配置 -->
-                <div class="gym-location" data-town="mattou" style="top: 62%; left: 50%;">
+                <!-- 松任ジム - 中央平野部、市の中心部 -->
+                <div class="gym-location" data-town="mattou" style="top: 60%; left: 55%;">
                     <div class="gym-pin mattou-gym" id="gym-mattou" onclick="visitTown('mattou')">
                         <div class="gym-badge">松</div>
                     </div>
                     <span class="gym-label">松任ジム</span>
                 </div>
                 
-                <!-- 鶴来ジム - 手取川扇状地・白山麓の入口 -->
-                <div class="gym-location" data-town="tsurugi" style="top: 58%; left: 48%;">
+                <!-- 鶴来ジム - 手取川扇状地・白山麓の入口、より内陸側 -->
+                <div class="gym-location" data-town="tsurugi" style="top: 52%; left: 62%;">
                     <div class="gym-pin tsurugi-gym" id="gym-tsurugi" onclick="visitTown('tsurugi')">
                         <div class="gym-badge">鶴</div>
                     </div>
@@ -94,6 +102,7 @@
                         <div class="gym-badge">白</div>
                     </div>
                     <span class="gym-label">白峰ジム</span>
+                </div>
                 </div>
             </div>
         </div>
