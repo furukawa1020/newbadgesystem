@@ -806,3 +806,55 @@ function updateZoomDisplay() {
         zoomLevel.textContent = Math.round(currentZoom * 100) + '%';
     }
 }
+
+// テスト用：バッジアイコン強制更新関数
+function testBadgeUpdate() {
+    console.log('Testing badge update...');
+    const stamps = getStamps();
+    console.log('Current stamps:', stamps);
+    
+    // 白峰をテスト用に追加
+    if (!stamps.includes('shiramine')) {
+        console.log('Adding shiramine stamp...');
+        addStamp('shiramine');
+    }
+    
+    // 強制的にバッジアイコンを更新
+    const shiramineBadge = document.querySelector('[data-town="shiramine"] .badge-icon');
+    console.log('Shiramine badge element:', shiramineBadge);
+    if (shiramineBadge) {
+        console.log('Before update:', shiramineBadge.textContent);
+        shiramineBadge.textContent = '⛰️';
+        console.log('After update:', shiramineBadge.textContent);
+        
+        // カードも完了状態にする
+        const shiramineCard = document.querySelector('[data-town="shiramine"]');
+        if (shiramineCard) {
+            shiramineCard.classList.add('completed');
+        }
+        
+        // ステータスも更新
+        const shiramineStatus = document.getElementById('stamp-shiramine');
+        if (shiramineStatus) {
+            shiramineStatus.textContent = '✅ 獲得済み';
+            shiramineStatus.classList.add('obtained');
+        }
+    } else {
+        console.log('Shiramine badge element not found');
+        // 全てのバッジ要素を探してみる
+        const allBadges = document.querySelectorAll('.badge-icon');
+        console.log('All badge elements found:', allBadges.length);
+        allBadges.forEach((badge, index) => {
+            console.log(`Badge ${index}:`, badge.textContent, badge.parentElement.getAttribute('data-town'));
+        });
+    }
+}
+
+// ページ読み込み完了後にテスト関数を実行
+window.addEventListener('load', function() {
+    console.log('Page loaded, starting test...');
+    setTimeout(testBadgeUpdate, 1000);
+});
+
+// コンソールから手動実行できるようにグローバルに露出
+window.testBadgeUpdate = testBadgeUpdate;
