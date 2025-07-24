@@ -80,7 +80,7 @@ function addStamp(townCode) {
             detail: { gymId: townCode, badgeName: badgeName }
         }));
         
-        updateDisplay();
+        updateStampDisplay();
         showStampNotification(badgeName, `${badgeName}バッジ`);
         
         return true;
@@ -106,15 +106,36 @@ function updateStampDisplay() {
     Object.keys(towns).forEach(townCode => {
         const townCard = document.querySelector(`[data-town="${townCode}"]`);
         const stampStatus = document.getElementById(`stamp-${townCode}`);
+        const badgeIcon = townCard.querySelector('.badge-icon');
         
         if (stamps.includes(townCode)) {
             townCard.classList.add('completed');
             stampStatus.textContent = '✅ 獲得済み';
             stampStatus.classList.add('obtained');
+            
+            // Update badge icon based on gym type
+            if (badgeIcon) {
+                const gymBadgeIcons = {
+                    'tsurugi': '🏹',     // クレインバッジ (弓矢)
+                    'mikawa': '🎺',      // ラッパバッジ (ラッパ)
+                    'mattou': '🌲',      // パインバッジ (松)
+                    'kawachi': '🌉',      // ブリッジバッジ (橋)
+                    'shiramine': '⛰️',    // ピークバッジ (山頂)
+                    'yoshinodani': '🌳',  // フォレストバッジ (森)
+                    'torigoe': '🏰',     // キャッスルバッジ (城)
+                    'oguchi': '💧'       // フォールバッジ (滝)
+                };
+                badgeIcon.textContent = gymBadgeIcons[townCode] || '🏆';
+            }
         } else {
             townCard.classList.remove('completed');
             stampStatus.textContent = '未取得';
             stampStatus.classList.remove('obtained');
+            
+            // Reset badge icon to question mark
+            if (badgeIcon) {
+                badgeIcon.textContent = '？';
+            }
         }
     });
     
