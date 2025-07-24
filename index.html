@@ -21,6 +21,83 @@
             <p id="stampCount">0/8 バッジ獲得</p>
         </div>
 
+        <div class="map-section">
+            <h2>ハクサンリーグ マップ</h2>
+            <div class="game-map">
+                <!-- 中央の十字マーク -->
+                <div class="center-cross" style="position: absolute; top: 65%; left: 55%; font-size: 24px; color: #228B22;">+</div>
+                
+                <!-- 右下のゲームボーイアイコン -->
+                <div class="gameboy-icon" style="position: absolute; bottom: 15%; right: 15%; font-size: 20px; color: #8A2BE2;">🎮</div>
+                
+                <!-- ジムロケーション - 画像通りの配置 -->
+                
+                <!-- 美川ジム - 海岸線に近い陸地部分 -->
+                <div class="gym-location" data-town="mikawa" style="top: 72%; left: 38%;">
+                    <div class="gym-pin mikawa-gym" id="gym-mikawa" onclick="visitTown('mikawa')">
+                        <div class="gym-badge">美</div>
+                    </div>
+                    <span class="gym-label">美川ジム</span>
+                </div>
+                
+                <!-- 松任ジム - 白山市中心部の平野部 -->
+                <div class="gym-location" data-town="mattou" style="top: 65%; left: 45%;">
+                    <div class="gym-pin mattou-gym" id="gym-mattou" onclick="visitTown('mattou')">
+                        <div class="gym-badge">松</div>
+                    </div>
+                    <span class="gym-label">松任ジム</span>
+                </div>
+                
+                <!-- 鶴来ジム - 手取川扇状地・白山麓の入口 -->
+                <div class="gym-location" data-town="tsurugi" style="top: 58%; left: 48%;">
+                    <div class="gym-pin tsurugi-gym" id="gym-tsurugi" onclick="visitTown('tsurugi')">
+                        <div class="gym-badge">鶴</div>
+                    </div>
+                    <span class="gym-label">鶴来ジム</span>
+                </div>
+                
+                <!-- 河内ジム - 手取川中流域 -->
+                <div class="gym-location" data-town="kawachi" style="top: 48%; left: 58%;">
+                    <div class="gym-pin kawachi-gym" id="gym-kawachi" onclick="visitTown('kawachi')">
+                        <div class="gym-badge">河</div>
+                    </div>
+                    <span class="gym-label">河内ジム</span>
+                </div>
+                
+                <!-- 吉野谷ジム - 白山麓・山間部 -->
+                <div class="gym-location" data-town="yoshinodani" style="top: 38%; left: 65%;">
+                    <div class="gym-pin yoshinodani-gym" id="gym-yoshinodani" onclick="visitTown('yoshinodani')">
+                        <div class="gym-badge">吉</div>
+                    </div>
+                    <span class="gym-label">吉野谷ジム</span>
+                </div>
+                
+                <!-- 鳥越ジム - 白山麓・山間部東側 -->
+                <div class="gym-location" data-town="torigoe" style="top: 32%; left: 72%;">
+                    <div class="gym-pin torigoe-gym" id="gym-torigoe" onclick="visitTown('torigoe')">
+                        <div class="gym-badge">鳥</div>
+                    </div>
+                    <span class="gym-label">鳥越ジム</span>
+                </div>
+                
+                <!-- 尾口ジム - 手取川上流域・白山麓奥部 -->
+                <div class="gym-location" data-town="oguchi" style="top: 28%; left: 58%;">
+                    <div class="gym-pin oguchi-gym" id="gym-oguchi" onclick="visitTown('oguchi')">
+                        <div class="gym-badge">尾</div>
+                    </div>
+                    <span class="gym-label">尾口ジム</span>
+                </div>
+                
+                <!-- 白峰ジム - 白山連峰最奥部 -->
+                <div class="gym-location" data-town="shiramine" style="top: 18%; left: 65%;">
+                    <div class="gym-pin shiramine-gym" id="gym-shiramine" onclick="visitTown('shiramine')">
+                        <div class="gym-badge">白</div>
+                    </div>
+                    <span class="gym-label">白峰ジム</span>
+                </div>
+            </div>
+        </div>
+
         <div class="town-grid">
             <div class="town-card" data-town="tsurugi">
                 <div class="badge-icon">？</div>
@@ -87,86 +164,9 @@
             </div>
         </div>        <div class="complete-section" id="completeSection" style="display: none;">
             <div class="complete-card">
-                <h2>� ハクサンリーグチャンピオン！ �</h2>
+                <h2>🏆 ハクサンリーグチャンピオン！ 🏆</h2>
                 <p>全8つのジムバッジをコンプリートしました！</p>
                 <button class="complete-btn" onclick="showSpecialContent()">殿堂入りする</button>
-            </div>
-        </div>
-
-        <div class="map-section">
-            <h2>ハクサンリーグ マップ</h2>
-            <div class="game-map">
-                <!-- 中央の十字マーク -->
-                <div class="center-cross" style="position: absolute; top: 65%; left: 55%; font-size: 24px; color: #228B22;">+</div>
-                
-                <!-- 右下のゲームボーイアイコン -->
-                <div class="gameboy-icon" style="position: absolute; bottom: 15%; right: 15%; font-size: 20px; color: #8A2BE2;">�</div>
-                
-                <!-- ジムロケーション - 画像通りの配置 -->
-                
-                <!-- 美川ジム - 日本海沿岸の陸地部分（内陸寄り） -->
-                <div class="gym-location" data-town="mikawa" style="top: 78%; left: 32%;">
-                    <div class="gym-pin mikawa-gym" id="gym-mikawa" onclick="visitTown('mikawa')">
-                        <div class="gym-badge">美</div>
-                    </div>
-                    <span class="gym-label">美川ジム</span>
-                </div>
-                
-                <!-- 松任ジム - 白山市中心部・平野部（もう少し内陸） -->
-                <div class="gym-location" data-town="mattou" style="top: 70%; left: 42%;">
-                    <div class="gym-pin mattou-gym" id="gym-mattou" onclick="visitTown('mattou')">
-                        <div class="gym-badge">松</div>
-                    </div>
-                    <span class="gym-label">松任ジム</span>
-                </div>
-                
-                <!-- 鶴来ジム - 手取川扇状地・白山麓の入口 -->
-                <div class="gym-location" data-town="tsurugi" style="top: 58%; left: 48%;">
-                    <div class="gym-pin tsurugi-gym" id="gym-tsurugi" onclick="visitTown('tsurugi')">
-                        <div class="gym-badge">鶴</div>
-                    </div>
-                    <span class="gym-label">鶴来ジム</span>
-                </div>
-                
-                <!-- 河内ジム - 手取川中流域 -->
-                <div class="gym-location" data-town="kawachi" style="top: 48%; left: 58%;">
-                    <div class="gym-pin kawachi-gym" id="gym-kawachi" onclick="visitTown('kawachi')">
-                        <div class="gym-badge">河</div>
-                    </div>
-                    <span class="gym-label">河内ジム</span>
-                </div>
-                
-                <!-- 吉野谷ジム - 白山麓・山間部 -->
-                <div class="gym-location" data-town="yoshinodani" style="top: 38%; left: 65%;">
-                    <div class="gym-pin yoshinodani-gym" id="gym-yoshinodani" onclick="visitTown('yoshinodani')">
-                        <div class="gym-badge">吉</div>
-                    </div>
-                    <span class="gym-label">吉野谷ジム</span>
-                </div>
-                
-                <!-- 鳥越ジム - 白山麓・山間部東側 -->
-                <div class="gym-location" data-town="torigoe" style="top: 32%; left: 72%;">
-                    <div class="gym-pin torigoe-gym" id="gym-torigoe" onclick="visitTown('torigoe')">
-                        <div class="gym-badge">鳥</div>
-                    </div>
-                    <span class="gym-label">鳥越ジム</span>
-                </div>
-                
-                <!-- 尾口ジム - 手取川上流域・白山麓奥部 -->
-                <div class="gym-location" data-town="oguchi" style="top: 28%; left: 58%;">
-                    <div class="gym-pin oguchi-gym" id="gym-oguchi" onclick="visitTown('oguchi')">
-                        <div class="gym-badge">尾</div>
-                    </div>
-                    <span class="gym-label">尾口ジム</span>
-                </div>
-                
-                <!-- 白峰ジム - 白山連峰最奥部 -->
-                <div class="gym-location" data-town="shiramine" style="top: 18%; left: 65%;">
-                    <div class="gym-pin shiramine-gym" id="gym-shiramine" onclick="visitTown('shiramine')">
-                        <div class="gym-badge">白</div>
-                    </div>
-                    <span class="gym-label">白峰ジム</span>
-                </div>
             </div>
         </div>
     </main>
