@@ -3,17 +3,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* 全要素にピクセルアート風テキストレンダリングを適用 */
+    font-family: 'MS Gothic', 'Courier New', monospace;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: never;
 }
 
 body {
-    font-family: 'Courier New', 'MS Gothic', monospace;
-    line-height: 1.6;
+    font-family: 'MS Gothic', 'Courier New', monospace;
+    line-height: 1.2;
     color: #333;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: never;
 }
 
 /* Header */
@@ -29,16 +42,35 @@ header h1 {
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 
+        2px 2px 0 #000000,
+        -2px -2px 0 #000000,
+        2px -2px 0 #000000,
+        -2px 2px 0 #000000;
     background: linear-gradient(45deg, #3498db, #e74c3c, #f39c12);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 header p {
     font-size: 1.1rem;
     color: #7f8c8d;
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 /* Main Content */
@@ -62,6 +94,15 @@ main {
     color: #2c3e50;
     margin-bottom: 1rem;
     font-size: 1.8rem;
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 .progress-bar {
@@ -85,6 +126,14 @@ main {
     font-size: 1.2rem;
     font-weight: bold;
     color: #2c3e50;
+    font-family: 'MS Gothic', monospace;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 /* Town Grid */
@@ -161,9 +210,15 @@ main {
     color: #7f8c8d;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    font-family: 'Courier New', monospace;
+    font-family: 'MS Gothic', monospace;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 .town-card.completed .badge-name {
@@ -205,6 +260,15 @@ main {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #2c3e50;
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 .town-card.completed h3 {
@@ -213,12 +277,21 @@ main {
 
 .stamp-status {
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: 0;
     font-weight: bold;
     margin-bottom: 1rem;
     background: #e74c3c;
     color: white;
     display: inline-block;
+    font-family: 'MS Gothic', monospace;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    border: 2px solid #000000;
 }
 
 .stamp-status.obtained {
@@ -226,20 +299,34 @@ main {
 }
 
 .visit-btn {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: #3498db;
     color: white;
-    border: none;
+    border: 2px solid #000000;
     padding: 0.8rem 1.5rem;
-    border-radius: 25px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 15px rgba(52, 152, 219, 0.3);
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    transition: all 0.1s ease;
+    box-shadow: 
+        2px 2px 0 #000000,
+        0 4px 8px rgba(0,0,0,0.3);
 }
 
 .visit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        4px 4px 0 #000000,
+        0 6px 12px rgba(0,0,0,0.4);
+    background: #2980b9;
 }
 
 /* Complete Section */
@@ -260,24 +347,48 @@ main {
 .complete-card h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 
+        2px 2px 0 #000000,
+        -2px -2px 0 #000000,
+        2px -2px 0 #000000,
+        -2px 2px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 .complete-btn {
     background: white;
     color: #f39c12;
-    border: none;
+    border: 2px solid #000000;
     padding: 1rem 2rem;
-    border-radius: 25px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: bold;
+    font-family: 'MS Gothic', monospace;
+    letter-spacing: 1px;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
     margin-top: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
+    box-shadow: 
+        2px 2px 0 #000000,
+        0 4px 8px rgba(0,0,0,0.3);
 }
 
 .complete-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        4px 4px 0 #000000,
+        0 6px 12px rgba(0,0,0,0.4);
 }
 
 /* Map Section */
@@ -355,85 +466,17 @@ footer {
     margin-top: 2rem;
 }
 
-/* Game Map Styles - シンプル16bitピクセルアート風 ハクサンリーグマップ */
+/* Game Map Styles - 実際の地図画像を背景に使用 */
 .game-map {
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 400px;
+    height: 600px;
     margin: 0 auto;
-    background: 
-        /* 左下の海（青い波模様） */
-        linear-gradient(45deg, 
-            #2B5CE6 0%, 
-            #2B5CE6 8%, 
-            #3B6CF6 8%, 
-            #3B6CF6 16%, 
-            #4B7CFF 16%, 
-            #4B7CFF 20%, 
-            transparent 20%
-        ),
-        /* 横に流れる川（青いライン） */
-        linear-gradient(90deg, 
-            transparent 0%, 
-            transparent 18%, 
-            #3B6CF6 18%, 
-            #3B6CF6 22%, 
-            transparent 22%, 
-            transparent 100%
-        ),
-        /* 道路1 - 斜めの茶色い線 */
-        linear-gradient(130deg, 
-            transparent 0%, 
-            transparent 15%, 
-            #8B4513 15%, 
-            #8B4513 18%, 
-            transparent 18%, 
-            transparent 55%, 
-            #8B4513 55%, 
-            #8B4513 58%, 
-            transparent 58%, 
-            transparent 100%
-        ),
-        /* 道路2 - 縦の茶色い線 */
-        linear-gradient(45deg, 
-            transparent 0%, 
-            transparent 72%, 
-            #8B4513 72%, 
-            #8B4513 75%, 
-            transparent 75%, 
-            transparent 100%
-        ),
-        /* 上部の山地（茶色の斜線パターン、上部25%のみ） */
-        linear-gradient(180deg, 
-            transparent 0%, 
-            transparent 75%, 
-            #8B4513 75%, 
-            #8B4513 100%
-        ),
-        repeating-linear-gradient(45deg,
-            transparent 0px,
-            transparent 300px,
-            #8B4513 300px,
-            #8B4513 306px,
-            #A0522D 306px,
-            #A0522D 312px,
-            #CD853F 312px,
-            #CD853F 318px,
-            #8B4513 318px,
-            #8B4513 324px,
-            transparent 324px,
-            transparent 400px
-        ),
-        /* 基本の緑色草地背景（縞模様） */
-        repeating-linear-gradient(90deg,
-            #7BC159 0px,
-            #7BC159 16px,
-            #8BD169 16px,
-            #8BD169 32px
-        ),
-        #7BC159;
-    
+    background: url('data:image/png;base64,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'; /* 実際の地図画像パスに変更 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 3px solid #2D4A1A;
     box-shadow: 
         0 0 0 1px #3D5A2A,
@@ -448,7 +491,7 @@ footer {
 .terrain-label {
     position: absolute;
     font-size: 10px;
-    font-family: 'Courier New', monospace;
+    font-family: 'MS Gothic', monospace;
     font-weight: bold;
     pointer-events: none;
     z-index: 5;
@@ -458,7 +501,10 @@ footer {
     color: #FFFFFF;
     text-shadow: none;
     image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
     border: 1px solid #333;
+    letter-spacing: 1px;
 }
 
 /* シンプル水流アニメーション */
@@ -475,29 +521,18 @@ footer {
     animation: simpleWaterFlow 4s linear infinite;
 }
 
-@keyframes pixelMove {
-    0% { 
-        background-position: 
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            0px 0px;
-    }
-    100% { 
-        background-position: 
-            0px 0px,
-            0px 0px,
-            0px 0px,
-            16px 16px,
-            -16px 16px,
-            16px -16px,
-            16px 16px,
-            -16px 16px;
-    }
+/* 中央の十字マークとゲームボーイアイコンのスタイル */
+.center-cross, .gameboy-icon {
+    font-family: 'MS Gothic', monospace;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10;
+    text-shadow: 
+        1px 1px 0 #000000,
+        -1px -1px 0 #000000;
+    image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
 }
 
 .gym-location {
@@ -510,74 +545,86 @@ footer {
     filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
 }
 
+/* 実際の地図画像上でのジムピン配置 */
 .gym-pin {
-    width: 32px;
-    height: 32px;
-    border-radius: 0;
-    background: #C0C0C0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #FF4444;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #808080;
+    border: 2px solid #FFFFFF;
     box-shadow: 
-        1px 1px 0 #404040,
-        0 2px 4px rgba(0,0,0,0.3);
-    transition: all 0.1s ease;
+        0 0 0 1px #CC0000,
+        0 2px 6px rgba(0,0,0,0.5);
+    transition: all 0.2s ease;
     cursor: pointer;
     position: relative;
     image-rendering: pixelated;
+    animation: pinPulse 2s ease-in-out infinite;
 }
 
 .gym-pin:hover {
-    transform: translate(-1px, -1px);
+    transform: scale(1.2) translate(-1px, -1px);
     box-shadow: 
-        2px 2px 0 #404040,
-        0 3px 6px rgba(0,0,0,0.4);
-    background: #D0D0D0;
+        0 0 0 2px #FFFFFF,
+        0 0 0 3px #CC0000,
+        0 4px 12px rgba(0,0,0,0.7);
+    z-index: 20;
 }
 
 .gym-pin.completed {
-    background: #FFD700;
-    border-color: #FFA500;
+    background: #00FF00;
+    border-color: #FFFFFF;
     box-shadow: 
-        1px 1px 0 #FF8C00,
-        0 2px 4px rgba(0,0,0,0.3),
-        0 0 8px rgba(255, 215, 0, 0.5);
+        0 0 0 1px #00CC00,
+        0 2px 6px rgba(0,0,0,0.5),
+        0 0 8px rgba(0, 255, 0, 0.6);
+    animation: completedPinGlow 1.5s ease-in-out infinite alternate;
 }
 
 .gym-badge {
-    font-size: 16px;
-    filter: grayscale(100%);
-    transition: all 0.2s ease;
-    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #FFFFFF;
+    font-family: 'MS Gothic', monospace;
     image-rendering: pixelated;
-    color: #404040;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.8);
+    font-weight: bold;
 }
 
 .gym-pin.completed .gym-badge {
-    filter: none;
     color: #000000;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
 }
 
 .gym-label {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    background: #000000;
+    background: rgba(0,0,0,0.8);
     color: #FFFFFF;
     padding: 2px 6px;
-    font-family: 'Courier New', monospace;
+    font-family: 'MS Gothic', monospace;
     font-size: 10px;
     font-weight: bold;
     white-space: nowrap;
     border: 1px solid #333333;
     pointer-events: none;
     image-rendering: pixelated;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .gym-location:hover .gym-label {
-    transform: translateX(-50%) translate(-1px, -1px);
+    opacity: 1;
 }
 
 /* バッジ要素 */
@@ -771,6 +818,37 @@ footer {
         inset 2px 2px 0 rgba(255,255,255,0.5),
         inset -2px -2px 0 rgba(0,0,0,0.3),
         0 0 8px rgba(0, 206, 201, 0.8);
+}
+
+/* ピンのアニメーション */
+@keyframes pinPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 
+            0 0 0 1px #CC0000,
+            0 2px 6px rgba(0,0,0,0.5);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 
+            0 0 0 2px #CC0000,
+            0 3px 8px rgba(0,0,0,0.6);
+    }
+}
+
+@keyframes completedPinGlow {
+    0% { 
+        box-shadow: 
+            0 0 0 1px #00CC00,
+            0 2px 6px rgba(0,0,0,0.5),
+            0 0 8px rgba(0, 255, 0, 0.6);
+    }
+    100% { 
+        box-shadow: 
+            0 0 0 2px #00CC00,
+            0 3px 8px rgba(0,0,0,0.6),
+            0 0 12px rgba(0, 255, 0, 0.8);
+    }
 }
 
 /* Animations */

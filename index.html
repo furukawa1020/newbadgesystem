@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" c                <!-- 実際の地理的位置に基づくジムロケーション -->"width=device-width, initial-scale=1.0">
     <title>ハクサンリーグ・旧市町村ジムバッジ - 白山市NFCジムバッジラリー</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="incentive-system.css">
@@ -104,68 +104,68 @@
                 
                 <!-- ジムロケーション - 画像通りの配置 -->
                 
-                <!-- 鶴来ジム - 左中央 -->
-                <div class="gym-location" data-town="tsurugi" style="top: 65%; left: 25%;">
-                    <div class="gym-pin tsurugi-gym" id="gym-tsurugi">
-                        <div class="gym-badge">🏔️</div>
+                <!-- 鶴来ジム - 扇状地の要、白山市の中心地 -->
+                <div class="gym-location" data-town="tsurugi" style="top: 70%; left: 35%;">
+                    <div class="gym-pin tsurugi-gym" id="gym-tsurugi" onclick="visitTown('tsurugi')">
+                        <div class="gym-badge">鶴</div>
                     </div>
                     <span class="gym-label">鶴来ジム</span>
                 </div>
                 
-                <!-- 美川ジム - 左下海岸 -->
+                <!-- 美川ジム - 日本海沿岸 -->
                 <div class="gym-location" data-town="mikawa" style="top: 85%; left: 15%;">
-                    <div class="gym-pin mikawa-gym" id="gym-mikawa">
-                        <div class="gym-badge">🌊</div>
+                    <div class="gym-pin mikawa-gym" id="gym-mikawa" onclick="visitTown('mikawa')">
+                        <div class="gym-badge">美</div>
                     </div>
                     <span class="gym-label">美川ジム</span>
                 </div>
                 
-                <!-- 松任ジム - 左中央下 -->
-                <div class="gym-location" data-town="mattou" style="top: 75%; left: 22%;">
-                    <div class="gym-pin mattou-gym" id="gym-mattou">
-                        <div class="gym-badge">⚡</div>
+                <!-- 松任ジム - 加賀平野の中心 -->
+                <div class="gym-location" data-town="mattou" style="top: 78%; left: 25%;">
+                    <div class="gym-pin mattou-gym" id="gym-mattou" onclick="visitTown('mattou')">
+                        <div class="gym-badge">松</div>
                     </div>
                     <span class="gym-label">松任ジム</span>
                 </div>
                 
-                <!-- 河内ジム - 中央 -->
-                <div class="gym-location" data-town="kawachi" style="top: 60%; left: 48%;">
-                    <div class="gym-pin kawachi-gym" id="gym-kawachi">
-                        <div class="gym-badge">🌊</div>
+                <!-- 河内ジム - 手取川上流域 -->
+                <div class="gym-location" data-town="kawachi" style="top: 60%; left: 50%;">
+                    <div class="gym-pin kawachi-gym" id="gym-kawachi" onclick="visitTown('kawachi')">
+                        <div class="gym-badge">河</div>
                     </div>
                     <span class="gym-label">河内ジム</span>
                 </div>
                 
-                <!-- 白峰ジム - 右上 -->
-                <div class="gym-location" data-town="shiramine" style="top: 35%; left: 80%;">
-                    <div class="gym-pin shiramine-gym" id="gym-shiramine">
-                        <div class="gym-badge">🏔️</div>
+                <!-- 白峰ジム - 白山連峰の奥地 -->
+                <div class="gym-location" data-town="shiramine" style="top: 25%; left: 75%;">
+                    <div class="gym-pin shiramine-gym" id="gym-shiramine" onclick="visitTown('shiramine')">
+                        <div class="gym-badge">白</div>
                     </div>
                     <span class="gym-label">白峰ジム</span>
                 </div>
                 
-                <!-- 吉野谷ジム - 右中央 -->
-                <div class="gym-location" data-town="yoshinodani" style="top: 50%; left: 70%;">
-                    <div class="gym-pin yoshinodani-gym" id="gym-yoshinodani">
-                        <div class="gym-badge">⭐</div>
+                <!-- 吉野谷ジム - 山間部の谷間 -->
+                <div class="gym-location" data-town="yoshinodani" style="top: 45%; left: 65%;">
+                    <div class="gym-pin yoshinodani-gym" id="gym-yoshinodani" onclick="visitTown('yoshinodani')">
+                        <div class="gym-badge">吉</div>
                     </div>
                     <span class="gym-label">吉野谷ジム</span>
                 </div>
                 
-                <!-- 鳥越ジム - 右上 -->
-                <div class="gym-location" data-town="torigoe" style="top: 40%; left: 88%;">
-                    <div class="gym-pin torigoe-gym" id="gym-torigoe">
-                        <div class="gym-badge">💧</div>
-                    </div>
-                    <span class="gym-label">尾口ジム</span>
-                </div>
-                
-                <!-- 尾口ジム - 右下 -->
-                <div class="gym-location" data-town="oguchi" style="top: 70%; left: 85%;">
-                    <div class="gym-pin oguchi-gym" id="gym-oguchi">
-                        <div class="gym-badge">🔥</div>
+                <!-- 鳥越ジム - 山間部 -->
+                <div class="gym-location" data-town="torigoe" style="top: 40%; left: 80%;">
+                    <div class="gym-pin torigoe-gym" id="gym-torigoe" onclick="visitTown('torigoe')">
+                        <div class="gym-badge">鳥</div>
                     </div>
                     <span class="gym-label">鳥越ジム</span>
+                </div>
+                
+                <!-- 尾口ジム - 白山山系最奥部・手取川上流域 -->
+                <div class="gym-location" data-town="ichirino" style="top: 35%; left: 75%;">
+                    <div class="gym-pin ichirino-gym" id="gym-ichirino" onclick="visitTown('ichirino')">
+                        <div class="gym-badge">尾</div>
+                    </div>
+                    <span class="gym-label">尾口ジム</span>
                 </div>
             </div>
         </div>
