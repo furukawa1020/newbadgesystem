@@ -94,6 +94,8 @@ function updateStampDisplay() {
     const stampCount = stamps.length;
     const totalStamps = Object.keys(towns).length;
     
+    console.log('updateStampDisplay called:', stamps);
+    
     // Update counter
     document.getElementById('stampCount').textContent = `${stampCount}/${totalStamps} バッジ獲得`;
     
@@ -106,12 +108,28 @@ function updateStampDisplay() {
     Object.keys(towns).forEach(townCode => {
         const townCard = document.querySelector(`[data-town="${townCode}"]`);
         const stampStatus = document.getElementById(`stamp-${townCode}`);
-        const badgeIcon = townCard.querySelector('.badge-icon');
+        // より確実にbadgeIconを取得
+        const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+        
+        console.log(`Processing ${townCode}:`, {
+            townCard: !!townCard,
+            stampStatus: !!stampStatus, 
+            badgeIcon: !!badgeIcon,
+            hasStamp: stamps.includes(townCode)
+        });
+
+        if (!townCard) {
+            console.error(`Town card not found for ${townCode}`);
+            return;
+        }
         
         if (stamps.includes(townCode)) {
+            console.log(`${townCode} is marked as obtained`);
             townCard.classList.add('completed');
-            stampStatus.textContent = '✅ 獲得済み';
-            stampStatus.classList.add('obtained');
+            if (stampStatus) {
+                stampStatus.textContent = '✅ 獲得済み';
+                stampStatus.classList.add('obtained');
+            }
             
             // Update badge icon based on gym type
             if (badgeIcon) {
@@ -125,16 +143,26 @@ function updateStampDisplay() {
                     'torigoe': '🏰',     // キャッスルバッジ (城)
                     'oguchi': '💧'       // フォールバッジ (滝)
                 };
+                console.log(`Updating badge icon for ${townCode}:`, gymBadgeIcons[townCode]);
                 badgeIcon.textContent = gymBadgeIcons[townCode] || '🏆';
+                console.log(`Badge icon updated to:`, badgeIcon.textContent);
+            } else {
+                console.log(`Badge icon element not found for ${townCode}`);
             }
         } else {
+            console.log(`${townCode} is not obtained`);
             townCard.classList.remove('completed');
-            stampStatus.textContent = '未取得';
-            stampStatus.classList.remove('obtained');
+            if (stampStatus) {
+                stampStatus.textContent = '未取得';
+                stampStatus.classList.remove('obtained');
+            }
             
             // Reset badge icon to question mark
             if (badgeIcon) {
                 badgeIcon.textContent = '？';
+                console.log(`Badge icon reset to ？ for ${townCode}`);
+            } else {
+                console.log(`Badge icon element not found for reset: ${townCode}`);
             }
         }
     });
