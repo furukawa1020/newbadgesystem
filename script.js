@@ -94,8 +94,6 @@ function updateStampDisplay() {
     const stampCount = stamps.length;
     const totalStamps = Object.keys(towns).length;
     
-    console.log('updateStampDisplay called:', stamps);
-    
     // Update counter
     document.getElementById('stampCount').textContent = `${stampCount}/${totalStamps} バッジ獲得`;
     
@@ -111,20 +109,11 @@ function updateStampDisplay() {
         // より確実にbadgeIconを取得
         const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
         
-        console.log(`Processing ${townCode}:`, {
-            townCard: !!townCard,
-            stampStatus: !!stampStatus, 
-            badgeIcon: !!badgeIcon,
-            hasStamp: stamps.includes(townCode)
-        });
-
         if (!townCard) {
-            console.error(`Town card not found for ${townCode}`);
             return;
         }
         
         if (stamps.includes(townCode)) {
-            console.log(`${townCode} is marked as obtained`);
             townCard.classList.add('completed');
             if (stampStatus) {
                 stampStatus.textContent = '✅ 獲得済み';
@@ -143,14 +132,9 @@ function updateStampDisplay() {
                     'torigoe': '🏰',     // キャッスルバッジ (城)
                     'oguchi': '💧'       // フォールバッジ (滝)
                 };
-                console.log(`Updating badge icon for ${townCode}:`, gymBadgeIcons[townCode]);
                 badgeIcon.textContent = gymBadgeIcons[townCode] || '🏆';
-                console.log(`Badge icon updated to:`, badgeIcon.textContent);
-            } else {
-                console.log(`Badge icon element not found for ${townCode}`);
             }
         } else {
-            console.log(`${townCode} is not obtained`);
             townCard.classList.remove('completed');
             if (stampStatus) {
                 stampStatus.textContent = '未取得';
@@ -160,9 +144,6 @@ function updateStampDisplay() {
             // Reset badge icon to question mark
             if (badgeIcon) {
                 badgeIcon.textContent = '？';
-                console.log(`Badge icon reset to ？ for ${townCode}`);
-            } else {
-                console.log(`Badge icon element not found for reset: ${townCode}`);
             }
         }
     });
@@ -807,54 +788,54 @@ function updateZoomDisplay() {
     }
 }
 
-// テスト用：バッジアイコン強制更新関数
-function testBadgeUpdate() {
-    console.log('Testing badge update...');
+// デバッグ用：バッジをリセットする関数（コンソールから実行可能）
+window.resetAllBadges = function() {
+    localStorage.removeItem('hakusan_badges');
+    updateStampDisplay();
+    console.log('All badges have been reset');
+};
+
+// デバッグ用：UI上のボタンからバッジリセット（確認付き）
+function confirmResetBadges() {
     const stamps = getStamps();
-    console.log('Current stamps:', stamps);
-    
-    // 白峰をテスト用に追加
-    if (!stamps.includes('shiramine')) {
-        console.log('Adding shiramine stamp...');
-        addStamp('shiramine');
+    if (stamps.length === 0) {
+        alert('リセットするバッジがありません。');
+        return;
     }
     
-    // 強制的にバッジアイコンを更新
-    const shiramineBadge = document.querySelector('[data-town="shiramine"] .badge-icon');
-    console.log('Shiramine badge element:', shiramineBadge);
-    if (shiramineBadge) {
-        console.log('Before update:', shiramineBadge.textContent);
-        shiramineBadge.textContent = '⛰️';
-        console.log('After update:', shiramineBadge.textContent);
+    const confirmed = confirm(
+        `現在 ${stamps.length} 個のバッジが取得されています。\n\n` +
+        '本当に全てのバッジをリセットしますか？\n' +
+        'この操作は取り消すことができません。'
+    );
+    
+    if (confirmed) {
+        localStorage.removeItem('hakusan_badges');
+        updateStampDisplay();
         
-        // カードも完了状態にする
-        const shiramineCard = document.querySelector('[data-town="shiramine"]');
-        if (shiramineCard) {
-            shiramineCard.classList.add('completed');
-        }
+        // リセット完了の通知
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2ecc71;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            z-index: 10000;
+            font-family: 'Hiragino Sans', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        `;
+        notification.textContent = '✅ 全バッジがリセットされました';
         
-        // ステータスも更新
-        const shiramineStatus = document.getElementById('stamp-shiramine');
-        if (shiramineStatus) {
-            shiramineStatus.textContent = '✅ 獲得済み';
-            shiramineStatus.classList.add('obtained');
-        }
-    } else {
-        console.log('Shiramine badge element not found');
-        // 全てのバッジ要素を探してみる
-        const allBadges = document.querySelectorAll('.badge-icon');
-        console.log('All badge elements found:', allBadges.length);
-        allBadges.forEach((badge, index) => {
-            console.log(`Badge ${index}:`, badge.textContent, badge.parentElement.getAttribute('data-town'));
-        });
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 2000);
+        
+        console.log('All badges have been reset via UI button');
     }
 }
-
-// ページ読み込み完了後にテスト関数を実行
-window.addEventListener('load', function() {
-    console.log('Page loaded, starting test...');
-    setTimeout(testBadgeUpdate, 1000);
-});
-
-// コンソールから手動実行できるようにグローバルに露出
-window.testBadgeUpdate = testBadgeUpdate;
