@@ -31,12 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const stampParam = urlParams.get('badge');
     
     if (stampParam && towns[stampParam]) {
-        // Add stamp to localStorage
-        addStamp(stampParam);
-        
-        // Show notification (only if not already obtained)
+        // Check if badge is already obtained
         const stamps = getStamps();
-        if (stamps.includes(stampParam)) {
+        const wasAlreadyObtained = stamps.includes(stampParam);
+        
+        // Add stamp to localStorage (without showing notification from addStamp)
+        const badgeAdded = addStamp(stampParam, false);
+        
+        // Show notification only if badge was newly added
+        if (badgeAdded && !wasAlreadyObtained) {
             showStampNotification(towns[stampParam], badges[stampParam]);
         }
         
@@ -60,7 +63,7 @@ function getStamps() {
 }
 
 // Add stamp to localStorage
-function addStamp(townCode) {
+function addStamp(townCode, showNotification = true) {
     const stamps = getStamps();
     if (!stamps.includes(townCode)) {
         stamps.push(townCode);
@@ -81,7 +84,11 @@ function addStamp(townCode) {
         }));
         
         updateStampDisplay();
-        showStampNotification(badgeName, `${badgeName}バッジ`);
+        
+        // Show notification only if requested
+        if (showNotification) {
+            showStampNotification(badgeName, `${badgeName}バッジ`);
+        }
         
         return true;
     }
@@ -106,7 +113,6 @@ function updateStampDisplay() {
     Object.keys(towns).forEach(townCode => {
         const townCard = document.querySelector(`[data-town="${townCode}"]`);
         const stampStatus = document.getElementById(`stamp-${townCode}`);
-        // より確実にbadgeIconを取得
         const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
         
         if (!townCard) {
@@ -144,6 +150,9 @@ function updateStampDisplay() {
             // Reset badge icon to question mark
             if (badgeIcon) {
                 badgeIcon.textContent = '？';
+            }
+        }
+    });
             }
         }
     });
