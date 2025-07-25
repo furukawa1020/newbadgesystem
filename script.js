@@ -24,22 +24,18 @@ const badges = {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    updateStampDisplay();
-    
-    // Check for stamp parameter in URL
+    // Check for stamp parameter in URL first
     const urlParams = new URLSearchParams(window.location.search);
     const stampParam = urlParams.get('badge');
     
     if (stampParam && towns[stampParam]) {
-        // Check if badge is already obtained
-        const stamps = getStamps();
-        const wasAlreadyObtained = stamps.includes(stampParam);
+        console.log('Found badge parameter in URL:', stampParam);
         
-        // Add stamp to localStorage (without showing notification from addStamp)
-        const badgeAdded = addStamp(stampParam, false);
+        // Add stamp to localStorage
+        const wasAdded = addStamp(stampParam);
         
         // Show notification only if badge was newly added
-        if (badgeAdded && !wasAlreadyObtained) {
+        if (wasAdded) {
             showStampNotification(towns[stampParam], badges[stampParam]);
         }
         
@@ -47,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.history.replaceState({path: newURL}, '', newURL);
     }
+    
+    // Update display after all badge processing
+    updateStampDisplay();
     
     // Initialize incentive content when available
     setTimeout(() => {
@@ -63,7 +62,7 @@ function getStamps() {
 }
 
 // Add stamp to localStorage
-function addStamp(townCode, showNotification = true) {
+function addStamp(townCode) {
     const stamps = getStamps();
     if (!stamps.includes(townCode)) {
         stamps.push(townCode);
@@ -83,12 +82,12 @@ function addStamp(townCode, showNotification = true) {
             detail: { gymId: townCode, badgeName: badgeName }
         }));
         
-        updateStampDisplay();
+        // 表示を更新 - 少し遅延させて確実に反映
+        setTimeout(() => {
+            updateStampDisplay();
+        }, 100);
         
-        // Show notification only if requested
-        if (showNotification) {
-            showStampNotification(badgeName, `${badgeName}バッジ`);
-        }
+        showStampNotification(badgeName, `${badgeName}バッジ`);
         
         return true;
     }
@@ -100,6 +99,8 @@ function updateStampDisplay() {
     const stamps = getStamps();
     const stampCount = stamps.length;
     const totalStamps = Object.keys(towns).length;
+    
+    console.log('updateStampDisplay called, stamps:', stamps);
     
     // Update counter
     document.getElementById('stampCount').textContent = `${stampCount}/${totalStamps} バッジ獲得`;
@@ -113,9 +114,18 @@ function updateStampDisplay() {
     Object.keys(towns).forEach(townCode => {
         const townCard = document.querySelector(`[data-town="${townCode}"]`);
         const stampStatus = document.getElementById(`stamp-${townCode}`);
-        const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+        // より確実にbadgeIconを取得 - 複数の方法で試行
+        let badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+        
+        console.log(`Updating ${townCode}:`, {
+            townCard: !!townCard,
+            stampStatus: !!stampStatus,
+            badgeIcon: !!badgeIcon,
+            isStamped: stamps.includes(townCode)
+        });
         
         if (!townCard) {
+            console.warn(`Town card not found for ${townCode}`);
             return;
         }
         
@@ -126,7 +136,7 @@ function updateStampDisplay() {
                 stampStatus.classList.add('obtained');
             }
             
-            // Update badge icon based on gym type
+            // Update badge icon based on gym type - より強固な方法で
             if (badgeIcon) {
                 const gymBadgeIcons = {
                     'tsurugi': '🏹',     // クレインバッジ (弓矢)
@@ -138,7 +148,20 @@ function updateStampDisplay() {
                     'torigoe': '🏰',     // キャッスルバッジ (城)
                     'oguchi': '💧'       // フォールバッジ (滝)
                 };
-                badgeIcon.textContent = gymBadgeIcons[townCode] || '🏆';
+                const newIcon = gymBadgeIcons[townCode] || '🏆';
+                console.log(`Setting badge icon for ${townCode} to ${newIcon}`);
+                
+                // 複数の方法でアイコンを設定
+                badgeIcon.textContent = newIcon;
+                badgeIcon.innerHTML = newIcon;
+                
+                // 強制的に再描画をトリガー
+                badgeIcon.style.display = 'none';
+                badgeIcon.offsetHeight; // reflow trigger
+                badgeIcon.style.display = '';
+                
+            } else {
+                console.warn(`Badge icon not found for ${townCode}`);
             }
         } else {
             townCard.classList.remove('completed');
@@ -150,9 +173,6 @@ function updateStampDisplay() {
             // Reset badge icon to question mark
             if (badgeIcon) {
                 badgeIcon.textContent = '？';
-            }
-        }
-    });
             }
         }
     });
@@ -847,4 +867,35 @@ function confirmResetBadges() {
         
         console.log('All badges have been reset via UI button');
     }
+}
+
+// Debug functions - コンソールから使用可能
+function testShiramineUpdate() {
+    console.log('Testing shiramine badge update...');
+    addStamp('shiramine');
+    updateStampDisplay();
+}
+
+function checkBadgeIcon(townCode) {
+    const townCard = document.querySelector(`[data-town="${townCode}"]`);
+    const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+    console.log(`Badge icon for ${townCode}:`, {
+        townCard: !!townCard,
+        badgeIcon: !!badgeIcon,
+        currentText: badgeIcon ? badgeIcon.textContent : 'N/A'
+    });
+    return badgeIcon;
+}
+
+function debugStamps() {
+    const stamps = getStamps();
+    console.log('Current stamps in localStorage:', stamps);
+    
+    Object.keys(towns).forEach(townCode => {
+        const isStamped = stamps.includes(townCode);
+        const townCard = document.querySelector(`[data-town="${townCode}"]`);
+        const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+        
+        console.log(`${townCode}: stamped=${isStamped}, card=${!!townCard}, icon=${!!badgeIcon}, text="${badgeIcon ? badgeIcon.textContent : 'N/A'}"`);
+    });
 }
