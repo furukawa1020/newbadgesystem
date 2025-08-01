@@ -1,0 +1,14 @@
+<!-- 152x152アイコン -->
+<svg width="152" height="152" viewBox="0 0 152 152" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg152" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#4682B4"/>
+      <stop offset="100%" style="stop-color:#2E8B57"/>
+    </linearGradient>
+  </defs>
+  <circle cx="76" cy="76" r="70" fill="url(#bg152)" stroke="#FFFFFF" stroke-width="3"/>
+  <path d="M 32 114 Q 44 96 54 100 Q 76 88 98 100 Q 108 96 120 114 L 120 136 L 32 136 Z" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="76" cy="60" r="24" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+  <text x="76" y="68" text-anchor="middle" font-size="22" fill="#8B4513">🏔️</text>
+</svg>

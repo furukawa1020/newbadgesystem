@@ -1,0 +1,85 @@
+<!-- 512x512アイコン（高詳細版） -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="30%" style="stop-color:#4682B4"/>
+      <stop offset="70%" style="stop-color:#2E8B57"/>
+      <stop offset="100%" style="stop-color:#228B22"/>
+    </linearGradient>
+    <radialGradient id="mt512" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.95"/>
+      <stop offset="40%" style="stop-color:#F0F8FF;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#4682B4;stop-opacity:0.6"/>
+    </radialGradient>
+    <radialGradient id="badge512" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="70%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF8C00"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bg512)" stroke="#FFFFFF" stroke-width="8"/>
+  
+  <!-- 白山 -->
+  <path d="M 100 360 Q 140 280 180 300 Q 220 260 256 280 Q 292 260 332 300 Q 372 280 412 360 L 412 420 L 100 420 Z" 
+        fill="url(#mt512)" stroke="#4682B4" stroke-width="3"/>
+  
+  <!-- 雲 -->
+  <ellipse cx="180" cy="150" rx="30" ry="15" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="330" cy="130" rx="25" ry="12" fill="#FFFFFF" opacity="0.6"/>
+  
+  <!-- 中央バッジ -->
+  <circle cx="256" cy="200" r="50" fill="url(#badge512)" stroke="#FF8C00" stroke-width="4"/>
+  <circle cx="256" cy="200" r="40" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <text x="256" y="215" text-anchor="middle" font-size="40" fill="#8B4513">🏔️</text>
+  
+  <!-- 周囲のジムバッジ（8個） -->
+  <g transform="translate(256,200)">
+    <!-- 鶴来ジム -->
+    <g transform="rotate(0)">
+      <circle cx="0" cy="-90" r="22" fill="#32CD32" stroke="#228B22" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">⚔️</text>
+    </g>
+    <!-- 美川ジム -->
+    <g transform="rotate(45)">
+      <circle cx="0" cy="-90" r="22" fill="#FF6347" stroke="#DC143C" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">🎺</text>
+    </g>
+    <!-- 松任ジム -->
+    <g transform="rotate(90)">
+      <circle cx="0" cy="-90" r="22" fill="#228B22" stroke="#006400" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">🌲</text>
+    </g>
+    <!-- 河内ジム -->
+    <g transform="rotate(135)">
+      <circle cx="0" cy="-90" r="22" fill="#4169E1" stroke="#191970" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">🌉</text>
+    </g>
+    <!-- 白峰ジム -->
+    <g transform="rotate(180)">
+      <circle cx="0" cy="-90" r="22" fill="#87CEEB" stroke="#4682B4" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">⛰️</text>
+    </g>
+    <!-- 吉野谷ジム -->
+    <g transform="rotate(225)">
+      <circle cx="0" cy="-90" r="22" fill="#00CED1" stroke="#008B8B" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">🌳</text>
+    </g>
+    <!-- 鳥越ジム -->
+    <g transform="rotate(270)">
+      <circle cx="0" cy="-90" r="22" fill="#9370DB" stroke="#4B0082" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">🏰</text>
+    </g>
+    <!-- 尾口ジム -->
+    <g transform="rotate(315)">
+      <circle cx="0" cy="-90" r="22" fill="#FF1493" stroke="#C71585" stroke-width="2"/>
+      <text x="0" y="-80" text-anchor="middle" font-size="18" fill="white">💧</text>
+    </g>
+  </g>
+  
+  <!-- アプリ名 -->
+  <text x="256" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold" 
+        fill="#FFFFFF" stroke="#2c3e50" stroke-width="2">ハクサンリーグ</text>
+</svg>

@@ -1,0 +1,68 @@
+<!-- ハクサンリーグアプリアイコン用SVGテンプレート -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景グラデーション -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4682B4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E8B57;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="mountainGradient" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="70%" style="stop-color:#E6E6FA;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#4682B4;stop-opacity:0.5" />
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景円 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)" stroke="#FFFFFF" stroke-width="8"/>
+  
+  <!-- 白山のシルエット -->
+  <path d="M 120 380 Q 180 300 220 320 Q 256 280 290 320 Q 330 300 390 380 L 390 440 L 120 440 Z" 
+        fill="url(#mountainGradient)" stroke="#4682B4" stroke-width="2"/>
+  
+  <!-- ジムバッジ要素 -->
+  <g transform="translate(256,200)">
+    <!-- 中央のバッジ -->
+    <circle cx="0" cy="0" r="45" fill="#FFD700" stroke="#FFA500" stroke-width="3"/>
+    <text x="0" y="8" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#8B4513">🏔️</text>
+    
+    <!-- 周囲の小さなバッジ -->
+    <g transform="rotate(0)">
+      <circle cx="0" cy="-80" r="20" fill="#32CD32" stroke="#228B22" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">⚔️</text>
+    </g>
+    <g transform="rotate(45)">
+      <circle cx="0" cy="-80" r="20" fill="#FF6347" stroke="#DC143C" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">🎺</text>
+    </g>
+    <g transform="rotate(90)">
+      <circle cx="0" cy="-80" r="20" fill="#4169E1" stroke="#191970" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">🌲</text>
+    </g>
+    <g transform="rotate(135)">
+      <circle cx="0" cy="-80" r="20" fill="#9370DB" stroke="#663399" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">🌉</text>
+    </g>
+    <g transform="rotate(180)">
+      <circle cx="0" cy="-80" r="20" fill="#00CED1" stroke="#008B8B" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">🌳</text>
+    </g>
+    <g transform="rotate(225)">
+      <circle cx="0" cy="-80" r="20" fill="#FF1493" stroke="#C71585" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">🏰</text>
+    </g>
+    <g transform="rotate(270)">
+      <circle cx="0" cy="-80" r="20" fill="#FF8C00" stroke="#FF6347" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">💧</text>
+    </g>
+    <g transform="rotate(315)">
+      <circle cx="0" cy="-80" r="20" fill="#8A2BE2" stroke="#4B0082" stroke-width="2"/>
+      <text x="0" y="-72" text-anchor="middle" font-size="16" fill="white">⭐</text>
+    </g>
+  </g>
+  
+  <!-- アプリ名 -->
+  <text x="256" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" stroke="#4682B4" stroke-width="1">ハクサン</text>
+  <text x="256" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" stroke="#4682B4" stroke-width="1">リーグ</text>
+</svg>

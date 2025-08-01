@@ -1,0 +1,50 @@
+<!-- 白山ジオパークスタイル PWAアイコン 72x72 -->
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#20B2AA"/>
+      <stop offset="100%" style="stop-color:#008B8B"/>
+    </linearGradient>
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="30%" style="stop-color:#F0F8FF"/>
+      <stop offset="70%" style="stop-color:#228B22"/>
+      <stop offset="100%" style="stop-color:#006400"/>
+    </linearGradient>
+    <linearGradient id="riverGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="100%" style="stop-color:#4682B4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景（角丸四角形） -->
+  <rect width="72" height="72" rx="16" ry="16" fill="url(#bgGradient)"/>
+  
+  <!-- 六角形のバッジフレーム -->
+  <polygon points="36,8 50,16 50,32 36,40 22,32 22,16" 
+           fill="#FFD700" 
+           stroke="#B8860B" 
+           stroke-width="1.5"/>
+  
+  <!-- 内側の六角形 -->
+  <polygon points="36,12 46,17 46,29 36,34 26,29 26,17" 
+           fill="#2E8B57"/>
+  
+  <!-- 白山の山々 -->
+  <path d="M 28 17 L 32 12 L 36 15 L 40 12 L 44 17 L 44 29 L 28 29 Z" 
+        fill="url(#mountainGradient)"/>
+  
+  <!-- 雪化粧した山頂 -->
+  <path d="M 30 17 L 32 12 L 34 14 L 36 11 L 38 14 L 40 12 L 42 17 L 40 17 L 38 15 L 36 16 L 34 15 L 32 17 Z" 
+        fill="#FFFFFF" opacity="0.9"/>
+  
+  <!-- 手取川の流れ -->
+  <path d="M 36 20 Q 32 23 30 26 Q 33 28 36 29 Q 39 28 42 26 Q 40 23 36 20" 
+        fill="url(#riverGradient)" opacity="0.8"/>
+  
+  <!-- バッジテキスト -->
+  <text x="36" y="50" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="9" font-weight="bold" fill="#FFFFFF">白山</text>
+  <text x="36" y="60" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="7" fill="#E0E0E0">RALLY</text>
+</svg>

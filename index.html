@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ハクサンリーグ・旧市町村ジムバッジ - 白山市NFCジムバッジラリー</title>
+    
+    <!-- PWA設定 -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="icons/icon-192x192.svg">
+    <meta name="theme-color" content="#20B2AA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="白山ジオパーク">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.svg">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="incentive-system.css">
 </head>
@@ -109,59 +120,67 @@
 
         <div class="town-grid">
             <div class="town-card" data-town="tsurugi">
+                <div class="badge-icon">？</div>
                 <h3>鶴来ジム</h3>
                 <div class="badge-name">クレインバッジ</div>
                 <div class="stamp-status" id="stamp-tsurugi">未取得</div>
-                <button class="visit-btn" id="btn-tsurugi" onclick="visitTown('tsurugi')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('tsurugi')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="mikawa">
+                <div class="badge-icon">？</div>
                 <h3>美川ジム</h3>
                 <div class="badge-name">ラッパバッジ</div>
                 <div class="stamp-status" id="stamp-mikawa">未取得</div>
-                <button class="visit-btn" id="btn-mikawa" onclick="visitTown('mikawa')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('mikawa')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="mattou">
+                <div class="badge-icon">？</div>
                 <h3>松任ジム</h3>
                 <div class="badge-name">パインバッジ</div>
                 <div class="stamp-status" id="stamp-mattou">未取得</div>
-                <button class="visit-btn" id="btn-mattou" onclick="visitTown('mattou')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('mattou')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="kawachi">
+                <div class="badge-icon">？</div>
                 <h3>河内ジム</h3>
                 <div class="badge-name">ブリッジバッジ</div>
                 <div class="stamp-status" id="stamp-kawachi">未取得</div>
-                <button class="visit-btn" id="btn-kawachi" onclick="visitTown('kawachi')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('kawachi')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="shiramine">
+                <div class="badge-icon">？</div>
                 <h3>白峰ジム</h3>
                 <div class="badge-name">ピークバッジ</div>
                 <div class="stamp-status" id="stamp-shiramine">未取得</div>
-                <button class="visit-btn" id="btn-shiramine" onclick="visitTown('shiramine')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('shiramine')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="yoshinodani">
+                <div class="badge-icon">？</div>
                 <h3>吉野谷ジム</h3>
                 <div class="badge-name">フォレストバッジ</div>
                 <div class="stamp-status" id="stamp-yoshinodani">未取得</div>
-                <button class="visit-btn" id="btn-yoshinodani" onclick="visitTown('yoshinodani')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('yoshinodani')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="torigoe">
+                <div class="badge-icon">？</div>
                 <h3>鳥越ジム</h3>
                 <div class="badge-name">キャッスルバッジ</div>
                 <div class="stamp-status" id="stamp-torigoe">未取得</div>
-                <button class="visit-btn" id="btn-torigoe" onclick="visitTown('torigoe')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('torigoe')">挑戦する</button>
             </div>
 
             <div class="town-card" data-town="oguchi">
+                <div class="badge-icon">？</div>
                 <h3>尾口ジム</h3>
                 <div class="badge-name">フォールバッジ</div>
                 <div class="stamp-status" id="stamp-oguchi">未取得</div>
-                <button class="visit-btn" id="btn-oguchi" onclick="visitTown('oguchi')">挑戦する</button>
+                <button class="visit-btn" onclick="visitTown('oguchi')">挑戦する</button>
             </div>
         </div>        <div class="complete-section" id="completeSection" style="display: none;">
             <div class="complete-card">
@@ -217,5 +236,28 @@
     <script src="script.js"></script>
     <script src="incentive-system.js"></script>
     <script src="marketing-effects.js"></script>
+    
+    <!-- PWA Service Worker登録 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('✅ PWA Service Worker登録成功:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('❌ PWA Service Worker登録失敗:', error);
+                    });
+            });
+        }
+        
+        // PWAインストールプロンプト
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('📱 PWAインストール可能');
+        });
+    </script>
 </body>
 </html>

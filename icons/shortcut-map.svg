@@ -1,0 +1,19 @@
+<!-- マップ用ショートカットアイコン -->
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4169E1"/>
+      <stop offset="100%" style="stop-color:#1E90FF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="44" fill="url(#mapBg)" stroke="#FFFFFF" stroke-width="2"/>
+  <!-- 地図アイコン -->
+  <rect x="20" y="25" width="56" height="46" rx="4" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1"/>
+  <!-- 位置マーカー -->
+  <circle cx="40" cy="45" r="4" fill="#FF4500"/>
+  <circle cx="55" cy="35" r="4" fill="#FF4500"/>
+  <circle cx="60" cy="55" r="4" fill="#FF4500"/>
+  <!-- 道路線 -->
+  <path d="M 25 35 Q 45 40 65 45" stroke="#DDDDDD" stroke-width="2" fill="none"/>
+  <path d="M 30 55 Q 50 50 70 40" stroke="#DDDDDD" stroke-width="2" fill="none"/>
+</svg>

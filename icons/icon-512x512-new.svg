@@ -1,0 +1,80 @@
+<!-- 白山ジオパークスタイル PWAアイコン 512x512 -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#20B2AA"/>
+      <stop offset="100%" style="stop-color:#008B8B"/>
+    </linearGradient>
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="15%" style="stop-color:#F0F8FF"/>
+      <stop offset="55%" style="stop-color:#228B22"/>
+      <stop offset="100%" style="stop-color:#006400"/>
+    </linearGradient>
+    <linearGradient id="riverGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#4682B4"/>
+      <stop offset="100%" style="stop-color:#2E8B57"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="30%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF8C00"/>
+    </linearGradient>
+    <radialGradient id="shadowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.2"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 背景（角丸四角形） -->
+  <rect width="512" height="512" rx="100" ry="100" fill="url(#bgGradient)"/>
+  
+  <!-- 影 -->
+  <polygon points="256,60 350,110 350,210 256,260 162,210 162,110" 
+           fill="url(#shadowGradient)" 
+           transform="translate(4,4)"/>
+  
+  <!-- 六角形のバッジフレーム -->
+  <polygon points="256,60 350,110 350,210 256,260 162,210 162,110" 
+           fill="url(#goldGradient)" 
+           stroke="#B8860B" 
+           stroke-width="6"/>
+  
+  <!-- 内側の六角形 -->
+  <polygon points="256,80 330,120 330,200 256,240 182,200 182,120" 
+           fill="#2E8B57"/>
+  
+  <!-- 白山の山々 -->
+  <path d="M 200 120 L 220 80 L 256 100 L 292 80 L 312 120 L 312 200 L 200 200 Z" 
+        fill="url(#mountainGradient)"/>
+  
+  <!-- 雪化粧した山頂 -->
+  <path d="M 205 120 L 220 80 L 240 95 L 256 75 L 272 95 L 292 80 L 307 120 L 292 120 L 272 90 L 256 105 L 240 90 L 220 120 Z" 
+        fill="#FFFFFF" opacity="0.9"/>
+  
+  <!-- 手取川の流れ -->
+  <path d="M 256 140 Q 220 160 200 180 Q 220 190 256 200 Q 292 190 312 180 Q 300 160 256 140" 
+        fill="url(#riverGradient)" opacity="0.8"/>
+  
+  <!-- 山の詳細ライン -->
+  <path d="M 215 150 L 235 130 L 250 140 L 262 130 L 275 140 L 295 130" 
+        stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- 雲の表現 -->
+  <ellipse cx="240" cy="105" rx="8" ry="4" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="272" cy="105" rx="8" ry="4" fill="#FFFFFF" opacity="0.7"/>
+  
+  <!-- バッジテキスト -->
+  <text x="256" y="340" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="48" font-weight="bold" fill="#FFFFFF">白山ジオパーク</text>
+  <text x="256" y="390" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="32" fill="#E0E0E0">HAKUSAN GEOPARK</text>
+  <text x="256" y="430" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="24" fill="#B0E0E6">GYM BADGE RALLY</text>
+  
+  <!-- 装飾的な星 -->
+  <circle cx="150" cy="150" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="362" cy="150" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="256" cy="50" r="8" fill="#FFD700" opacity="0.9"/>
+</svg>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オフライン - ハクサンリーグ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2E8B57, #98FB98);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .offline-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 400px;
+        }
+        
+        .offline-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2E8B57;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .badge-display {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .retry-btn {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .retry-btn:hover {
+            background: #228B22;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1>オフラインモード</h1>
+        <p>インターネット接続がありません。<br>獲得済みのバッジは確認できます。</p>
+        
+        <div class="badge-display">
+            <h3>🏆 獲得済みバッジ</h3>
+            <div id="offlineBadges">読み込み中...</div>
+        </div>
+        
+        <button class="retry-btn" onclick="location.reload()">🔄 再接続を試す</button>
+    </div>
+    
+    <script>
+        // オフラインでもバッジ状況を表示
+        function displayOfflineBadges() {
+            const badges = [
+                { id: 'mattou', name: '松任ジム', emoji: '🌸' },
+                { id: 'mikawa', name: '美川ジム', emoji: '🏮' },
+                { id: 'tsurugi', name: '鶴来ジム', emoji: '⛩️' },
+                { id: 'kawachi', name: '河内ジム', emoji: '🌿' },
+                { id: 'yoshinodani', name: '吉野谷ジム', emoji: '🍁' },
+                { id: 'torigoe', name: '鳥越ジム', emoji: '🏔️' },
+                { id: 'shiramine', name: '白峰ジム', emoji: '⛷️' },
+                { id: 'ichirino', name: '一里野ジム', emoji: '♨️' }
+            ];
+            
+            let collectedCount = 0;
+            let badgeHtml = '';
+            
+            badges.forEach(badge => {
+                const isCollected = localStorage.getItem(`badge_${badge.id}`) === 'collected';
+                if (isCollected) {
+                    collectedCount++;
+                    badgeHtml += `<span style="font-size: 24px; margin: 5px;">${badge.emoji}</span>`;
+                }
+            });
+            
+            if (collectedCount === 0) {
+                badgeHtml = '<p>まだバッジを獲得していません</p>';
+            } else {
+                badgeHtml = `<p>${collectedCount}/8 バッジ獲得</p>` + badgeHtml;
+            }
+            
+            document.getElementById('offlineBadges').innerHTML = badgeHtml;
+        }
+        
+        // ページ読み込み時にバッジ表示
+        displayOfflineBadges();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- 144x144アイコン -->
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg144" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#4682B4"/>
+      <stop offset="100%" style="stop-color:#2E8B57"/>
+    </linearGradient>
+  </defs>
+  <circle cx="72" cy="72" r="66" fill="url(#bg144)" stroke="#FFFFFF" stroke-width="3"/>
+  <path d="M 30 108 Q 42 90 52 96 Q 72 84 92 96 Q 102 90 114 108 L 114 128 L 30 128 Z" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="72" cy="56" r="22" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+  <text x="72" y="64" text-anchor="middle" font-size="20" fill="#8B4513">🏔️</text>
+  <!-- 周囲バッジ -->
+  <circle cx="72" cy="28" r="7" fill="#32CD32"/>
+  <circle cx="100" cy="42" r="7" fill="#FF6347"/>
+  <circle cx="100" cy="70" r="7" fill="#4169E1"/>
+  <circle cx="72" cy="84" r="7" fill="#9370DB"/>
+  <circle cx="44" cy="70" r="7" fill="#00CED1"/>
+  <circle cx="44" cy="42" r="7" fill="#FF1493"/>
+</svg>
