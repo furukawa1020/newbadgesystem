@@ -43,6 +43,69 @@ header p {
     letter-spacing: 1px;
 }
 
+/* PWAインストールボタン */
+.pwa-install-section {
+    margin-top: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.pwa-install-section.show {
+    opacity: 1;
+}
+
+.pwa-install-btn {
+    background: linear-gradient(135deg, #20B2AA 0%, #008B8B 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(32, 178, 170, 0.3);
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+
+.pwa-install-btn:hover {
+    background: linear-gradient(135deg, #008B8B 0%, #20B2AA 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(32, 178, 170, 0.4);
+}
+
+.pwa-install-btn:active {
+    transform: translateY(0);
+}
+
+.pwa-install-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .pwa-install-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pwa-install-section {
+        margin-top: 1rem;
+    }
+    
+    .pwa-install-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+}
+
 /* Main Content */
 main {
     max-width: 1400px;
@@ -134,8 +197,6 @@ main {
         0 4px 16px rgba(50, 205, 50, 0.4);
 }
 
-/* Badge icon styles removed - now using button state instead */
-/*
 .badge-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -149,7 +210,6 @@ main {
     animation: pixelSparkle 1.5s infinite;
     text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
 }
-*/
 
 .badge-name {
     font-size: 0.9rem;
@@ -245,18 +305,6 @@ main {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(70, 130, 180, 0.4);
     background: #5F9EA0;
-}
-
-.visit-btn.completed {
-    background: #32CD32;
-    cursor: default;
-    box-shadow: 0 4px 12px rgba(50, 205, 50, 0.3);
-}
-
-.visit-btn.completed:hover {
-    transform: none;
-    background: #32CD32;
-    box-shadow: 0 4px 12px rgba(50, 205, 50, 0.3);
 }
 
 /* Complete Section */

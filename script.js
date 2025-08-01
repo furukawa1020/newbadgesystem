@@ -10,6 +10,75 @@ const towns = {
     oguchi: '尾口'
 };
 
+// PWA Install Variables
+let deferredPrompt;
+let isInstallPromptAvailable = false;
+
+// PWA Install Event Listeners
+window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('📱 PWAインストールプロンプト検出');
+    e.preventDefault();
+    deferredPrompt = e;
+    isInstallPromptAvailable = true;
+    showInstallButton();
+});
+
+window.addEventListener('appinstalled', () => {
+    console.log('✅ PWAアプリがインストールされました');
+    hideInstallButton();
+    deferredPrompt = null;
+    isInstallPromptAvailable = false;
+});
+
+// PWA Install Functions
+function showInstallButton() {
+    const installSection = document.getElementById('pwaInstallSection');
+    if (installSection) {
+        installSection.classList.add('show');
+    }
+}
+
+function hideInstallButton() {
+    const installSection = document.getElementById('pwaInstallSection');
+    if (installSection) {
+        installSection.classList.remove('show');
+    }
+}
+
+async function installPWA() {
+    if (!deferredPrompt) {
+        console.log('❌ インストールプロンプトが利用できません');
+        return;
+    }
+
+    try {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        installBtn.disabled = true;
+        installBtn.textContent = '📱 インストール中...';
+
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        console.log(`🔔 ユーザーの選択: ${outcome}`);
+        
+        if (outcome === 'accepted') {
+            console.log('✅ ユーザーがPWAインストールを承認');
+        } else {
+            console.log('❌ ユーザーがPWAインストールを拒否');
+            installBtn.disabled = false;
+            installBtn.textContent = '📱 アプリとしてインストール';
+        }
+        
+        deferredPrompt = null;
+        isInstallPromptAvailable = false;
+    } catch (error) {
+        console.error('❌ PWAインストールエラー:', error);
+        const installBtn = document.getElementById('pwaInstallBtn');
+        installBtn.disabled = false;
+        installBtn.textContent = '📱 アプリとしてインストール';
+    }
+}
+
 // Badge data
 const badges = {
     tsurugi: 'クレインバッジ',
@@ -904,3 +973,19 @@ function checkBadgeState() {
         console.log(`${townCode}: card=${!!townCard}, icon=${!!badgeIcon}, content="${badgeIcon?.textContent}", obtained=${stamps.includes(townCode)}`);
     });
 }
+
+// PWA Install Button Event Listener
+document.addEventListener('DOMContentLoaded', function() {
+    // PWAインストールボタンのイベントリスナー
+    const installBtn = document.getElementById('pwaInstallBtn');
+    if (installBtn) {
+        installBtn.addEventListener('click', installPWA);
+    }
+    
+    // PWAがすでにインストールされているかチェック
+    if (window.matchMedia('(display-mode: standalone)').matches || 
+        window.navigator.standalone === true) {
+        console.log('✅ PWAはすでにインストールされています');
+        hideInstallButton();
+    }
+});
