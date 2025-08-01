@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.incentiveSystem) {
             updateIncentiveContent();
         }
+        // 確実にバッジアイコンが表示されるように
+        forceBadgeIconUpdate();
     }, 500);
 });
 
@@ -57,6 +59,49 @@ document.addEventListener('DOMContentLoaded', function() {
 function getStamps() {
     const stamps = localStorage.getItem('hakusan_badges');
     return stamps ? JSON.parse(stamps) : [];
+}
+
+// 確実にバッジアイコンを更新する専用関数
+function forceBadgeIconUpdate() {
+    const stamps = getStamps();
+    
+    console.log('Force updating badge icons...', stamps);
+    
+    const gymBadgeIcons = {
+        'tsurugi': '🏹',     // クレインバッジ (弓矢)
+        'mikawa': '🎺',      // ラッパバッジ (ラッパ)
+        'mattou': '🌲',      // パインバッジ (松)
+        'kawachi': '🌉',     // ブリッジバッジ (橋)
+        'shiramine': '⛰️',    // ピークバッジ (山頂)
+        'yoshinodani': '🌳', // フォレストバッジ (森)
+        'torigoe': '🏰',     // キャッスルバッジ (城)
+        'oguchi': '💧'       // フォールバッジ (滝)
+    };
+    
+    // 全ての町をチェック
+    Object.keys(towns).forEach(townCode => {
+        const townCard = document.querySelector(`[data-town="${townCode}"]`);
+        if (!townCard) {
+            console.warn(`Town card not found: ${townCode}`);
+            return;
+        }
+        
+        // バッジアイコン要素を確実に取得
+        const badgeIcons = townCard.querySelectorAll('.badge-icon');
+        
+        badgeIcons.forEach(badgeIcon => {
+            if (stamps.includes(townCode)) {
+                // 取得済みの場合は専用アイコン
+                const newIcon = gymBadgeIcons[townCode] || '🏆';
+                badgeIcon.textContent = newIcon;
+                console.log(`Updated ${townCode} to ${newIcon}`);
+            } else {
+                // 未取得の場合は？マーク
+                badgeIcon.textContent = '？';
+                console.log(`Reset ${townCode} to ？`);
+            }
+        });
+    });
 }
 
 // Add stamp to localStorage
@@ -83,6 +128,11 @@ function addStamp(townCode) {
         updateStampDisplay();
         showStampNotification(badgeName, `${badgeName}バッジ`);
         
+        // 確実にバッジアイコンを更新
+        setTimeout(() => {
+            forceBadgeIconUpdate();
+        }, 200);
+        
         return true;
     }
     return false;
@@ -102,48 +152,67 @@ function updateStampDisplay() {
     const progressPercent = (stampCount / totalStamps) * 100;
     progressFill.style.width = `${progressPercent}%`;
     
-    // Update town cards
+    // Update town cards - 確実にバッジアイコンを更新
     Object.keys(towns).forEach(townCode => {
         const townCard = document.querySelector(`[data-town="${townCode}"]`);
         const stampStatus = document.getElementById(`stamp-${townCode}`);
-        // より確実にbadgeIconを取得
-        const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
         
         if (!townCard) {
+            console.warn(`Town card not found for: ${townCode}`);
             return;
         }
         
+        // より確実にbadgeIconを取得（複数の方法で試行）
+        let badgeIcon = townCard.querySelector('.badge-icon');
+        if (!badgeIcon) {
+            // フォールバック: 他の可能なセレクターも試す
+            badgeIcon = townCard.querySelector('.badge-icon, .gym-badge, [class*="badge"]');
+        }
+        
+        console.log(`Updating ${townCode}: card found=${!!townCard}, icon found=${!!badgeIcon}, completed=${stamps.includes(townCode)}`);
+        
         if (stamps.includes(townCode)) {
+            // バッジ取得済みの場合
             townCard.classList.add('completed');
             if (stampStatus) {
                 stampStatus.textContent = '✅ 獲得済み';
                 stampStatus.classList.add('obtained');
             }
             
-            // Update badge icon based on gym type
+            // バッジアイコンを特定の絵文字に更新
             if (badgeIcon) {
                 const gymBadgeIcons = {
                     'tsurugi': '🏹',     // クレインバッジ (弓矢)
                     'mikawa': '🎺',      // ラッパバッジ (ラッパ)
                     'mattou': '🌲',      // パインバッジ (松)
-                    'kawachi': '🌉',      // ブリッジバッジ (橋)
+                    'kawachi': '🌉',     // ブリッジバッジ (橋)
                     'shiramine': '⛰️',    // ピークバッジ (山頂)
-                    'yoshinodani': '🌳',  // フォレストバッジ (森)
+                    'yoshinodani': '🌳', // フォレストバッジ (森)
                     'torigoe': '🏰',     // キャッスルバッジ (城)
                     'oguchi': '💧'       // フォールバッジ (滝)
                 };
-                badgeIcon.textContent = gymBadgeIcons[townCode] || '🏆';
+                
+                const newIcon = gymBadgeIcons[townCode] || '🏆';
+                badgeIcon.textContent = newIcon;
+                badgeIcon.innerHTML = newIcon; // HTMLも設定（万が一のため）
+                
+                console.log(`Badge icon updated for ${townCode}: ${newIcon}`);
+            } else {
+                console.error(`Badge icon element not found for ${townCode}`);
             }
         } else {
+            // バッジ未取得の場合
             townCard.classList.remove('completed');
             if (stampStatus) {
                 stampStatus.textContent = '未取得';
                 stampStatus.classList.remove('obtained');
             }
             
-            // Reset badge icon to question mark
+            // バッジアイコンを「？」に戻す
             if (badgeIcon) {
                 badgeIcon.textContent = '？';
+                badgeIcon.innerHTML = '？'; // HTMLも設定（万が一のため）
+                console.log(`Badge icon reset for ${townCode}: ？`);
             }
         }
     });
@@ -227,6 +296,11 @@ function updateStampDisplay() {
     } else {
         completeSection.style.display = 'none';
     }
+    
+    // 最後に確実にバッジアイコンを更新
+    setTimeout(() => {
+        forceBadgeIconUpdate();
+    }, 100);
 }
 
 // Show stamp notification
@@ -809,4 +883,24 @@ function resetAllBadgesWithConfirm() {
             window.location.reload();
         }, 500);
     }
+}
+
+// デバッグ用：特定のバッジをテスト追加
+function testBadgeUpdate(townCode) {
+    console.log(`Testing badge update for: ${townCode}`);
+    addStamp(townCode);
+    console.log('Current badges:', getStamps());
+}
+
+// デバッグ用：現在の状態をチェック
+function checkBadgeState() {
+    const stamps = getStamps();
+    console.log('Current badges:', stamps);
+    
+    Object.keys(towns).forEach(townCode => {
+        const townCard = document.querySelector(`[data-town="${townCode}"]`);
+        const badgeIcon = townCard ? townCard.querySelector('.badge-icon') : null;
+        
+        console.log(`${townCode}: card=${!!townCard}, icon=${!!badgeIcon}, content="${badgeIcon?.textContent}", obtained=${stamps.includes(townCode)}`);
+    });
 }

@@ -134,6 +134,8 @@ main {
         0 4px 16px rgba(50, 205, 50, 0.4);
 }
 
+/* Badge icon styles removed - now using button state instead */
+/*
 .badge-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -147,6 +149,7 @@ main {
     animation: pixelSparkle 1.5s infinite;
     text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
 }
+*/
 
 .badge-name {
     font-size: 0.9rem;
@@ -242,6 +245,18 @@ main {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(70, 130, 180, 0.4);
     background: #5F9EA0;
+}
+
+.visit-btn.completed {
+    background: #32CD32;
+    cursor: default;
+    box-shadow: 0 4px 12px rgba(50, 205, 50, 0.3);
+}
+
+.visit-btn.completed:hover {
+    transform: none;
+    background: #32CD32;
+    box-shadow: 0 4px 12px rgba(50, 205, 50, 0.3);
 }
 
 /* Complete Section */
