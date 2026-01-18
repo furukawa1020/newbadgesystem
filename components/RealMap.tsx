@@ -4,6 +4,10 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect } from "react";
+import "@/components/leaflet-fix.css"; // We will create this
+
+// IMPORTANT: Leaflet requires specific CSS to render tiles correctly.
+// We also need to ensure the container has a defined height.
 
 // Fix Leaflet default icon issue in Next.js
 const iconUrl = "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png";

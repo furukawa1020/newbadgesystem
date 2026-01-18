@@ -13,15 +13,34 @@ export default function Profile() {
     const [deviceId, setDeviceId] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<'pixel' | 'real'>('pixel');
     const [selectedTown, setSelectedTown] = useState<any>(null);
+    const [userBadges, setUserBadges] = useState<string[]>([]);
 
     useEffect(() => {
-        setDeviceId(localStorage.getItem('hakusan_device_id'));
+        const initProfile = async () => {
+            const storedId = localStorage.getItem('hakusan_device_id');
+            setDeviceId(storedId);
+
+            if (storedId) {
+                try {
+                    const res = await fetch('/api/profile');
+                    if (res.ok) {
+                        const data = await res.json();
+                        setUserBadges(data.badges || []);
+                    }
+                } catch (e) {
+                    console.error("Failed to load profile", e);
+                }
+            }
+        };
+        initProfile();
     }, []);
 
     const handleTownClick = (id: string) => {
         const town = TOWNS.find(t => t.id === id);
         setSelectedTown(town);
     };
+
+    const isUnlocked = (townId: string) => userBadges.includes(townId);
 
     return (
         <div className="min-h-screen bg-[#1a1a2e] text-white p-4 font-pixel pb-20">
@@ -61,18 +80,21 @@ export default function Profile() {
                     <div className="p-3 bg-gray-900 border-2 border-dashed border-gray-600 rounded animate-fade-in-up">
                         <div className="flex gap-4">
                             <div className="relative w-16 h-16 shrink-0">
+                                <div className={`absolute inset-0 ${isUnlocked(selectedTown.id) ? 'bg-yellow-500/20' : 'bg-black/50'} rounded-full`}></div>
                                 <Image
                                     src={`/assets/badges/${selectedTown.badgeImage}`}
                                     alt={selectedTown.name}
                                     fill
-                                    className="object-contain pixelated"
+                                    className={`object-contain pixelated ${isUnlocked(selectedTown.id) ? '' : 'brightness-0 opacity-50'}`}
                                 />
                             </div>
                             <div>
                                 <h3 className="text-[#e94560] text-lg">{selectedTown.name}</h3>
                                 <p className="text-xs text-gray-300">{selectedTown.description}</p>
                                 <div className="mt-2 text-[10px] text-gray-500">
-                                    STATUS: <span className="text-gray-400">LOCKED</span>
+                                    STATUS: <span className={isUnlocked(selectedTown.id) ? "text-yellow-400" : "text-gray-400"}>
+                                        {isUnlocked(selectedTown.id) ? "UNLOCKED" : "LOCKED"}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -83,20 +105,26 @@ export default function Profile() {
                 <div className="border-t-2 border-white/20 pt-4">
                     <p className="text-center text-xs text-gray-500 mb-2">BADGE COLLECTION</p>
                     <div className="grid grid-cols-4 gap-2">
-                        {TOWNS.map((town) => (
-                            <button key={town.id} className="aspect-square bg-gray-900 border-2 border-gray-700 rounded-sm relative group cursor-pointer" onClick={() => setSelectedTown(town)}>
-                                {/* Logic for collected vs uncollected would go here. For now, all grayed out or placeholder */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
-                                    <Image
-                                        src={`/assets/badges/${town.badgeImage}`}
-                                        alt={town.name}
-                                        width={40}
-                                        height={40}
-                                        className="object-contain pixelated"
-                                    />
-                                </div>
-                            </button>
-                        ))}
+                        {TOWNS.map((town) => {
+                            const unlocked = isUnlocked(town.id);
+                            return (
+                                <button
+                                    key={town.id}
+                                    className={`aspect-square bg-gray-900 border-2 ${unlocked ? 'border-yellow-500 bg-yellow-900/20' : 'border-gray-700'} rounded-sm relative group cursor-pointer transition-all`}
+                                    onClick={() => setSelectedTown(town)}
+                                >
+                                    <div className={`absolute inset-0 flex items-center justify-center ${unlocked ? 'opacity-100' : 'opacity-30 grayscale'} hover:opacity-100 hover:grayscale-0 transition-all`}>
+                                        <Image
+                                            src={`/assets/badges/${town.badgeImage}`}
+                                            alt={town.name}
+                                            width={40}
+                                            height={40}
+                                            className="object-contain pixelated"
+                                        />
+                                    </div>
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

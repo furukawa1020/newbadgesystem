@@ -34,13 +34,15 @@ export default function PixelMap({ towns, onTownClick }: { towns: any[], onTownC
                     {/* Building/Badge Icon */}
                     <div className="relative w-10 h-10 md:w-12 md:h-12 shadow-black drop-shadow-md">
                         <div className="absolute -inset-2 bg-yellow-400/30 rounded-full animate-ping opacity-0 hover:opacity-100"></div>
-                        <Image
-                            src={`/assets/badges/${town.badgeImage}`}
-                            alt={town.name}
-                            width={48}
-                            height={48}
-                            className="object-contain pixelated filter drop-shadow-[0_2px_0_rgba(0,0,0,0.5)]"
-                        />
+                        {/* User requested transparency/processing. We apply a circle mask to unify the look */}
+                        <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/50 bg-black/20 backdrop-blur-sm">
+                            <Image
+                                src={`/assets/badges/${town.badgeImage}`}
+                                alt={town.name}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
                     </div>
 
                     <div className="mt-1 px-1.5 py-0.5 bg-black/80 border border-white/40 text-[9px] text-white pixel-text rounded-sm whitespace-nowrap backdrop-blur-sm">

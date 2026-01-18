@@ -51,8 +51,8 @@ export default function Home() {
       <div className="z-10 relative w-64 h-64 my-8 animate-float">
         <div className="absolute inset-0 bg-red-500/20 rounded-full blur-2xl animate-pulse"></div>
         <Image
-          src="/assets/badges/1_白峰村.png"
-          alt="Shiramine Badge"
+          src="/assets/badges/processed_icon_sample.png"
+          alt="Adventure Badge"
           width={256}
           height={256}
           className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] filter contrast-125"
