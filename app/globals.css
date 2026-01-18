@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --background: #1a1a2e;
@@ -14,6 +12,13 @@
   --font-pixel: var(--font-pixel);
 }
 
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-pixel: var(--font-pixel);
+}
+
 body {
   color: var(--foreground);
   background: #000;
@@ -24,7 +29,11 @@ body {
 
 /* Retro Container Utility */
 .retro-container {
-  @apply bg-[#16213e] border-4 border-white p-4 rounded-sm relative;
+  background-color: #16213e;
+  border: 4px solid white;
+  padding: 1rem;
+  border-radius: 0.125rem;
+  position: relative;
   box-shadow:
     -4px 0 0 0 #000,
     4px 0 0 0 #000,
