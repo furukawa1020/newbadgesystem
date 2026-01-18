@@ -13,7 +13,12 @@ const dotGothic = DotGothic16({
 export const metadata: Metadata = {
   title: "Hakusan Badge Quest",
   description: "Collect digital badges in the Hakusan Tedorigawa Geopark",
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest", // Next.js generates this
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Hakusan Quest",
+  },
 };
 
 export const viewport = {
@@ -21,6 +26,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1, // Prevent zooming for "App-like" feel
+  userScalable: false, // Strictly prevent zooming on iOS
 };
 
 export default function RootLayout({

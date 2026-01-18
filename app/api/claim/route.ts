@@ -22,10 +22,11 @@ export async function POST(req: NextRequest) {
     }
 
     // Retrieve D1 from env (assumes Context or process.env wiring)
-    const { DB } = process.env as any;
+    // In Next.js local, process.env.DB might be missing. We pass context or rely on our mock in getDb.
+    const db = getDb(process.env);
 
     try {
-        const result = await claimBadge(DB, session.userId, badgeId);
+        const result = await claimBadge(db, session.userId, badgeId);
         return NextResponse.json(result);
     } catch (e) {
         console.error(e);

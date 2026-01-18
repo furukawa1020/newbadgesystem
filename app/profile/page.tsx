@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import PixelMap from "@/components/PixelMap";
 import { TOWNS } from "@/lib/towns";
 import Image from "next/image";
+import { useAudio } from "@/lib/audio-context";
 
 // Dynamically import RealMap to avoid SSR issues with Leaflet
 const RealMap = dynamic(() => import("@/components/RealMap"), { ssr: false });
@@ -14,6 +15,7 @@ export default function Profile() {
     const [activeTab, setActiveTab] = useState<'pixel' | 'real'>('pixel');
     const [selectedTown, setSelectedTown] = useState<any>(null);
     const [userBadges, setUserBadges] = useState<string[]>([]);
+    const { playSfx } = useAudio();
 
     useEffect(() => {
         const initProfile = async () => {
@@ -36,6 +38,7 @@ export default function Profile() {
     }, []);
 
     const handleTownClick = (id: string) => {
+        playSfx("/assets/audio/sfx_click.wav");
         const town = TOWNS.find(t => t.id === id);
         setSelectedTown(town);
     };
@@ -53,7 +56,10 @@ export default function Profile() {
                 {/* Map Toggle Tabs */}
                 <div className="flex gap-2 border-b-2 border-gray-600 pb-2">
                     <button
-                        onClick={() => setActiveTab('pixel')}
+                        onClick={() => {
+                            playSfx("/assets/audio/sfx_click.wav");
+                            setActiveTab('pixel');
+                        }}
                         className={`px-4 py-1 text-sm ${activeTab === 'pixel' ? 'bg-[#e94560] text-white' : 'bg-gray-800 text-gray-400'} pixel-box transition-colors`}
                     >
                         PIXEL MAP

@@ -45,6 +45,7 @@ export default function RealMap({ towns }: { towns: any[] }) {
                         <Popup>
                             <div className="font-sans text-black">
                                 <h3 className="font-bold">{town.name}</h3>
+                                <p className="text-xs text-red-600 font-bold">{town.realSpotName}</p>
                                 <p>{town.description}</p>
                             </div>
                         </Popup>

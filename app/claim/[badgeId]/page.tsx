@@ -98,6 +98,7 @@ export default function ClaimPage() {
 
                         <div className="space-y-2 bg-black/40 p-4 rounded text-left border border-white/20">
                             <p className="text-xl text-white font-bold">{badgeData.name}</p>
+                            <p className="text-sm text-[#e94560] font-bold">{badgeData.realSpotName}</p>
                             <p className="text-sm text-gray-300">{badgeData.description}</p>
                         </div>
 
