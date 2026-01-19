@@ -28,9 +28,9 @@ export async function POST(req: NextRequest) {
 
     try {
         await db.prepare(`
-            INSERT INTO Users (id, avatarId, created_at) 
+            INSERT INTO Users (userId, avatarId, createdAt) 
             VALUES (?, ?, ?)
-            ON CONFLICT(id) DO UPDATE SET avatarId = excluded.avatarId
+            ON CONFLICT(userId) DO UPDATE SET avatarId = excluded.avatarId
         `)
             .bind(session.userId, avatarId, Date.now())
             .run();
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
     const db = getDb(env);
 
     try {
-        const user: any = await db.prepare('SELECT avatarId FROM Users WHERE id = ?')
+        const user: any = await db.prepare('SELECT avatarId FROM Users WHERE userId = ?')
             .bind(session.userId)
             .first();
 

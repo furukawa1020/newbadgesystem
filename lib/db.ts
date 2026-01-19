@@ -33,19 +33,19 @@ export const getDb = (env: any): D1Database => {
 
 // User Operations
 export const getUser = async (db: D1Database, id: string): Promise<User | null> => {
-    return await db.prepare('SELECT * FROM Users WHERE id = ?').bind(id).first<User>();
+    return await db.prepare('SELECT * FROM Users WHERE userId = ?').bind(id).first<User>();
 };
 
 export const createUser = async (db: D1Database, user: User): Promise<boolean> => {
     const { success } = await db.prepare(
-        'INSERT INTO Users (id, username, created_at) VALUES (?, ?, ?)'
-    ).bind(user.id, user.username || null, user.createdAt).run();
+        'INSERT INTO Users (userId, avatarId, createdAt) VALUES (?, ?, ?)'
+    ).bind(user.id, user.avatarId || 1, user.createdAt).run();
     return success;
 };
 
 export const updateUserChallenge = async (db: D1Database, userId: string, challenge: string): Promise<boolean> => {
     const { success } = await db.prepare(
-        'UPDATE Users SET currentChallenge = ? WHERE id = ?'
+        'UPDATE Users SET currentChallenge = ? WHERE userId = ?'
     ).bind(challenge, userId).run();
     return success;
 };
