@@ -23,7 +23,7 @@ export default function Home() {
         localStorage.setItem('hakusan_device_id', data.userId);
         router.push('/profile'); // Redirect to Profile/Map
       } else {
-        const errData = await res.json().catch(() => ({}));
+        const errData: any = await res.json().catch(() => ({}));
         alert(`Verification failed: ${errData.error || res.statusText} (${res.status})`);
       }
     } catch (e: any) {
