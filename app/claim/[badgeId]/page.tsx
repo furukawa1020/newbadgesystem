@@ -39,8 +39,9 @@ export default function ClaimPage() {
                     body: JSON.stringify({ badgeId }),
                 });
 
+                const data: any = await res.json();
+
                 if (!res.ok) {
-                    const data: any = await res.json();
                     throw new Error(data.error || 'Claim failed');
                 }
 
