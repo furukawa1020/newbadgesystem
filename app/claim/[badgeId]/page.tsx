@@ -10,6 +10,8 @@ import { useAudio } from '@/lib/audio-context';
 import SfxPlayer from "@/components/SfxPlayer";
 import SocialShare from '@/components/SocialShare';
 
+export const runtime = 'edge';
+
 export default function ClaimPage() {
     const params = useParams();
     const router = useRouter();
