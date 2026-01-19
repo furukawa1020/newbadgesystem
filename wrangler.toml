@@ -6,4 +6,4 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "hakusan-badge-quest"
-database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" # TBD: Run wrangler d1 create to get this
+database_id = "8bb891f4-915e-41dd-99f9-7988cc684689"
