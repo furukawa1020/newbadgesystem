@@ -1,12 +1,5 @@
-/* Leaflet Map Fixes */
 .leaflet-container {
-    width: 100%;
     height: 100%;
-    min-height: 400px;
+    width: 100%;
     z-index: 1;
-}
-
-/* Ensure map tiles render correctly */
-.leaflet-tile-pane {
-    z-index: 2;
 }

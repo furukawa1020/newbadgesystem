@@ -1,15 +1,13 @@
+"use strict";
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useEffect } from "react";
-import "@/components/leaflet-fix.css"; // We will create this
+import { useEffect, useState } from "react";
+import "@/components/leaflet-fix.css";
 
-// IMPORTANT: Leaflet requires specific CSS to render tiles correctly.
-// We also need to ensure the container has a defined height.
-
-// Fix Leaflet default icon issue in Next.js
+// Fix Leaflet default icon issue
 const iconUrl = "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png";
 const iconRetinaUrl = "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png";
 const shadowUrl = "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png";
@@ -25,16 +23,31 @@ const DefaultIcon = L.icon({
     shadowSize: [41, 41],
 });
 
+// Controller for "Teku Teku" Location Feature
+function LocationController({ active }: { active: boolean }) {
+    const map = useMap();
+    useEffect(() => {
+        if (active) {
+            map.locate({ setView: true, maxZoom: 16 }).on("locationfound", function (e) {
+                // Remove existing "Me" markers if any (simplified: just add new one)
+                L.marker(e.latlng).addTo(map).bindPopup("YOU ARE HERE!").openPopup();
+            });
+        }
+    }, [active, map]);
+    return null;
+}
+
 export default function RealMap({ towns }: { towns: any[] }) {
+    const [locateActive, setLocateActive] = useState(false);
+
     useEffect(() => {
         L.Marker.prototype.options.icon = DefaultIcon;
     }, []);
 
-    // Center on Hakusan area approx
     const center: [number, number] = [36.25, 136.65];
 
     return (
-        <div className="w-full h-full min-h-[400px] pixel-box overflow-hidden rounded-lg">
+        <div className="w-full h-full min-h-[400px] pixel-box overflow-hidden rounded-lg relative">
             <MapContainer center={center} zoom={10} scrollWheelZoom={true} className="w-full h-full z-0">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -51,7 +64,16 @@ export default function RealMap({ towns }: { towns: any[] }) {
                         </Popup>
                     </Marker>
                 ))}
+                <LocationController active={locateActive} />
             </MapContainer>
+
+            {/* Teku Teku Location Button Overlay */}
+            <button
+                className="absolute bottom-4 right-4 z-[1000] bg-white text-black p-3 rounded-full shadow-lg border-2 border-gray-400 active:scale-95 flex items-center gap-2 pixel-text hover:bg-gray-100"
+                onClick={() => setLocateActive(true)}
+            >
+                <span className="text-xl">📍</span> <span className="text-xs font-bold">TEKU TEKU</span>
+            </button>
         </div>
     );
 }
