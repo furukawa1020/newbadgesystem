@@ -17,7 +17,7 @@ export default function Home() {
       // Automatic "Device Registration" flow
       const res = await fetch('/api/auth', { method: 'POST' });
       if (res.ok) {
-        const data = await res.json();
+        const data: { userId: string } = await res.json();
         console.log("Device registered:", data.userId);
         // Store simple visual flag but rely on cookie for auth
         localStorage.setItem('hakusan_device_id', data.userId);
