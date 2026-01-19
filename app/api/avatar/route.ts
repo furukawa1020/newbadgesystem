@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
+// Force Update: Added explicit error logging
 export async function POST(req: NextRequest) {
     console.log("AVATAR_API_DEBUG: Request received " + new Date().toISOString());
     const session = await getSession();

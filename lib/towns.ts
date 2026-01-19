@@ -13,6 +13,7 @@ export interface Badge {
   realSpotName: string; // The actual Geopark spot name
 }
 
+// Force Update: Renamed images to ASCII for Cloudflare compatibility
 export const TOWNS: Badge[] = [
   // Shiramine
   {
