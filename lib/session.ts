@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const getSecretKey = () => {
     const secret = (typeof process !== 'undefined' && process.env?.JWT_SECRET) || 'default-dev-secret-key-hakusan-quest';
+    // Force git update
     return new TextEncoder().encode(secret);
 };
 
