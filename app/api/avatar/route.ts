@@ -16,15 +16,14 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Invalid Avatar ID' }, { status: 400 });
     }
 
-    const { env } = process;
+    const env = typeof process !== 'undefined' ? process.env : {};
     const db = getDb(env);
 
     try {
-        // Upsert User
         await db.prepare(`
-            INSERT INTO Users (userId, avatarId, createdAt) 
+            INSERT INTO Users (id, avatarId, created_at) 
             VALUES (?, ?, ?)
-            ON CONFLICT(userId) DO UPDATE SET avatarId = excluded.avatarId
+            ON CONFLICT(id) DO UPDATE SET avatarId = excluded.avatarId
         `)
             .bind(session.userId, avatarId, Date.now())
             .run();
@@ -38,13 +37,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
     const session = await getSession();
-    if (!session) return NextResponse.json({ avatarId: 1 }); // Default
+    if (!session) return NextResponse.json({ avatarId: 1 });
 
-    const { env } = process;
+    const env = typeof process !== 'undefined' ? process.env : {};
     const db = getDb(env);
 
     try {
-        const user = await db.prepare('SELECT avatarId FROM Users WHERE userId = ?')
+        const user: any = await db.prepare('SELECT avatarId FROM Users WHERE id = ?')
             .bind(session.userId)
             .first();
 
