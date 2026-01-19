@@ -23,11 +23,12 @@ export default function Home() {
         localStorage.setItem('hakusan_device_id', data.userId);
         router.push('/profile'); // Redirect to Profile/Map
       } else {
-        alert("Verification failed. Please try again.");
+        const errData = await res.json().catch(() => ({}));
+        alert(`Verification failed: ${errData.error || res.statusText} (${res.status})`);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
-      alert("Error starting adventure.");
+      alert(`Error starting adventure: ${e.message}`);
     } finally {
       setIsLoading(false);
     }
