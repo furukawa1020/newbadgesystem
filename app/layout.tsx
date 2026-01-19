@@ -11,9 +11,37 @@ const dotGothic = DotGothic16({
 });
 
 export const metadata: Metadata = {
-  title: "Hakusan Badge Quest",
-  description: "Collect digital badges in the Hakusan Tedorigawa Geopark",
-  manifest: "/manifest.webmanifest", // Next.js generates this
+  metadataBase: new URL('https://hakusan-quest.pages.dev'), // Update this with actual domain if different
+  title: {
+    default: "Hakusan Badge Quest | 白山手取川ジオパーク",
+    template: "%s | Hakusan Badge Quest"
+  },
+  description: "白山手取川ジオパークでデジタルバッジを集めよう！NFCタグやQRコードを探して、限定のピクセルアートバッジをゲット。登録不要で遊べます。",
+  keywords: ["Hakusan", "Geopark", "Badge Rally", "NFC", "Pixel Art", "白山手取川ジオパーク", "スタンプラリー", "観光"],
+  authors: [{ name: "Hakusan Geopark" }],
+  openGraph: {
+    title: "Hakusan Badge Quest",
+    description: "白山手取川ジオパークでデジタルバッジを集めよう！",
+    url: 'https://hakusan-quest.pages.dev',
+    siteName: 'Hakusan Badge Quest',
+    images: [
+      {
+        url: '/assets/og-image.png', // We should ensure this exists or use a badge image
+        width: 1200,
+        height: 630,
+        alt: 'Hakusan Badge Quest Preview',
+      },
+    ],
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Hakusan Badge Quest",
+    description: "白山手取川ジオパークでデジタルバッジを集めよう！",
+    images: ['/assets/og-image.png'],
+  },
+  manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

@@ -33,8 +33,30 @@ export default function Home() {
     }
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: 'Hakusan Badge Quest',
+    applicationCategory: 'GameApplication',
+    operatingSystem: 'Any',
+    description: '白山手取川ジオパークを巡るデジタルスタンプラリーゲーム',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'JPY',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Hakusan Geopark'
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center p-6 text-center space-y-8 h-full min-h-screen relative overflow-hidden box-border font-pixel bg-[#1a1a2e]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background with Overlay */}
       <div className="absolute inset-0 z-0 opacity-50 bg-[url('/assets/bg-hakusan.jpg')] bg-cover bg-center"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-[#1a1a2e]/60 to-[#1a1a2e] z-0"></div>
