@@ -1,7 +1,7 @@
 {
   "name": "temp-init",
   "version": "0.1.0",
-  "description": "Force rebuild",
+  "description": "Force rebuild v2",
   "private": true,
   "scripts": {
     "dev": "next dev",
