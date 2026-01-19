@@ -2,7 +2,10 @@ import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET || 'default-dev-secret-key-hakusan-quest');
+const getSecretKey = () => {
+    const secret = (typeof process !== 'undefined' && process.env?.JWT_SECRET) || 'default-dev-secret-key-hakusan-quest';
+    return new TextEncoder().encode(secret);
+};
 
 export async function signSession(payload: { userId: string }) {
     const alg = 'HS256';
@@ -10,12 +13,12 @@ export async function signSession(payload: { userId: string }) {
         .setProtectedHeader({ alg })
         .setIssuedAt()
         .setExpirationTime('1y') // Long expiration for "perpetual" login
-        .sign(SECRET_KEY);
+        .sign(getSecretKey());
 }
 
 export async function verifySession(token: string) {
     try {
-        const { payload } = await jwtVerify(token, SECRET_KEY);
+        const { payload } = await jwtVerify(token, getSecretKey());
         return payload as { userId: string };
     } catch (e) {
         return null;
