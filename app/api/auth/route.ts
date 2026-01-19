@@ -18,9 +18,13 @@ export async function POST(req: NextRequest) {
 
         return response;
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Registration failed:', error);
-        return NextResponse.json({ error: 'Internal Error' }, { status: 500 });
+        return NextResponse.json({
+            error: error.message || 'Internal Error',
+            stack: error.stack,
+            type: typeof error
+        }, { status: 500 });
     }
 }
 

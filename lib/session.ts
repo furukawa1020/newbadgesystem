@@ -3,9 +3,14 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 const getSecretKey = () => {
-    const secret = (typeof process !== 'undefined' && process.env?.JWT_SECRET) || 'default-dev-secret-key-hakusan-quest';
-    // Force git update
-    return new TextEncoder().encode(secret);
+    try {
+        if (typeof process !== 'undefined' && process.env?.JWT_SECRET) {
+            return new TextEncoder().encode(process.env.JWT_SECRET);
+        }
+    } catch (e) {
+        // Ignore access errors
+    }
+    return new TextEncoder().encode('default-dev-secret-key-hakusan-quest');
 };
 
 export async function signSession(payload: { userId: string }) {
