@@ -14,7 +14,7 @@ export interface Badge {
 }
 
 export const TOWNS: Badge[] = [
-  // Shiramine: Important Preservation District (Traditional Village)
+  // Shiramine
   {
     id: 'shiramine',
     name: '白峰',
@@ -22,10 +22,9 @@ export const TOWNS: Badge[] = [
     description: '雪だるまと伝統的建造物の町並み',
     lat: 36.166, lng: 136.632,
     x: 80, y: 15,
-    badgeImage: '1_白峰村.png'
+    badgeImage: '/assets/badges/badge_1.png'
   },
-
-  // Oguchi: Tedori Dam
+  // Oguchi
   {
     id: 'oguchi',
     name: '尾口',
@@ -33,10 +32,9 @@ export const TOWNS: Badge[] = [
     description: '巨大なロックフィルダム',
     lat: 36.241, lng: 136.611,
     x: 70, y: 30,
-    badgeImage: '2_尾口村（仮）.png'
+    badgeImage: '/assets/badges/badge_2.png'
   },
-
-  // Yoshinodani: Watagataki Waterfall
+  // Yoshinodani
   {
     id: 'yoshinodani',
     name: '吉野谷',
@@ -44,10 +42,9 @@ export const TOWNS: Badge[] = [
     description: '手取峡谷の絶景スポット',
     lat: 36.289, lng: 136.602,
     x: 60, y: 40,
-    badgeImage: '3_吉野谷村.png'
+    badgeImage: '/assets/badges/badge_3.png'
   },
-
-  // Torigoe: Bird's Hummock (Torigoe Castle Ruins)
+  // Torigoe
   {
     id: 'torigoe',
     name: '鳥越',
@@ -55,10 +52,9 @@ export const TOWNS: Badge[] = [
     description: '一向一揆の歴史を伝える山城',
     lat: 36.331, lng: 136.589,
     x: 50, y: 35,
-    badgeImage: '4_鳥越村.png'
+    badgeImage: '/assets/badges/badge_4.png'
   },
-
-  // Kawachi: Kawachi Senju Onsen / Kanazawa Institute of Technology (KIT) Campus area
+  // Kawachi
   {
     id: 'kawachi',
     name: '河内',
@@ -66,10 +62,9 @@ export const TOWNS: Badge[] = [
     description: '美肌の湯として知られる温泉',
     lat: 36.353, lng: 136.621,
     x: 65, y: 50,
-    badgeImage: '5_河内村.png'
+    badgeImage: '/assets/badges/badge_5.png'
   },
-
-  // Tsurugi: Park Shishiku / Tsurugi Station
+  // Tsurugi
   {
     id: 'tsurugi',
     name: '鶴来',
@@ -77,10 +72,9 @@ export const TOWNS: Badge[] = [
     description: 'ゴンドラでスカイ獅子吼へ',
     lat: 36.442, lng: 136.638,
     x: 65, y: 65,
-    badgeImage: '6_鶴来町.png'
+    badgeImage: '/assets/badges/badge_6.png'
   },
-
-  // Matto: Matto Seaside Park
+  // Matto
   {
     id: 'matto',
     name: '松任',
@@ -88,17 +82,16 @@ export const TOWNS: Badge[] = [
     description: '日本海を望む広大な公園',
     lat: 36.526, lng: 136.565,
     x: 45, y: 70,
-    badgeImage: '7_松任市.png'
+    badgeImage: '/assets/badges/badge_7.png'
   },
-
-  // Mikawa: Ataka no Seki / Mikawa Coastal Area
+  // Mikawa
   {
     id: 'mikawa',
     name: '美川',
-    realSpotName: '美川県民の森', // Or nearby relevant spot
+    realSpotName: '美川県民の森',
     description: '手取川河口の自然',
     lat: 36.494, lng: 136.502,
     x: 38, y: 55,
-    badgeImage: '8_美川町.png'
+    badgeImage: '/assets/badges/badge_8.png'
   },
 ];

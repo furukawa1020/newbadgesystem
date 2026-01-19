@@ -19,6 +19,11 @@ export async function POST(req: NextRequest) {
     const env = typeof process !== 'undefined' ? process.env : {};
     const db = getDb(env);
 
+    if (!db) {
+        console.error("Database connection failed: db is undefined");
+        return NextResponse.json({ error: 'Database connection failed' }, { status: 500 });
+    }
+
     try {
         await db.prepare(`
             INSERT INTO Users (id, avatarId, created_at) 
@@ -29,9 +34,12 @@ export async function POST(req: NextRequest) {
             .run();
 
         return NextResponse.json({ success: true });
-    } catch (e) {
-        console.error(e);
-        return NextResponse.json({ error: 'Failed to update avatar' }, { status: 500 });
+    } catch (e: any) {
+        console.error("Avatar save error:", e);
+        return NextResponse.json({
+            error: e.message || 'Failed to update avatar',
+            stack: e.stack
+        }, { status: 500 });
     }
 }
 
