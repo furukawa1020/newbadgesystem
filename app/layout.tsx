@@ -41,6 +41,10 @@ export const metadata: Metadata = {
     description: "白山手取川ジオパークでデジタルバッジを集めよう！",
     images: ['/assets/og-image.png'],
   },
+  icons: {
+    icon: '/icon-192.png',
+    apple: '/apple-touch-icon.png',
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
