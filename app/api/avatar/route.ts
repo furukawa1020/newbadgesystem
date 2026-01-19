@@ -10,7 +10,8 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { avatarId } = await req.json();
+    const body: any = await req.json();
+    const { avatarId } = body;
     if (!avatarId || typeof avatarId !== 'number') {
         return NextResponse.json({ error: 'Invalid Avatar ID' }, { status: 400 });
     }

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useAudio } from "@/lib/audio-context";
 import { useEffect, useState } from "react";
 import { X, Check } from "lucide-react";
@@ -16,7 +15,7 @@ export default function AvatarSelectionModal({ currentAvatarId, onSelect, onClos
     const [selected, setSelected] = useState(currentAvatarId);
     const [status, setStatus] = useState<'idle' | 'saving' | 'success'>('idle');
 
-    const avatars = [1, 2, 3, 4]; // We have 4 generated avatars
+    const avatars = [1, 2, 3, 4];
 
     const handleSave = async () => {
         playSfx("/assets/audio/sfx_click.wav");
@@ -53,28 +52,37 @@ export default function AvatarSelectionModal({ currentAvatarId, onSelect, onClos
                 <h2 className="text-xl text-center text-[#e94560] pixel-text mb-6">SELECT AVATAR</h2>
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                    {avatars.map((id) => (
-                        <button
-                            key={id}
-                            onClick={() => {
-                                playSfx("/assets/audio/sfx_click.wav");
-                                setSelected(id);
-                            }}
-                            className={`relative aspect-square border-4 rounded-lg overflow-hidden transition-all ${selected === id ? 'border-yellow-400 scale-105 shadow-[0_0_15px_rgba(250,204,21,0.5)]' : 'border-gray-700 hover:border-gray-500'}`}
-                        >
-                            <Image
-                                src={`/assets/avatars/avatar_${id}.png`}
-                                alt={`Avatar ${id}`}
-                                fill
-                                className="object-cover pixelated"
-                            />
-                            {selected === id && (
-                                <div className="absolute top-1 right-1 bg-yellow-400 text-black rounded-full p-0.5">
-                                    <Check className="w-3 h-3" />
-                                </div>
-                            )}
-                        </button>
-                    ))}
+                    {avatars.map((id) => {
+                        // CSS Sprite Logic (2x2 Grid)
+                        const x = (id - 1) % 2 === 0 ? '0%' : '100%';
+                        const y = id <= 2 ? '0%' : '100%';
+
+                        return (
+                            <button
+                                key={id}
+                                onClick={() => {
+                                    playSfx("/assets/audio/sfx_click.wav");
+                                    setSelected(id);
+                                }}
+                                className={`relative aspect-square border-4 rounded-lg overflow-hidden transition-all bg-white group ${selected === id ? 'border-yellow-400 scale-105 shadow-[0_0_15px_rgba(250,204,21,0.5)]' : 'border-gray-700 hover:border-gray-500'}`}
+                            >
+                                <div
+                                    className="w-full h-full pixelated"
+                                    style={{
+                                        backgroundImage: 'url(/assets/avatars_sheet.png)',
+                                        backgroundSize: '200% 200%',
+                                        backgroundPosition: `${x} ${y}`,
+                                        imageRendering: 'pixelated'
+                                    }}
+                                />
+                                {selected === id && (
+                                    <div className="absolute top-1 right-1 bg-yellow-400 text-black rounded-full p-0.5 z-10">
+                                        <Check className="w-3 h-3" />
+                                    </div>
+                                )}
+                            </button>
+                        );
+                    })}
                 </div>
 
                 <button

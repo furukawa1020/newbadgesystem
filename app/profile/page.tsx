@@ -7,6 +7,7 @@ import { TOWNS } from "@/lib/towns";
 import Image from "next/image";
 import { useAudio } from "@/lib/audio-context";
 import TutorialModal from "@/components/TutorialModal";
+import AvatarSelectionModal from "@/components/AvatarSelectionModal";
 import { User, HelpCircle } from "lucide-react";
 
 // Dynamically import RealMap to avoid SSR issues with Leaflet
@@ -18,7 +19,8 @@ export default function Profile() {
     const [selectedTown, setSelectedTown] = useState<any>(null);
     const [userBadges, setUserBadges] = useState<string[]>([]);
     const [showTutorial, setShowTutorial] = useState(false);
-    const [avatarId, setAvatarId] = useState(1); // 1: Boy, 2: Girl
+    const [showAvatarSelect, setShowAvatarSelect] = useState(false);
+    const [avatarId, setAvatarId] = useState(1);
 
     const { playSfx } = useAudio();
 
@@ -40,10 +42,17 @@ export default function Profile() {
 
             if (storedId) {
                 try {
+                    // Fetch Badges
                     const res = await fetch('/api/profile');
                     if (res.ok) {
-                        const data = await res.json();
+                        const data: any = await res.json();
                         setUserBadges(data.badges || []);
+                    }
+                    // Fetch Avatar
+                    const avatarRes = await fetch('/api/avatar');
+                    if (avatarRes.ok) {
+                        const avatarData: any = await avatarRes.json();
+                        setAvatarId(avatarData.avatarId);
                     }
                 } catch (e) {
                     console.error("Failed to load profile", e);
@@ -70,14 +79,19 @@ export default function Profile() {
         }
     };
 
-    const toggleAvatar = () => {
-        const next = avatarId === 1 ? 2 : 1;
-        setAvatarId(next);
-        localStorage.setItem('hakusan_avatar', next.toString());
-        playSfx("/assets/audio/sfx_click.wav");
-    };
-
     const isUnlocked = (townId: string) => userBadges.includes(townId);
+
+    // Sprite Position Helper
+    const getAvatarStyle = (id: number) => {
+        const x = (id - 1) % 2 === 0 ? '0%' : '100%';
+        const y = id <= 2 ? '0%' : '100%';
+        return {
+            backgroundImage: 'url(/assets/avatars_sheet.png)',
+            backgroundSize: '200% 200%',
+            backgroundPosition: `${x} ${y}`,
+            imageRendering: 'pixelated' as const
+        };
+    };
 
     return (
         <div className="min-h-screen bg-[#1a1a2e] text-white p-4 font-pixel pb-24">
@@ -87,14 +101,14 @@ export default function Profile() {
                 <div className="flex justify-between items-start mb-4">
                     <div className="flex gap-4 items-center">
                         <button
-                            onClick={toggleAvatar}
-                            className="relative w-16 h-16 bg-gray-800 rounded-full border-2 border-white overflow-hidden shadow-lg active:scale-95 transition-transform"
+                            onClick={() => {
+                                playSfx("/assets/audio/sfx_click.wav");
+                                setShowAvatarSelect(true);
+                            }}
+                            className="relative w-16 h-16 bg-white rounded-full border-2 border-white overflow-hidden shadow-lg active:scale-95 transition-transform group"
                         >
-                            {/* Simple Placeholder Avatar */}
-                            <div className={`absolute inset-0 ${avatarId === 1 ? 'bg-blue-500' : 'bg-pink-500'} flex items-center justify-center`}>
-                                <User className="w-10 h-10 text-white" />
-                            </div>
-                            <div className="absolute bottom-0 w-full text-[8px] bg-black/50 text-center">TAP</div>
+                            <div className="w-full h-full" style={getAvatarStyle(avatarId)} />
+                            <div className="absolute bottom-0 w-full text-[8px] bg-black/50 text-center opacity-0 group-hover:opacity-100 transition-opacity">CHANGE</div>
                         </button>
                         <div>
                             <h1 className="text-xl text-[#e94560] pixel-text">TRAINER</h1>
