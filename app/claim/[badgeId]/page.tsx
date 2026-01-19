@@ -8,6 +8,7 @@ import { ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 import { TOWNS } from '@/lib/towns';
 import { useAudio } from '@/lib/audio-context';
 import SfxPlayer from "@/components/SfxPlayer";
+import SocialShare from '@/components/SocialShare';
 
 export default function ClaimPage() {
     const params = useParams();
@@ -101,6 +102,12 @@ export default function ClaimPage() {
                             <p className="text-sm text-[#e94560] font-bold">{badgeData.realSpotName}</p>
                             <p className="text-sm text-gray-300">{badgeData.description}</p>
                         </div>
+
+                        {/* Social Share */}
+                        <SocialShare
+                            text={`I found the ${badgeData.realSpotName} badge in Hakusan Geopark!`}
+                            url={`https://hakusan-quest.pages.dev/claim/${badgeData.id}`}
+                        />
 
                         <button
                             onClick={handleReturn}
