@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
 import { claimBadge } from '@/lib/badge-logic';
 import { getSession } from '@/lib/session';
+import { TOWNS } from '@/lib/towns';
 
 export const runtime = 'edge';
 
@@ -16,9 +17,17 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { badgeId } = await req.json();
-    if (!badgeId) {
-        return NextResponse.json({ error: 'Missing badgeId' }, { status: 400 });
+    const body: any = await req.json();
+    const { badgeId } = body;
+
+    if (!badgeId || typeof badgeId !== 'string') {
+        return NextResponse.json({ error: 'Invalid Badge ID' }, { status: 400 });
+    }
+
+    // Security: Whitelist Validation
+    const validBadge = TOWNS.find(t => t.id === badgeId);
+    if (!validBadge) {
+        return NextResponse.json({ error: 'Unknown Badge ID' }, { status: 400 });
     }
 
     // Retrieve D1 from env (assumes Context or process.env wiring)
