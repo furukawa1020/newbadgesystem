@@ -47,8 +47,13 @@ export default function RealMap({ towns }: { towns: any[] }) {
     const center: [number, number] = [36.25, 136.65];
 
     return (
-        <div className="w-full h-full min-h-[400px] pixel-box overflow-hidden rounded-lg relative">
-            <MapContainer center={center} zoom={10} scrollWheelZoom={true} className="w-full h-full z-0">
+        <div className="w-full h-[400px] pixel-box overflow-hidden rounded-lg relative z-10">
+            <MapContainer
+                center={center}
+                zoom={10}
+                scrollWheelZoom={true}
+                style={{ height: "100%", width: "100%" }}
+            >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
