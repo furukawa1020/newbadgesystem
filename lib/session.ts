@@ -10,6 +10,7 @@ const getSecretKey = () => {
     } catch (e) {
         // Ignore access errors
     }
+    // Fallback for dev/build
     return new TextEncoder().encode('default-dev-secret-key-hakusan-quest');
 };
 
@@ -18,7 +19,7 @@ export async function signSession(payload: { userId: string }) {
     return new SignJWT(payload)
         .setProtectedHeader({ alg })
         .setIssuedAt()
-        .setExpirationTime('1y') // Long expiration for "perpetual" login
+        .setExpirationTime('1y')
         .sign(getSecretKey());
 }
 
@@ -41,6 +42,7 @@ export async function getSession() {
 export async function setSessionCookie(response: NextResponse, token: string) {
     response.cookies.set('auth_token', token, {
         httpOnly: true,
+        // Safe check for production
         secure: typeof process !== 'undefined' && process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         path: '/',
