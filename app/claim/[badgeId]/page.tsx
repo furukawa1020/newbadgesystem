@@ -38,7 +38,7 @@ export default function ClaimPage() {
                 });
 
                 if (!res.ok) {
-                    const data = await res.json();
+                    const data: any = await res.json();
                     throw new Error(data.error || 'Claim failed');
                 }
 
