@@ -46,6 +46,8 @@ export default function ClaimPage() {
 
                 // Success
                 setStatus('success');
+                // Merge API data (totalCount) with static Town data
+                setBadgeData({ ...town, ...data });
             } catch (err: any) {
                 console.error(err);
                 setErrorMsg(err.message);
@@ -106,10 +108,29 @@ export default function ClaimPage() {
                         </div>
 
                         {/* Social Share */}
-                        <SocialShare
-                            text={`I found the ${badgeData.realSpotName} badge in Hakusan Geopark!`}
-                            url={`https://hakusan-quest.pages.dev/claim/${badgeData.id}`}
-                        />
+                        {/* Social Share */}
+                        {(() => {
+                            const count = (badgeData as any).totalCount || (status === 'success' ? 1 : 0);
+                            const total = TOWNS.length;
+                            let shareText = `白山手取川ジオパークで「${badgeData.realSpotName}」のバッジをゲット！(${count}/${total})`;
+
+                            // Milestone Bonus Text
+                            if (count === total) {
+                                shareText = `🎉コンプリート達成！白山手取川ジオパークを完全制覇しました！(${count}/${total})`;
+                            } else if (count === Math.ceil(total / 2)) {
+                                shareText = `折り返し地点！${count}個目のバッジ「${badgeData.realSpotName}」をゲット！残りはあと半分！`;
+                            } else if (count === 1) {
+                                shareText = `白山手取川ジオパークで初めてのバッジ「${badgeData.realSpotName}」をゲット！冒険の始まり！`;
+                            }
+
+                            return (
+                                <SocialShare
+                                    text={shareText}
+                                    url={`https://hakusan-quest.pages.dev/claim/${badgeData.id}`}
+                                    hashtags={["はくさんNFCバッジクエスト", "白山市観光", "石川観光", "白山手取川ジオパーク"]}
+                                />
+                            );
+                        })()}
 
                         <button
                             onClick={handleReturn}
