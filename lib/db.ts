@@ -6,7 +6,8 @@ export interface Env {
 
 // Helper to get DB from the context (Next.js Edge Runtime / Pages Functions)
 export const getDb = (env: any): D1Database => {
-    if (process.env.NODE_ENV === 'development' && !env.DB) {
+    const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
+    if (isDev && !env?.DB) {
         // Mock DB for local dev if cloudflare env not present
         return {
             prepare: (query: string) => {

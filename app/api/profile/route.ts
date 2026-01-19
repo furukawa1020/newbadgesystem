@@ -11,8 +11,9 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Retrieve D1 from env
-    const { DB } = process.env as any;
+    // Safe Env Access
+    const env = typeof process !== 'undefined' ? process.env : {};
+    const { DB } = env as any;
 
     try {
         // Retrieve unlocked badges
