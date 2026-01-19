@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
-    console.log("AVATAR API: Request received"); // Force update marker
+    console.log("AVATAR_API_DEBUG: Request received " + new Date().toISOString());
     const session = await getSession();
     if (!session) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
