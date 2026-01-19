@@ -59,7 +59,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Background with Overlay */}
-      <div className="absolute inset-0 z-0 opacity-50 bg-[url('/assets/bg-hakusan.jpg')] bg-cover bg-center"></div>
+      <div className="absolute inset-0 z-0 opacity-50 bg-[url('/assets/map-bg.png')] bg-cover bg-center"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-[#1a1a2e]/60 to-[#1a1a2e] z-0"></div>
 
       {/* Scanlines Effect */}

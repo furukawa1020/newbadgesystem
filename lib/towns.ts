@@ -14,6 +14,7 @@ export interface Badge {
 }
 
 // Force Update: Renamed images to ASCII for Cloudflare compatibility
+// Confirmed paths: 'badge_1.png' etc. (NOT /assets/badges/...)
 export const TOWNS: Badge[] = [
   // Shiramine
   {
