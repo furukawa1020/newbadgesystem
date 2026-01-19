@@ -14,13 +14,13 @@ export interface Badge {
 }
 
 export const TOWNS: Badge[] = [
-  // Shiramine: Hakusan Dinosaur Park
+  // Shiramine: Important Preservation District (Traditional Village)
   {
     id: 'shiramine',
     name: '白峰',
-    realSpotName: '白山恐竜パーク白峰',
-    description: '日本有数の恐竜化石産地',
-    lat: 36.173, lng: 136.632,
+    realSpotName: '白峰重要伝統的建造物群保存地区',
+    description: '雪だるまと伝統的建造物の町並み',
+    lat: 36.166, lng: 136.632,
     x: 80, y: 15,
     badgeImage: '1_白峰村.png'
   },
