@@ -34,7 +34,7 @@ export default function SocialShare({ text, url, hashtags = ["HakusanBadgeQuest"
     };
 
     return (
-        <div className="flex flex-col items-center gap-4 p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+        <div className="flex flex-col items-center gap-4 p-4 bg-gray-900/50 rounded-lg border border-gray-700 animate-fade-in-up">
             <p className="text-white text-sm pixel-text mb-2">SHARE YOUR DISCOVERY</p>
             <div className="flex flex-wrap justify-center gap-3">
                 {/* X (Twitter) */}
@@ -84,6 +84,9 @@ export default function SocialShare({ text, url, hashtags = ["HakusanBadgeQuest"
                     )}
                 </button>
             </div>
+            <p className="text-[10px] text-gray-400 mt-2">
+                For Instagram: Copy link or Screenshot locally!
+            </p>
         </div>
     );
 }
