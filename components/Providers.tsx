@@ -8,7 +8,7 @@ function AudioInitializer() {
     const { playBgm } = useAudio();
     useEffect(() => {
         // Start Main BGM
-        playBgm("/assets/audio/bgm_main.wav");
+        playBgm("/assets/audio/bgm_main.mp3");
     }, [playBgm]);
     return null;
 }
