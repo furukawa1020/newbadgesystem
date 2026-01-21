@@ -102,7 +102,8 @@ export default function Home() {
       </div>
 
       <div className="absolute bottom-4 text-[10px] text-gray-600 z-10 pixel-text">
-        &copy; Hakusan Tedorigawa Geopark
+        &copy; Hakusan Tedorigawa Geopark<br />
+        Music by <a href="https://peritune.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">Peritune</a>
       </div>
     </div>
   );
