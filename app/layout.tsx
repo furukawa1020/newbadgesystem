@@ -11,7 +11,7 @@ const dotGothic = DotGothic16({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hakusan-badge-quest.pages.dev'), // Update this with actual domain if different
+  metadataBase: new URL('https://hakusan-badge-quest.dev'), // Update this with actual domain if different
   title: {
     default: "Hakusan Badge Quest | 白山手取川ジオパーク",
     template: "%s | Hakusan Badge Quest"
