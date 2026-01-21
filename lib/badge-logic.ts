@@ -18,10 +18,17 @@ export const claimBadge = async (db: D1Database, userId: string, badgeId: string
     }
 
     // 2. Award Badge
+    // DB write errors should NOT be swallowed, so we remove the silent try-catch or rethrow.
+    // Fixed column name from 'acquiredAt' to 'claimedAt' to match schema.sql
     try {
-        await db.prepare('INSERT INTO UserBadges (userId, badgeId, acquiredAt) VALUES (?, ?, ?)').bind(userId, badgeId, Date.now()).run();
-    } catch (e) {
-        console.warn("DB Write Error (likely local mock):", e);
+        await db.prepare('INSERT INTO UserBadges (userId, badgeId, claimedAt) VALUES (?, ?, ?)').bind(userId, badgeId, Date.now()).run();
+    } catch (e: any) {
+        console.error("DB Write Error:", e);
+        // If it's a conflict (already has badge), we can ignore, but other errors should probably fail the request?
+        // Actually, if we want the user to know it failed, we should throw.
+        // But if it's just a constraint error, maybe they effectively "have" it.
+        // Let's assume re-throw for now to debug the "not acquiring" issue.
+        throw e;
     }
 
     // 3. Fetch Badge Details & Total Count

@@ -8,9 +8,9 @@ export default function SfxPlayer({ sound }: { sound: "get" | "click" }) {
 
     useEffect(() => {
         if (sound === "get") {
-            playSfx("/assets/audio/sfx_badge_get.mp3");
+            playSfx("/assets/audio/sfx_badge_get.wav");
         } else if (sound === "click") {
-            playSfx("/assets/audio/sfx_click.mp3");
+            playSfx("/assets/audio/sfx_click.wav");
         }
     }, [sound, playSfx]);
 
