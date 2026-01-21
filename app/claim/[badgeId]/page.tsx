@@ -127,14 +127,8 @@ export default function ClaimPage() {
                             return (
                                 <SocialShare
                                     text={shareText}
-                                    return (
-                                        <SocialShare
-                                            text={shareText}
-                                            url={`https://hakusan-badge-quest.dev/claim/${badgeData.id}`}
-                                            hashtags={["はくさんNFCバッジクエスト", "白山市観光", "石川観光", "白山手取川ジオパーク"]}
-                                        />
-                                    );
-                            hashtags = { ["はくさんNFCバッジクエスト", "白山市観光", "石川観光", "白山手取川ジオパーク"]}
+                                    url={`https://hakusan-badge-quest.dev/claim/${badgeData.id}`}
+                                    hashtags={["はくさんNFCバッジクエスト", "白山市観光", "石川観光", "白山手取川ジオパーク"]}
                                 />
                             );
                         })()}
