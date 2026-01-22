@@ -105,15 +105,28 @@ export default function Profile() {
                                 playSfx("/assets/audio/sfx_click.wav");
                                 setShowAvatarSelect(true);
                             }}
-                            className="relative w-16 h-16 bg-white rounded-full border-2 border-white overflow-hidden shadow-lg active:scale-95 transition-transform group"
+                            className="relative w-20 h-20 bg-white rounded-lg border-4 border-white overflow-hidden shadow-lg active:scale-95 transition-transform group"
                         >
                             <div className="w-full h-full" style={getAvatarStyle(avatarId)} />
-                            <div className="absolute bottom-0 w-full text-[8px] bg-black/50 text-center opacity-0 group-hover:opacity-100 transition-opacity">CHANGE</div>
+                            <div className="absolute bottom-0 w-full text-[8px] bg-black/70 text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">CHANGE</div>
                         </button>
                         <div>
-                            <h1 className="text-xl text-[#e94560] pixel-text">TRAINER</h1>
-                            <span className="text-xs text-gray-400 block">ID: {deviceId ? deviceId.slice(0, 6) : "..."}</span>
-                            <span className="text-xs text-yellow-400">LV.{userBadges.length}</span>
+                            <div className="flex items-center gap-2 mb-1">
+                                <h1 className="text-xl text-[#e94560] pixel-text">
+                                    {avatarId === 1 ? "HERO" : avatarId === 2 ? "MAGE" : avatarId === 3 ? "WARRIOR" : "JESTER"}
+                                </h1>
+                                <span className="bg-yellow-500 text-black text-[10px] px-2 rounded pixel-text font-bold">
+                                    LV. {userBadges.length + 1}
+                                </span>
+                            </div>
+
+                            <div className="text-xs text-gray-300 space-y-1 font-mono">
+                                <p>ID: {deviceId ? deviceId.slice(0, 8) : "..."}</p>
+                                <div className="flex gap-3 text-[10px] text-gray-400">
+                                    <span>ATK: {(userBadges.length + 1) * 15 + 20}</span>
+                                    <span>DEF: {(userBadges.length + 1) * 12 + 10}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
