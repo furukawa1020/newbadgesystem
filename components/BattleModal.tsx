@@ -171,11 +171,25 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
                     {battleLog.map((log, i) => (
                         <p key={i} className="animate-fade-in">&gt; {log}</p>
                     ))}
-                    import SocialShare from "@/components/SocialShare";
-
-                // ... (existing imports, but this tool handles replacements, so I just need to add the import at the top if not there, but `replace_file_content` works on blocks. I will do the import separately or assume I can't add imports easily with block replace if they are far apart. 
-                // Actually, I can use `multi_replace_file_content` or just replace the specific section.
-                // Since imports are at the top and UI is at the bottom, I'll use multi_replace.
+                    {(status === 'won' || status === 'lost') && (
+                        <div className="space-y-4 mt-2">
+                            {status === 'won' && enemyStats && (
+                                <SocialShare
+                                    text={`【白山NFCクエスト】Lv.${enemyStats.level}の${enemyStats.name.split(' ')[0]}を倒した！ (プレイヤー: Lv.${playerStats.level} ${playerStats.className})`}
+                                    url="https://hakusan-badge-quest.dev/"
+                                    hashtags={["白山NFCクエスト", "白山手取川ジオパーク"]}
+                                />
+                            )}
+                            <div className="text-center">
+                                <button
+                                    onClick={onClose}
+                                    className="px-6 py-2 bg-white text-black hover:bg-gray-200 animate-bounce"
+                                >
+                                    CLOSE
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
             </div>
