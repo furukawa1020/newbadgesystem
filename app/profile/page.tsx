@@ -8,7 +8,8 @@ import Image from "next/image";
 import { useAudio } from "@/lib/audio-context";
 import TutorialModal from "@/components/TutorialModal";
 import AvatarSelectionModal from "@/components/AvatarSelectionModal";
-import { User, HelpCircle } from "lucide-react";
+import BattleModal from "@/components/BattleModal";
+import { User, HelpCircle, Swords } from "lucide-react";
 
 // Dynamically import RealMap to avoid SSR issues with Leaflet
 const RealMap = dynamic(() => import("@/components/RealMap"), { ssr: false });
@@ -20,6 +21,7 @@ export default function Profile() {
     const [userBadges, setUserBadges] = useState<string[]>([]);
     const [showTutorial, setShowTutorial] = useState(false);
     const [showAvatarSelect, setShowAvatarSelect] = useState(false);
+    const [showBattle, setShowBattle] = useState(false);
     const [avatarId, setAvatarId] = useState(1);
 
     const { playSfx } = useAudio();
@@ -93,6 +95,36 @@ export default function Profile() {
         };
     };
 
+    // RPG Stats Logic
+    const getStats = () => {
+        const level = userBadges.length + 1;
+        let baseAtk = 10;
+        let baseDef = 10;
+        let baseHp = 50;
+
+        // Class Modifiers
+        if (avatarId === 1) { // Hero: Balanced
+            baseAtk = 12; baseDef = 12; baseHp = 60;
+        } else if (avatarId === 2) { // Mage: High Atk, Low Def
+            baseAtk = 18; baseDef = 6; baseHp = 40;
+        } else if (avatarId === 3) { // Warrior: High Def, High HP
+            baseAtk = 10; baseDef = 16; baseHp = 80;
+        } else if (avatarId === 4) { // Jester: Random/Luck (High variance)
+            baseAtk = 14; baseDef = 8; baseHp = 55;
+        }
+
+        return {
+            name: avatarId === 1 ? "HERO" : avatarId === 2 ? "MAGE" : avatarId === 3 ? "WARRIOR" : "JESTER",
+            className: avatarId === 1 ? "Hero" : avatarId === 2 ? "Mage" : avatarId === 3 ? "Warrior" : "Jester",
+            level,
+            atk: Math.floor(baseAtk + (level * 2.5)),
+            def: Math.floor(baseDef + (level * 2)),
+            hp: Math.floor(baseHp + (level * 10)),
+        };
+    };
+
+    const stats = getStats();
+
     return (
         <div className="min-h-screen bg-[#1a1a2e] text-white p-4 font-pixel pb-24">
             <div className="retro-container space-y-4 mb-4 relative">
@@ -113,32 +145,45 @@ export default function Profile() {
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <h1 className="text-xl text-[#e94560] pixel-text">
-                                    {avatarId === 1 ? "HERO" : avatarId === 2 ? "MAGE" : avatarId === 3 ? "WARRIOR" : "JESTER"}
+                                    {stats.name}
                                 </h1>
                                 <span className="bg-yellow-500 text-black text-[10px] px-2 rounded pixel-text font-bold">
-                                    LV. {userBadges.length + 1}
+                                    LV. {stats.level}
                                 </span>
                             </div>
 
                             <div className="text-xs text-gray-300 space-y-1 font-mono">
                                 <p>ID: {deviceId ? deviceId.slice(0, 8) : "..."}</p>
                                 <div className="flex gap-3 text-[10px] text-gray-400">
-                                    <span>ATK: {(userBadges.length + 1) * 15 + 20}</span>
-                                    <span>DEF: {(userBadges.length + 1) * 12 + 10}</span>
+                                    <span>HP: {stats.hp}</span>
+                                    <span className="text-red-400">ATK: {stats.atk}</span>
+                                    <span className="text-blue-400">DEF: {stats.def}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <button
-                        onClick={() => {
-                            playSfx("/assets/audio/sfx_click.wav");
-                            setShowTutorial(true);
-                        }}
-                        className="bg-gray-700 p-2 rounded-full hover:bg-gray-600"
-                    >
-                        <HelpCircle className="w-6 h-6 text-white" />
-                    </button>
+                    <div className="flex flex-col gap-2">
+                        <button
+                            onClick={() => {
+                                playSfx("/assets/audio/sfx_click.wav");
+                                setShowTutorial(true);
+                            }}
+                            className="bg-gray-700 p-2 rounded-full hover:bg-gray-600"
+                        >
+                            <HelpCircle className="w-5 h-5 text-white" />
+                        </button>
+                        <button
+                            onClick={() => {
+                                playSfx("/assets/audio/sfx_click.wav");
+                                setShowBattle(true);
+                            }}
+                            className="bg-red-600 p-2 rounded-full hover:bg-red-500 animate-pulse border-2 border-white"
+                            title="Battle Practice"
+                        >
+                            <Swords className="w-5 h-5 text-white" />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Map Toggle Tabs */}
@@ -246,6 +291,16 @@ export default function Profile() {
                     currentAvatarId={avatarId}
                     onSelect={(id) => setAvatarId(id)}
                     onClose={() => setShowAvatarSelect(false)}
+                />
+            )}
+
+            {showBattle && (
+                <BattleModal
+                    playerStats={stats}
+                    onClose={() => {
+                        playSfx("/assets/audio/sfx_click.wav");
+                        setShowBattle(false);
+                    }}
                 />
             )}
         </div>
