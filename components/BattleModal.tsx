@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { X, Sword, Shield, Skull } from "lucide-react";
 import { useAudio } from "@/lib/audio-context";
 import Image from "next/image";
+import SocialShare from "@/components/SocialShare";
 
 interface BattleStats {
     name: string;
@@ -170,16 +171,11 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
                     {battleLog.map((log, i) => (
                         <p key={i} className="animate-fade-in">&gt; {log}</p>
                     ))}
-                    {(status === 'won' || status === 'lost') && (
-                        <div className="text-center mt-4">
-                            <button
-                                onClick={onClose}
-                                className="px-6 py-2 bg-white text-black hover:bg-gray-200 animate-bounce"
-                            >
-                                CLOSE
-                            </button>
-                        </div>
-                    )}
+                    import SocialShare from "@/components/SocialShare";
+
+                // ... (existing imports, but this tool handles replacements, so I just need to add the import at the top if not there, but `replace_file_content` works on blocks. I will do the import separately or assume I can't add imports easily with block replace if they are far apart. 
+                // Actually, I can use `multi_replace_file_content` or just replace the specific section.
+                // Since imports are at the top and UI is at the bottom, I'll use multi_replace.
                 </div>
 
             </div>
