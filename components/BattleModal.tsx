@@ -127,10 +127,22 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
 
                     {/* Enemy */}
                     <div className={`text-center space-y-2 transition-transform ${shake && turn % 2 !== 0 ? 'translate-x-2' : ''}`}>
-                        <div className="w-24 h-24 mx-auto bg-gray-900 rounded-full flex items-center justify-center relative border-2 border-red-500">
-                            {/* Simple visual placeholder for monster using Skull icon */}
-                            <Skull className={`w-12 h-12 ${status === 'won' ? 'text-gray-600' : 'text-red-500'}`} />
-                            {status === 'won' && <div className="absolute text-yellow-400 font-bold text-2xl -top-4 right-0">WIN!</div>}
+                        <div className="w-24 h-24 mx-auto bg-gray-900 rounded-full flex items-center justify-center relative border-2 border-red-500 overflow-hidden">
+                            {/* Pixel Art Sprite */}
+                            <div
+                                className="w-full h-full pixelated"
+                                style={{
+                                    backgroundImage: 'url(/assets/enemy_sprites.png)',
+                                    backgroundSize: '200% 200%',
+                                    backgroundPosition:
+                                        enemyStats.name.includes("Slime") ? '0% 0%' :
+                                            enemyStats.name.includes("Goblin") ? '100% 0%' :
+                                                enemyStats.name.includes("Dark Knight") ? '0% 100%' :
+                                                    '100% 100%', // Dragon
+                                    imageRendering: 'pixelated'
+                                }}
+                            />
+                            {status === 'won' && <div className="absolute text-yellow-400 font-bold text-2xl -top-4 right-0 animate-bounce">WIN!</div>}
                         </div>
                         <div>
                             <p className="text-red-400 font-bold">{enemyStats.name}</p>
