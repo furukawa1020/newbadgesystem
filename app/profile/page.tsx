@@ -9,7 +9,8 @@ import { useAudio } from "@/lib/audio-context";
 import TutorialModal from "@/components/TutorialModal";
 import AvatarSelectionModal from "@/components/AvatarSelectionModal";
 import BattleModal from "@/components/BattleModal";
-import { User, HelpCircle, Swords } from "lucide-react";
+import EndingModal from "@/components/EndingModal";
+import { User, HelpCircle, Swords, Trophy, Star, Crown } from "lucide-react";
 
 // Dynamically import RealMap to avoid SSR issues with Leaflet
 const RealMap = dynamic(() => import("@/components/RealMap"), { ssr: false });
@@ -22,6 +23,8 @@ export default function Profile() {
     const [showTutorial, setShowTutorial] = useState(false);
     const [showAvatarSelect, setShowAvatarSelect] = useState(false);
     const [showBattle, setShowBattle] = useState(false);
+    const [showEnding, setShowEnding] = useState(false);
+    const [endingType, setEndingType] = useState<'bronze' | 'silver' | 'gold'>('bronze');
     const [avatarId, setAvatarId] = useState(1);
 
     const { playSfx } = useAudio();
@@ -83,6 +86,12 @@ export default function Profile() {
 
     const isUnlocked = (townId: string) => userBadges.includes(townId);
 
+    // Milestones
+    const badgeCount = userBadges.length;
+    const isBronze = badgeCount >= 3;
+    const isSilver = badgeCount >= 4; // Half of 8
+    const isGold = badgeCount === TOWNS.length; // Complete
+
     // Sprite Position Helper
     const getAvatarStyle = (id: number) => {
         const x = (id - 1) % 2 === 0 ? '0%' : '100%';
@@ -97,10 +106,13 @@ export default function Profile() {
 
     // RPG Stats Logic
     const getStats = () => {
-        const level = userBadges.length + 1;
+        const level = badgeCount + 1;
         let baseAtk = 10;
         let baseDef = 10;
         let baseHp = 50;
+
+        // Completion Bonus
+        const bonus = isGold ? 50 : (isSilver ? 20 : (isBronze ? 10 : 0));
 
         // Class Modifiers
         if (avatarId === 1) { // Hero: Balanced
@@ -114,16 +126,22 @@ export default function Profile() {
         }
 
         return {
-            name: avatarId === 1 ? "HERO" : avatarId === 2 ? "MAGE" : avatarId === 3 ? "WARRIOR" : "JESTER",
-            className: avatarId === 1 ? "Hero" : avatarId === 2 ? "Mage" : avatarId === 3 ? "Warrior" : "Jester",
+            name: isGold ? "LEGEND" : (avatarId === 1 ? "HERO" : avatarId === 2 ? "MAGE" : avatarId === 3 ? "WARRIOR" : "JESTER"),
+            className: isGold ? "Legend" : (avatarId === 1 ? "Hero" : avatarId === 2 ? "Mage" : avatarId === 3 ? "Warrior" : "Jester"),
             level,
-            atk: Math.floor(baseAtk + (level * 2.5)),
-            def: Math.floor(baseDef + (level * 2)),
-            hp: Math.floor(baseHp + (level * 10)),
+            atk: Math.floor(baseAtk + (level * 2.5)) + bonus,
+            def: Math.floor(baseDef + (level * 2)) + bonus,
+            hp: Math.floor(baseHp + (level * 10)) + bonus,
         };
     };
 
     const stats = getStats();
+
+    const openEnding = (type: 'bronze' | 'silver' | 'gold') => {
+        setEndingType(type);
+        setShowEnding(true);
+        playSfx("/assets/audio/sfx_badge_get.wav");
+    };
 
     return (
         <div className="min-h-screen bg-[#1a1a2e] text-white p-4 font-pixel pb-24">
@@ -137,14 +155,14 @@ export default function Profile() {
                                 playSfx("/assets/audio/sfx_click.wav");
                                 setShowAvatarSelect(true);
                             }}
-                            className="relative w-20 h-20 bg-white rounded-lg border-4 border-white overflow-hidden shadow-lg active:scale-95 transition-transform group"
+                            className={`relative w-20 h-20 bg-white rounded-lg border-4 overflow-hidden shadow-lg active:scale-95 transition-transform group ${isGold ? 'border-yellow-400 shadow-[0_0_20px_#facc15]' : 'border-white'}`}
                         >
                             <div className="w-full h-full" style={getAvatarStyle(avatarId)} />
                             <div className="absolute bottom-0 w-full text-[8px] bg-black/70 text-center text-white opacity-0 group-hover:opacity-100 transition-opacity">CHANGE</div>
                         </button>
                         <div>
                             <div className="flex items-center gap-2 mb-1">
-                                <h1 className="text-xl text-[#e94560] pixel-text">
+                                <h1 className={`text-xl pixel-text ${isGold ? 'text-yellow-400 animate-pulse' : 'text-[#e94560]'}`}>
                                     {stats.name}
                                 </h1>
                                 <span className="bg-yellow-500 text-black text-[10px] px-2 rounded pixel-text font-bold">
@@ -183,6 +201,35 @@ export default function Profile() {
                         >
                             <Swords className="w-5 h-5 text-white" />
                         </button>
+
+                        {/* Milestone Buttons */}
+                        {isGold && (
+                            <button
+                                onClick={() => openEnding('gold')}
+                                className="bg-yellow-500 p-2 rounded-full hover:bg-yellow-400 animate-bounce border-2 border-white shadow-lg"
+                                title="Completion Award"
+                            >
+                                <Crown className="w-5 h-5 text-black" />
+                            </button>
+                        )}
+                        {!isGold && isSilver && (
+                            <button
+                                onClick={() => openEnding('silver')}
+                                className="bg-gray-300 p-2 rounded-full hover:bg-white border-2 border-gray-500"
+                                title="Midpoint Award"
+                            >
+                                <Trophy className="w-5 h-5 text-gray-800" />
+                            </button>
+                        )}
+                        {!isGold && !isSilver && isBronze && (
+                            <button
+                                onClick={() => openEnding('bronze')}
+                                className="bg-orange-700 p-2 rounded-full hover:bg-orange-600 border-2 border-orange-900"
+                                title="Beginner Award"
+                            >
+                                <Star className="w-5 h-5 text-orange-200" />
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -301,6 +348,13 @@ export default function Profile() {
                         playSfx("/assets/audio/sfx_click.wav");
                         setShowBattle(false);
                     }}
+                />
+            )}
+
+            {showEnding && (
+                <EndingModal
+                    milestone={endingType}
+                    onClose={() => setShowEnding(false)}
                 />
             )}
         </div>
