@@ -55,11 +55,11 @@ export default function Home() {
 
         {/* Keyword Rich Description */}
         <div className="bg-black/60 p-4 rounded border-2 border-gray-600 mt-4 max-w-xs mx-auto backdrop-blur-sm">
-          <h2 className="text-sm text-yellow-400 font-bold mb-2">石川県白山市公式級!?</h2>
+          <h2 className="text-sm text-yellow-400 font-bold mb-2">石川県白山市観光の決定版</h2>
           <p className="text-xs text-gray-200 leading-relaxed text-left">
-            白山手取川ジオパークを巡る<br />
-            <span className="text-white font-bold">無料デジタルスタンプラリー</span>。<br />
-            スマホで観光名所を訪れて、<br />
+            白山手取川ジオパークを<span className="text-white font-bold">周遊して回る</span><br />
+            無料デジタルスタンプラリー。<br />
+            スマホ片手に観光名所を巡り、<br />
             限定の<span className="text-[#e94560]">ピクセルバッジ</span>を集めよう！
           </p>
         </div>
