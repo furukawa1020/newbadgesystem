@@ -1,27 +1,32 @@
-import { MetadataRoute } from 'next'
-import { TOWNS } from '@/lib/towns'
+import { MetadataRoute } from 'next';
+import { TOWNS } from '@/lib/towns';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://hakusan-quest.pages.dev'
+    const baseUrl = 'https://hakusan-badge-quest.dev';
 
-    // Static routes
-    const routes = [
-        '',
-        '/profile',
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'daily' as const,
-        priority: 1,
-    }))
+    // Static pages
+    const staticPages = [
+        {
+            url: baseUrl,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 1,
+        },
+        {
+            url: `${baseUrl}/profile`,
+            lastModified: new Date(),
+            changeFrequency: 'daily' as const,
+            priority: 0.8,
+        },
+    ];
 
-    // Dynamic routes (Claims)
-    const claimRoutes = TOWNS.map((town) => ({
+    // Dynamic pages (Badges)
+    const badgePages = TOWNS.map((town) => ({
         url: `${baseUrl}/claim/${town.id}`,
         lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }))
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+    }));
 
-    return [...routes, ...claimRoutes]
+    return [...staticPages, ...badgePages];
 }

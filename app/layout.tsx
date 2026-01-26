@@ -11,25 +11,25 @@ const dotGothic = DotGothic16({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hakusan-badge-quest.dev'), // Update this with actual domain if different
+  metadataBase: new URL('https://hakusan-badge-quest.dev'),
   title: {
     default: "Hakusan Badge Quest | 白山手取川ジオパーク",
     template: "%s | Hakusan Badge Quest"
   },
-  description: "白山手取川ジオパークでデジタルバッジを集めよう！NFCタグやQRコードを探して、限定のピクセルアートバッジをゲット。登録不要で遊べます。",
+  description: "白山手取川ジオパークでデジタルバッジを集めよう！NFCタグやQRコードを探して、限定のピクセルアートバッジをゲット。",
   keywords: ["Hakusan", "Geopark", "Badge Rally", "NFC", "Pixel Art", "白山手取川ジオパーク", "スタンプラリー", "観光"],
   authors: [{ name: "Hakusan Geopark" }],
   openGraph: {
     title: "Hakusan Badge Quest",
-    description: "白山手取川ジオパークでデジタルバッジを集めよう！",
-    url: 'https://hakusan-quest.pages.dev',
+    description: "白山手取川ジオパークでデジタルバッジを集めよう！限定バッジをコンプリートして伝説になろう。",
+    url: 'https://hakusan-badge-quest.dev',
     siteName: 'Hakusan Badge Quest',
     images: [
       {
-        url: '/assets/og-image.png', // We should ensure this exists or use a badge image
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Hakusan Badge Quest Preview',
+        alt: 'Hakusan Badge Quest',
       },
     ],
     locale: 'ja_JP',
@@ -39,11 +39,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Hakusan Badge Quest",
     description: "白山手取川ジオパークでデジタルバッジを集めよう！",
-    images: ['/assets/og-image.png'],
+    images: ['/og-image.png'],
   },
   icons: {
-    icon: '/icon-192.png',
-    apple: '/apple-touch-icon.png',
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
   },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
