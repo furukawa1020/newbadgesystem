@@ -14,13 +14,13 @@ const dotGothic = DotGothic16({
 export const metadata: Metadata = {
   metadataBase: new URL('https://hakusan-badge-quest.dev'),
   title: {
-    default: "白山バッジクエスト | 白山手取川ジオパーク公式級ゲーム",
+    default: "白山バッジクエスト | 石川県白山市のジオパークスタンプラリー",
     template: "%s | 白山バッジクエスト"
   },
   description: "【完全無料】白山手取川ジオパークで遊べるデジタルスタンプラリーRPG。スマホで「白峰」「鶴来」「美川」などの観光名所を巡り、限定ピクセルバッジを集めて伝説の勇者になろう！子供から大人まで楽しめる石川県白山市の観光ゲーム。",
   keywords: [
-    "白山", "白山市", "観光", "ジオパーク", "石川県",
-    "スタンプラリー", "デジタルバッジ", "NFCゲーム", "RPG",
+    "白山", "白山市", "石川県白山市", "観光", "ジオパーク", "石川県",
+    "スタンプラリー", "デジタルバッジ", "バッジ", "バッチ", "NFCゲーム", "RPG",
     "白峰", "鶴来", "手取川", "子供連れ", "遊び場", "無料ゲーム"
   ],
   authors: [{ name: "Hakusan Geopark Badge Quest Team" }],
