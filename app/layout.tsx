@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { DotGothic16 } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import SeoStructuredData from "@/components/SeoStructuredData";
 
 const dotGothic = DotGothic16({
   weight: "400",
@@ -13,23 +14,27 @@ const dotGothic = DotGothic16({
 export const metadata: Metadata = {
   metadataBase: new URL('https://hakusan-badge-quest.dev'),
   title: {
-    default: "Hakusan Badge Quest | 白山手取川ジオパーク",
-    template: "%s | Hakusan Badge Quest"
+    default: "白山バッジクエスト | 白山手取川ジオパーク公式級ゲーム",
+    template: "%s | 白山バッジクエスト"
   },
-  description: "白山手取川ジオパークでデジタルバッジを集めよう！NFCタグやQRコードを探して、限定のピクセルアートバッジをゲット。",
-  keywords: ["Hakusan", "Geopark", "Badge Rally", "NFC", "Pixel Art", "白山手取川ジオパーク", "スタンプラリー", "観光"],
-  authors: [{ name: "Hakusan Geopark" }],
+  description: "【完全無料】白山手取川ジオパークで遊べるデジタルスタンプラリーRPG。スマホで「白峰」「鶴来」「美川」などの観光名所を巡り、限定ピクセルバッジを集めて伝説の勇者になろう！子供から大人まで楽しめる石川県白山市の観光ゲーム。",
+  keywords: [
+    "白山", "白山市", "観光", "ジオパーク", "石川県",
+    "スタンプラリー", "デジタルバッジ", "NFCゲーム", "RPG",
+    "白峰", "鶴来", "手取川", "子供連れ", "遊び場", "無料ゲーム"
+  ],
+  authors: [{ name: "Hakusan Geopark Badge Quest Team" }],
   openGraph: {
-    title: "Hakusan Badge Quest",
-    description: "白山手取川ジオパークでデジタルバッジを集めよう！限定バッジをコンプリートして伝説になろう。",
+    title: "白山バッジクエスト | ジオパークを冒険するRPG",
+    description: "白山手取川ジオパークでデジタルバッジを集めよう！スライムやドラゴンと戦い、限定バッジをコンプリートして伝説になろう。",
     url: 'https://hakusan-badge-quest.dev',
-    siteName: 'Hakusan Badge Quest',
+    siteName: '白山バッジクエスト (Hakusan Badge Quest)',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Hakusan Badge Quest',
+        alt: 'Hakusan Badge Quest RPG',
       },
     ],
     locale: 'ja_JP',
@@ -37,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Hakusan Badge Quest",
-    description: "白山手取川ジオパークでデジタルバッジを集めよう！",
+    title: "白山バッジクエスト | ジオパーク冒険",
+    description: "白山手取川ジオパークを冒険してバッジを集めよう！",
     images: ['/og-image.png'],
   },
   icons: {
@@ -69,6 +74,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${dotGothic.variable} antialiased min-h-screen flex flex-col items-center bg-gray-950 font-pixel`}>
+        <SeoStructuredData />
         <main className="w-full max-w-md flex-1 relative bg-[#1a1a2e] shadow-2xl overflow-hidden min-h-screen border-x-2 border-gray-800">
           <Providers>
             {children}
