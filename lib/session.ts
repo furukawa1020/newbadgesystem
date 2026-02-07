@@ -34,9 +34,22 @@ export async function verifySession(token: string) {
 
 export async function getSession() {
     const cookieStore = await cookies();
-    const token = cookieStore.get('auth_token')?.value;
-    if (!token) return null;
-    return await verifySession(token);
+    const tokenCookie = cookieStore.get('auth_token')?.value;
+
+    if (tokenCookie) {
+        return await verifySession(tokenCookie);
+    }
+
+    // Fallback: Check Header for "Authorization: Bearer <token>"
+    const headersList = await import('next/headers').then(mod => mod.headers());
+    const authHeader = headersList.get('authorization');
+
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        const token = authHeader.split(' ')[1];
+        return await verifySession(token);
+    }
+
+    return null;
 }
 
 export async function setSessionCookie(response: NextResponse, token: string) {

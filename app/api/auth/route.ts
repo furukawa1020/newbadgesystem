@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
         const userId = crypto.randomUUID();
         const token = await signSession({ userId });
 
-        const response = NextResponse.json({ success: true, userId });
+        const response = NextResponse.json({ success: true, userId, accessToken: token });
         await setSessionCookie(response, token);
 
         return response;

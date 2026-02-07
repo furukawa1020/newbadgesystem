@@ -48,14 +48,20 @@ export default function ClaimPage() {
                     await new Promise(r => setTimeout(r, 1000));
 
                     const authRes = await fetch('/api/auth', { method: 'POST' });
-                    if (!authRes.ok) {
+                    const authData: any = await authRes.json();
+                    const accessToken = authData.accessToken;
+
+                    if (!authRes.ok || !accessToken) {
                         throw new Error("Device registration failed. Please try opening the app from the home page.");
                     }
 
-                    // Retry claim
+                    // Retry claim with Token (Fallback for iOS/Safari strict cookies)
                     res = await fetch('/api/claim', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        },
                         body: JSON.stringify({ badgeId }),
                     });
                 }
