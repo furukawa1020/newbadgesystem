@@ -17,7 +17,7 @@ export default function ClaimPage() {
     const router = useRouter();
     const { badgeId } = params as { badgeId: string };
 
-    const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying');
+    const [status, setStatus] = useState<'verifying' | 'registering' | 'success' | 'error'>('verifying');
     const [badgeData, setBadgeData] = useState<any>(null);
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -33,11 +33,32 @@ export default function ClaimPage() {
                 }
 
                 // 2. Call API to claim
-                const res = await fetch('/api/claim', {
+                let res = await fetch('/api/claim', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ badgeId }),
                 });
+
+                // HANDLE EXISTING 401: Auto-register device
+                if (res.status === 401) {
+                    console.log("No session found. Registering new device...");
+                    setStatus('registering');
+
+                    // specific delay to let user see "Registering"
+                    await new Promise(r => setTimeout(r, 1000));
+
+                    const authRes = await fetch('/api/auth', { method: 'POST' });
+                    if (!authRes.ok) {
+                        throw new Error("Device registration failed. Please try opening the app from the home page.");
+                    }
+
+                    // Retry claim
+                    res = await fetch('/api/claim', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ badgeId }),
+                    });
+                }
 
                 const data: any = await res.json();
 
@@ -57,7 +78,7 @@ export default function ClaimPage() {
         };
 
         // Simulate a small delay for dramatic effect if needed, or just run
-        setTimeout(verifyAndClaim, 1500);
+        verifyAndClaim();
 
     }, [badgeId]);
 
@@ -77,6 +98,14 @@ export default function ClaimPage() {
                         <h2 className="text-xl text-white pixel-text">VERIFYING LOCATION...</h2>
                         <div className="w-16 h-16 mx-auto border-4 border-t-transparent border-white rounded-full animate-spin"></div>
                         <p className="text-gray-400 text-sm">Do not move away from the spot.</p>
+                    </div>
+                )}
+
+                {status === 'registering' && (
+                    <div className="retro-container text-center space-y-8 animate-pulse">
+                        <h2 className="text-xl text-yellow-400 pixel-text">REGISTERING DEVICE...</h2>
+                        <div className="w-16 h-16 mx-auto border-4 border-t-transparent border-yellow-400 rounded-full animate-spin"></div>
+                        <p className="text-gray-400 text-sm">First time setup in progress...</p>
                     </div>
                 )}
 
