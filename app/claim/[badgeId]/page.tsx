@@ -45,7 +45,7 @@ export default function ClaimPage() {
                     setStatus('registering');
 
                     // specific delay to let user see "Registering"
-                    await new Promise(r => setTimeout(r, 1000));
+                    // await new Promise(r => setTimeout(r, 1000)); // OPTIMIZATION: Removed delay
 
                     const authRes = await fetch('/api/auth', { method: 'POST' });
                     const authData: any = await authRes.json();

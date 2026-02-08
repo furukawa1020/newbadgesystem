@@ -34,11 +34,7 @@ body {
   padding: 1rem;
   border-radius: 0.125rem;
   position: relative;
-  box-shadow:
-    -4px 0 0 0 #000,
-    4px 0 0 0 #000,
-    0 -4px 0 0 #000,
-    0 4px 0 0 #000;
+  box-shadow: 4px 4px 0 0 #000;
 }
 
 /* Pixel Border Utility - recreates the NES/SNES dialog box look */

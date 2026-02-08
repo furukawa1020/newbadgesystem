@@ -54,7 +54,7 @@ export default function Home() {
         </p>
 
         {/* Keyword Rich Description */}
-        <div className="bg-black/60 p-4 rounded border-2 border-gray-600 mt-4 max-w-xs mx-auto backdrop-blur-sm">
+        <div className="bg-black/80 p-4 rounded border-2 border-gray-600 mt-4 max-w-xs mx-auto">
           <h2 className="text-sm text-yellow-400 font-bold mb-2">白山市の8つの旧市町村を冒険！</h2>
           <p className="text-xs text-gray-200 leading-relaxed text-left">
             白山手取川ジオパークを周遊しながら、<br />
