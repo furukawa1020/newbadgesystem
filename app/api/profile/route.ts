@@ -25,10 +25,13 @@ export async function GET(req: NextRequest) {
         // Let's rely on getDb's return value.
 
         const badges = await getUserBadges(db, session.userId);
+        // NEW: Fetch User details for EXP
+        const user = await db.prepare('SELECT * FROM Users WHERE userId = ?').bind(session.userId).first<any>();
 
         return NextResponse.json({
             userId: session.userId,
-            badges: badges
+            badges: badges,
+            exp: user?.exp || 0
         });
     } catch (e) {
         console.error(e);

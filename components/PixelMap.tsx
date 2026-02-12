@@ -18,8 +18,29 @@ export default function PixelMap({ towns, onTownClick }: { towns: any[], onTownC
                 />
             </div>
 
-            {/* Grid Overlay for "RPG" feel - subtle scanlines */}
+            {/* Grid Overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_2px,3px_100%] pointer-events-none z-0"></div>
+
+            {/* Dynamic Environment Overlays */}
+            <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-40 z-0">
+                {/* Level 1-2: Bright Day (Default) */}
+                {/* Level 3-4: Sunset */}
+                {towns.filter(t => t.unlocked).length >= 3 && towns.filter(t => t.unlocked).length < 6 && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-orange-500/50 to-purple-900/30"></div>
+                )}
+                {/* Level 5-6: Night */}
+                {towns.filter(t => t.unlocked).length >= 6 && towns.filter(t => t.unlocked).length < 8 && (
+                    <div className="absolute inset-0 bg-[#0a0a2a]/60"></div>
+                )}
+                {/* Level 7-8: Storm/Final */}
+                {towns.filter(t => t.unlocked).length >= 8 && (
+                    <div className="absolute inset-0 bg-red-900/30 animate-pulse"></div>
+                )}
+            </div>
+
+            {towns.filter(t => t.unlocked).length >= 8 && (
+                <div className="absolute inset-0 pointer-events-none bg-[url('/assets/rain.png')] opacity-30 animate-rain z-1"></div>
+            )}
 
             {/* Town Markers Placed Absolute % */}
             {towns.map((town) => (

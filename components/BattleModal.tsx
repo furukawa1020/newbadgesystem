@@ -51,20 +51,30 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
         const difficulty = Math.random() > 0.5 ? 1.0 : 1.2;
         const enemyLevel = Math.max(1, Math.floor(playerStats.level * difficulty));
 
+        // EXPANDED ENEMY ROSTER
         const monsters = [
             { name: "Slime", baseHp: 30, baseAtk: 8, baseDef: 2, exp: 10 },
             { name: "Goblin", baseHp: 50, baseAtk: 12, baseDef: 5, exp: 20 },
             { name: "Wolf", baseHp: 40, baseAtk: 15, baseDef: 3, exp: 15 },
-            { name: "Dragon", baseHp: 120, baseAtk: 25, baseDef: 15, exp: 100 },
-            { name: "Dark Knight", baseHp: 90, baseAtk: 20, baseDef: 18, exp: 50 },
+            { name: "Orc", baseHp: 80, baseAtk: 18, baseDef: 10, exp: 35 },
+            { name: "Golem", baseHp: 120, baseAtk: 25, baseDef: 20, exp: 50 },
+            { name: "Chimera", baseHp: 100, baseAtk: 22, baseDef: 12, exp: 45 },
+            { name: "Dragon", baseHp: 200, baseAtk: 35, baseDef: 25, exp: 100 },
+            { name: "Dark Knight", baseHp: 150, baseAtk: 30, baseDef: 22, exp: 80 },
         ];
 
-        // Selection Logic
-        let monster = monsters[0];
-        if (enemyLevel >= 3) monster = monsters[1]; // Goblin
-        if (enemyLevel >= 5) monster = monsters[2]; // Wolf
-        if (enemyLevel >= 7) monster = monsters[4]; // Dark Knight
-        if (enemyLevel >= 10) monster = monsters[3]; // Dragon
+        // Improved Selection Logic based on Level Ranges
+        let possible = monsters.filter(m => {
+            if (enemyLevel < 3) return m.name === "Slime" || m.name === "Goblin";
+            if (enemyLevel < 6) return m.name === "Wolf" || m.name === "Orc";
+            if (enemyLevel < 9) return m.name === "Golem" || m.name === "Chimera";
+            return true; // High level can match anything but usually top tier
+        });
+
+        // Fallback
+        if (possible.length === 0) possible = [monsters[monsters.length - 1]];
+
+        const monster = possible[Math.floor(Math.random() * possible.length)];
 
         const eStats: BattleStats = {
             name: `${monster.name} Lv.${enemyLevel}`,
@@ -175,11 +185,38 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
         }
     };
 
-    const checkWinCondition = (currentEnemyHp: number) => {
+    const checkWinCondition = async (currentEnemyHp: number) => {
         if (currentEnemyHp <= 0) {
             playSfx("/assets/audio/sfx_badge_get.wav");
             setStatus('won');
-            setBattleLog(prev => [...prev, "VICTORY!", `Gained ${enemyStats?.level || 0}0 EXP!`]);
+
+            // EXP Calculation
+            const monsters = [
+                { name: "Slime", baseHp: 30, baseAtk: 8, baseDef: 2, exp: 10 },
+                { name: "Goblin", baseHp: 50, baseAtk: 12, baseDef: 5, exp: 20 },
+                { name: "Wolf", baseHp: 40, baseAtk: 15, baseDef: 3, exp: 15 },
+                { name: "Orc", baseHp: 80, baseAtk: 18, baseDef: 10, exp: 35 },
+                { name: "Golem", baseHp: 120, baseAtk: 25, baseDef: 20, exp: 50 },
+                { name: "Chimera", baseHp: 100, baseAtk: 22, baseDef: 12, exp: 45 },
+                { name: "Dragon", baseHp: 200, baseAtk: 35, baseDef: 25, exp: 100 },
+                { name: "Dark Knight", baseHp: 150, baseAtk: 30, baseDef: 22, exp: 80 },
+            ];
+            const baseExp = monsters.find(m => enemyStats?.name.includes(m.name))?.exp || 20;
+            const gainedExp = Math.floor(baseExp * (enemyStats ? enemyStats.level / 2 : 1));
+
+            setBattleLog(prev => [...prev, "VICTORY!", `Gained ${gainedExp} EXP!`]);
+
+            // Call API to save EXP
+            try {
+                await fetch('/api/battle', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ exp: gainedExp })
+                });
+            } catch (e) {
+                console.error("Failed to save EXP", e);
+            }
+
         } else {
             endPlayerTurn();
         }
@@ -193,7 +230,7 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
     const enemyAction = () => {
         if (!enemyStats || status === 'won') return;
 
-        // Simple AI
+        // Enhanced AI Visuals
         const action = Math.random();
         let dmg = 0;
         let msg = "";
@@ -202,11 +239,19 @@ export default function BattleModal({ playerStats, onClose }: BattleModalProps) 
             // Attack
             dmg = Math.max(1, Math.floor((enemyStats.atk * 1.1) - (playerStats.def * 0.5)));
             msg = `${enemyStats.name} attacks! ${dmg} damage to you!`;
+            // Visuals
+            setFlash(true); // Red flash on player
         } else {
             // Strong Attack or Wait
             dmg = Math.max(1, Math.floor((enemyStats.atk * 1.5) - (playerStats.def * 0.5)));
             msg = `${enemyStats.name} uses Smash! ${dmg} damage!`;
+            setFlash(true);
+            setShake(true); // Big shake
         }
+
+        playSfx("/assets/audio/sfx_click.wav"); // Hit sound (placeholder)
+
+        setTimeout(() => { setFlash(false); setShake(false); }, 300);
 
         setMyHp(prev => {
             const newHp = prev - dmg;

@@ -26,6 +26,7 @@ export default function Profile() {
     const [showEnding, setShowEnding] = useState(false);
     const [endingType, setEndingType] = useState<'bronze' | 'silver' | 'gold'>('bronze');
     const [avatarId, setAvatarId] = useState(1);
+    const [exp, setExp] = useState(0);
 
     const { playSfx } = useAudio();
 
@@ -45,13 +46,19 @@ export default function Profile() {
                 localStorage.setItem('hakusan_tutorial_seen', 'true');
             }
 
-            if (storedId) {
+            // Authenticate and fetch data
+            const session: any = await fetch('/api/auth/session').then(res => res.json());
+            if (!session.user) {
+                // Handle login or redirect if necessary
+                console.warn("User not authenticated. Some features may be limited.");
+            } else {
                 try {
-                    // Fetch Badges
+                    // Fetch Badges & EXP
                     const res = await fetch('/api/profile');
                     if (res.ok) {
                         const data: any = await res.json();
                         setUserBadges(data.badges || []);
+                        setExp(data.exp || 0); // Set EXP
                     }
                     // Fetch Avatar
                     const avatarRes = await fetch('/api/avatar');
@@ -78,6 +85,7 @@ export default function Profile() {
         try {
             await fetch('/api/reset', { method: 'DELETE' });
             setUserBadges([]);
+            setExp(0); // Reset EXP on data reset
             alert("Data Reset Complete.");
         } catch (e) {
             alert("Reset Failed");
@@ -106,7 +114,11 @@ export default function Profile() {
 
     // RPG Stats Logic
     const getStats = () => {
-        const level = badgeCount + 1;
+        // Level Calculation: 1 + floor(EXP / 100) + BadgeBonus
+        // Badges still give a boost, but EXP is main driver
+        const expLevel = Math.floor(exp / 100);
+        const level = 1 + expLevel + Math.floor(badgeCount / 2);
+
         let baseAtk = 10;
         let baseDef = 10;
         let baseHp = 50;
@@ -115,13 +127,13 @@ export default function Profile() {
         const bonus = isGold ? 50 : (isSilver ? 20 : (isBronze ? 10 : 0));
 
         // Class Modifiers
-        if (avatarId === 1) { // Hero: Balanced
+        if (avatarId === 1) { // Hero
             baseAtk = 12; baseDef = 12; baseHp = 60;
-        } else if (avatarId === 2) { // Mage: High Atk, Low Def
+        } else if (avatarId === 2) { // Mage
             baseAtk = 18; baseDef = 6; baseHp = 40;
-        } else if (avatarId === 3) { // Warrior: High Def, High HP
+        } else if (avatarId === 3) { // Warrior
             baseAtk = 10; baseDef = 16; baseHp = 80;
-        } else if (avatarId === 4) { // Jester: Random/Luck (High variance)
+        } else if (avatarId === 4) { // Jester
             baseAtk = 14; baseDef = 8; baseHp = 55;
         }
 
@@ -135,6 +147,7 @@ export default function Profile() {
             maxHp: Math.floor(baseHp + (level * 10)) + bonus,
             mp: Math.floor(20 + (level * 5)),
             maxMp: Math.floor(20 + (level * 5)),
+            nextLevelExp: (expLevel + 1) * 100 - exp
         };
     };
 
@@ -282,8 +295,21 @@ export default function Profile() {
                             </div>
                             <div>
                                 <h3 className="text-[#e94560] text-lg">{selectedTown.name}</h3>
-                                <p className="text-xs text-gray-300">{selectedTown.description}</p>
-                                <div className="mt-2 text-[10px] text-gray-500">
+                                <div className="flex justify-between items-end mb-1">
+                                    <h2 className="text-xl text-yellow-400 font-bold pixel-text">LV. {stats.level} {stats.name}</h2>
+                                    <span className="text-xs text-gray-400">NEXT: {stats.nextLevelExp} EXP</span>
+                                </div>
+
+                                {/* EXP BAR */}
+                                <div className="w-full bg-gray-800 h-3 rounded-full overflow-hidden border border-white/20 mb-4 relative">
+                                    <div
+                                        className="h-full bg-blue-500 transition-all duration-500"
+                                        style={{ width: `${((100 - stats.nextLevelExp) / 100) * 100}%` }}
+                                    ></div>
+                                    <div className="absolute inset-0 flex items-center justify-center text-[8px] text-white/80">EXP</div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4 text-sm font-pixel">
                                     STATUS: <span className={isUnlocked(selectedTown.id) ? "text-yellow-400" : "text-gray-400"}>
                                         {isUnlocked(selectedTown.id) ? "UNLOCKED" : "LOCKED"}
                                     </span>

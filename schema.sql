@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS UserBadges (
 CREATE TABLE IF NOT EXISTS Users (
     userId TEXT PRIMARY KEY,
     avatarId INTEGER DEFAULT 1,
+    exp INTEGER DEFAULT 0,
     createdAt INTEGER
 );

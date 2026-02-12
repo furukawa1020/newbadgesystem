@@ -43,6 +43,16 @@ export const createUser = async (db: D1Database, user: User): Promise<boolean> =
     return success;
 };
 
+
+
+export const addExp = async (db: D1Database, userId: string, amount: number): Promise<boolean> => {
+    // Current EXP handling needs to be atomic ideally, but simple update works for MVP
+    const { success } = await db.prepare(
+        'UPDATE Users SET exp = COALESCE(exp, 0) + ? WHERE userId = ?'
+    ).bind(amount, userId).run();
+    return success;
+};
+
 export const updateUserChallenge = async (db: D1Database, userId: string, challenge: string): Promise<boolean> => {
     const { success } = await db.prepare(
         'UPDATE Users SET currentChallenge = ? WHERE userId = ?'
