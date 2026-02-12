@@ -36,6 +36,16 @@ export async function POST(req: NextRequest) {
 
     try {
         const result = await claimBadge(db, session.userId, badgeId);
+
+        // RPG Bonus: Add EXP for claiming a badge
+        if (result.success) {
+            // Add 500 EXP for finding a new town
+            await db.prepare(
+                'UPDATE Users SET exp = COALESCE(exp, 0) + 500 WHERE userId = ?'
+            ).bind(session.userId).run();
+            // Return exp info if needed, or client fetches profile again
+        }
+
         return NextResponse.json(result);
     } catch (e) {
         console.error(e);
