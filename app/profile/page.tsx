@@ -132,6 +132,9 @@ export default function Profile() {
             atk: Math.floor(baseAtk + (level * 2.5)) + bonus,
             def: Math.floor(baseDef + (level * 2)) + bonus,
             hp: Math.floor(baseHp + (level * 10)) + bonus,
+            maxHp: Math.floor(baseHp + (level * 10)) + bonus,
+            mp: Math.floor(20 + (level * 5)),
+            maxMp: Math.floor(20 + (level * 5)),
         };
     };
 
