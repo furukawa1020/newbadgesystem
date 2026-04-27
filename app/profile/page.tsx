@@ -303,14 +303,14 @@ export default function Profile() {
                                 <div className="w-full bg-gray-800 h-3 rounded-full overflow-hidden border border-white/20 mb-4 relative">
                                     <div
                                         className="h-full bg-blue-500 transition-all duration-500"
-                                        style={{ width: `${((100 - stats.nextLevelExp) / 100) * 100}%` }}
+                                        style={{ width: `${Math.min(100, Math.max(0, 100 - stats.nextLevelExp))}%` }}
                                     ></div>
                                     <div className="absolute inset-0 flex items-center justify-center text-[8px] text-white/80">EXP</div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4 text-sm font-pixel">
+                                <div className="text-sm font-pixel mt-2">
                                     STATUS: <span className={isUnlocked(selectedTown.id) ? "text-yellow-400" : "text-gray-400"}>
-                                        {isUnlocked(selectedTown.id) ? "UNLOCKED" : "LOCKED"}
+                                        {isUnlocked(selectedTown.id) ? "✓ 取得済み" : "未取得"}
                                     </span>
                                 </div>
                             </div>
