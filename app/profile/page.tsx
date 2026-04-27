@@ -35,40 +35,36 @@ export default function Profile() {
             const storedId = localStorage.getItem('hakusan_device_id');
             setDeviceId(storedId);
 
-            // Load Local preferences or default
+            // Load Local preferences
             const savedAvatar = localStorage.getItem('hakusan_avatar');
             if (savedAvatar) setAvatarId(parseInt(savedAvatar));
 
-            // Check for tutorial seen
+            // Check for tutorial
             const seenTutorial = localStorage.getItem('hakusan_tutorial_seen');
             if (!seenTutorial) {
                 setShowTutorial(true);
                 localStorage.setItem('hakusan_tutorial_seen', 'true');
             }
 
-            // Authenticate and fetch data
-            const session: any = await fetch('/api/auth/session').then(res => res.json());
-            if (!session.user) {
-                // Handle login or redirect if necessary
-                console.warn("User not authenticated. Some features may be limited.");
-            } else {
-                try {
-                    // Fetch Badges & EXP
-                    const res = await fetch('/api/profile');
-                    if (res.ok) {
-                        const data: any = await res.json();
-                        setUserBadges(data.badges || []);
-                        setExp(data.exp || 0); // Set EXP
-                    }
-                    // Fetch Avatar
-                    const avatarRes = await fetch('/api/avatar');
-                    if (avatarRes.ok) {
-                        const avatarData: any = await avatarRes.json();
-                        setAvatarId(avatarData.avatarId);
-                    }
-                } catch (e) {
-                    console.error("Failed to load profile", e);
+            try {
+                // Fetch Badges & EXP directly (getSession is handled inside API)
+                const res = await fetch('/api/profile');
+                if (res.ok) {
+                    const data: any = await res.json();
+                    setUserBadges(data.badges || []);
+                    setExp(data.exp || 0);
+                } else {
+                    console.warn('Profile fetch failed:', res.status);
                 }
+
+                // Fetch Avatar
+                const avatarRes = await fetch('/api/avatar');
+                if (avatarRes.ok) {
+                    const avatarData: any = await avatarRes.json();
+                    setAvatarId(avatarData.avatarId);
+                }
+            } catch (e) {
+                console.error("Failed to load profile", e);
             }
         };
         initProfile();
@@ -274,7 +270,10 @@ export default function Profile() {
                 {/* Map Display */}
                 <div className="w-full">
                     {activeTab === 'pixel' ? (
-                        <PixelMap towns={TOWNS} onTownClick={handleTownClick} />
+                        <PixelMap
+                            towns={TOWNS.map(t => ({ ...t, unlocked: isUnlocked(t.id) }))}
+                            onTownClick={handleTownClick}
+                        />
                     ) : (
                         <RealMap towns={TOWNS} />
                     )}
