@@ -69,7 +69,11 @@ export default function ClaimPage() {
                 const data: any = await res.json();
 
                 if (!res.ok) {
-                    throw new Error(data.error || 'Claim failed');
+                    // Show both generic error and detail for debugging
+                    const errMsg = data.detail 
+                        ? `${data.error}: ${data.detail}` 
+                        : (data.error || 'Claim failed');
+                    throw new Error(errMsg);
                 }
 
                 // Success
