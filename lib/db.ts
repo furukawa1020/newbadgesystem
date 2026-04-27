@@ -1,3 +1,4 @@
+import { getRequestContext } from '@cloudflare/next-on-pages';
 import { User, Badge, UserBadge } from './types';
 
 export interface Env {
@@ -6,17 +7,33 @@ export interface Env {
 
 // Helper to get DB from the context (Next.js Edge Runtime / Pages Functions)
 export const getDb = (env: any): D1Database => {
+    // 1. Try Cloudflare Context (Latest Next-on-Pages)
+    try {
+        const rc = getRequestContext();
+        if (rc?.env?.DB) {
+            return rc.env.DB;
+        }
+    } catch (e) {
+        // Fallback for non-edge or build time
+    }
+
+    // 2. Fallback to passed env or process.env
+    const targetEnv = env || (typeof process !== 'undefined' ? process.env : {});
+    if (targetEnv.DB) {
+        return targetEnv.DB;
+    }
+
     const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
-    if (isDev && !env?.DB) {
+    if (isDev) {
         // Mock DB for local dev if cloudflare env not present
         return {
             prepare: (query: string) => {
-                // Return a mock statement
+                // ... (rest of mock remains same)
                 return {
                     bind: (...args: any[]) => ({
-                        first: async () => null, // Simulate "not found" for checks
+                        first: async () => null,
                         all: async () => ({ results: [] }),
-                        run: async () => ({ success: true }), // Simulate success
+                        run: async () => ({ success: true }),
                     }),
                     first: async () => null,
                     all: async () => ({ results: [] }),
@@ -28,7 +45,9 @@ export const getDb = (env: any): D1Database => {
             dump: async () => new ArrayBuffer(0),
         } as any;
     }
-    return env.DB;
+    
+    // Final fallback (might return undefined, which then causes clear errors)
+    return targetEnv.DB;
 };
 
 // User Operations
