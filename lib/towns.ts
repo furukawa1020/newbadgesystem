@@ -16,7 +16,7 @@ export interface Badge {
 // Force Update: Renamed images to ASCII for Cloudflare compatibility
 // Confirmed paths: 'badge_1.png' etc. (NOT /assets/badges/...)
 export const TOWNS: Badge[] = [
-  // Shiramine
+  // Shiramine (mountain reference: x:80, y:15)
   {
     id: 'shiramine',
     name: '白峰',
@@ -33,7 +33,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '手取川ダム',
     description: '巨大なロックフィルダム',
     lat: 36.241, lng: 136.611,
-    x: 70, y: 30,
+    x: 72, y: 25,
     badgeImage: 'badge_2.png'
   },
   // Yoshinodani
@@ -43,7 +43,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '綿ヶ滝',
     description: '手取峡谷の絶景スポット',
     lat: 36.289, lng: 136.602,
-    x: 60, y: 40,
+    x: 66, y: 31,
     badgeImage: 'badge_3.png'
   },
   // Torigoe
@@ -53,7 +53,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '鳥越城跡',
     description: '一向一揆の歴史を伝える山城',
     lat: 36.331, lng: 136.589,
-    x: 50, y: 35,
+    x: 61, y: 37,
     badgeImage: 'badge_4.png'
   },
   // Kawachi
@@ -63,7 +63,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '河内千丈温泉',
     description: '美肌の湯として知られる温泉',
     lat: 36.353, lng: 136.621,
-    x: 65, y: 50,
+    x: 57, y: 29,
     badgeImage: 'badge_5.png'
   },
   // Tsurugi
@@ -73,10 +73,10 @@ export const TOWNS: Badge[] = [
     realSpotName: 'パーク獅子吼',
     description: 'ゴンドラでスカイ獅子吼へ',
     lat: 36.442, lng: 136.638,
-    x: 65, y: 65,
+    x: 45, y: 30,
     badgeImage: 'badge_6.png'
   },
-  // Matto
+  // Matto (sea reference: x:38, y:55)
   {
     id: 'matto',
     name: '松任',
@@ -86,7 +86,7 @@ export const TOWNS: Badge[] = [
     x: 38, y: 55,
     badgeImage: 'badge_7.png'
   },
-  // Mikawa
+  // Mikawa (sea reference: x:45, y:70)
   {
     id: 'mikawa',
     name: '美川',
