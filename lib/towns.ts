@@ -83,7 +83,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '松任海浜公園',
     description: '日本海を望む広大な公園',
     lat: 36.526, lng: 136.565,
-    x: 45, y: 70,
+    x: 38, y: 55,
     badgeImage: 'badge_7.png'
   },
   // Mikawa
@@ -93,7 +93,7 @@ export const TOWNS: Badge[] = [
     realSpotName: '美川県民の森',
     description: '手取川河口の自然',
     lat: 36.494, lng: 136.502,
-    x: 38, y: 55,
+    x: 45, y: 70,
     badgeImage: 'badge_8.png'
   },
 ];
